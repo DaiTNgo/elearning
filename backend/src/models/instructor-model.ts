@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../utils/connectDB';
 
-console.log('---------instructors model--------');
 const Instructor = sequelize.define(
 	'Instructor',
 	{

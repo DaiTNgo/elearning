@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-
+import Course from './course-model';
 import sequelize from '../utils/connectDB';
 
 const CourseType = sequelize.define(
@@ -7,7 +7,10 @@ const CourseType = sequelize.define(
 	{
 		course_id: {
 			type: DataTypes.INTEGER,
-			primaryKey: true,
+			references: {
+				model: Course,
+				key: 'course_id',
+			},
 		},
 		type: {
 			type: DataTypes.STRING(100),

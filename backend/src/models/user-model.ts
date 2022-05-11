@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../utils/connectDB';
-console.log('---------user model--------');
+
 const User = sequelize.define(
 	'User',
 	{

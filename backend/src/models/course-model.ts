@@ -1,8 +1,7 @@
 import { DataTypes } from 'sequelize';
-
+import Instructor from './instructor-model';
 import sequelize from '../utils/connectDB';
 
-console.log('---------course model--------');
 const Course = sequelize.define(
 	'Course',
 	{
@@ -18,7 +17,10 @@ const Course = sequelize.define(
 		},
 		instructor_name: {
 			type: DataTypes.STRING(50),
-			allowNull: false,
+			references: {
+				model: Instructor,
+				key: 'name',
+			},
 		},
 		description: {
 			type: DataTypes.TEXT('tiny'),
