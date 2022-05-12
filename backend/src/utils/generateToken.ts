@@ -1,5 +1,10 @@
 import jwt from 'jsonwebtoken';
-export async function generteAccessToken(id: string) {
-  const secretAccessToken = process.env.ACCESS_TOKEN as string;
-  return jwt.sign(id, secretAccessToken);
+
+export function generateToken(payload: any, expiresIn: any, secrete: any) {
+  return jwt.sign(payload, secrete, {
+    expiresIn,
+  });
 }
+// export function updateRefreshToken(user, refreshToken) {
+//   user.refreshToken = refreshToken;
+// }
