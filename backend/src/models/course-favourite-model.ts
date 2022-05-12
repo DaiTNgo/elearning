@@ -7,6 +7,7 @@ const CourseFavourite = sequelize.define(
 	{
 		email: {
 			type: DataTypes.STRING(155),
+			primaryKey: true,
 			references: {
 				model: User,
 				key: 'email',
@@ -14,6 +15,7 @@ const CourseFavourite = sequelize.define(
 		},
 		course_id: {
 			type: DataTypes.INTEGER,
+			primaryKey: true,
 			references: {
 				model: Course,
 				key: 'course_id',

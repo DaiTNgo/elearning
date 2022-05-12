@@ -57,8 +57,6 @@ const User = sequelize.define(
 	},
 	{
 		tableName: 'users',
-		// timestamps: true,
-		// indexes: [{ fields: ['id'] }],
 	}
 );
 

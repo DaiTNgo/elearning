@@ -16,13 +16,14 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 console.log(process.env.DB_PASSWORD);
 server.listen(PORT, async () => {
-  console.log(`Listening on ${PORT}`);
-  connectDB();
-  await UserModel.sync({ force: true });
-  await InstructorModel.sync({ force: true });
-  await CouseModel.sync({ force: true });
-  await TopicModel.sync({ force: true });
-  await CourseFavouriteModel.sync({ force: true });
-  await CourseTypeModel.sync({ force: true });
-  await OrderTopicModel.sync({ force: true });
+	console.log(`Listening on ${PORT}`);
+	connectDB();
+
+	// await UserModel.sync({ alter: true });
+	// await InstructorModel.sync({ alter: true });
+	// await CouseModel.sync({ alter: true });
+	// await TopicModel.sync({ alter: true });
+	// await CourseFavouriteModel.sync({ alter: true });
+	// await CourseTypeModel.sync({ alter: true });
+	// await OrderTopicModel.sync({ alter: true });
 });

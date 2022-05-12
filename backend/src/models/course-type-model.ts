@@ -7,6 +7,7 @@ const CourseType = sequelize.define(
 	{
 		course_id: {
 			type: DataTypes.INTEGER,
+			primaryKey: true,
 			references: {
 				model: Course,
 				key: 'course_id',
@@ -26,6 +27,7 @@ const CourseType = sequelize.define(
 	{
 		timestamps: false,
 		tableName: 'course_types',
+		// indexes: [{ unique: true, fields: ['course_id', 'type'] }],
 	}
 );
 export default CourseType;
