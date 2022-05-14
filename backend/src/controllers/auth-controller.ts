@@ -23,6 +23,9 @@ class Auth {
   // [POST] /user/sigup
   async sigup(req: Request, res: Response) {
     const { password, email } = req.body as FormType;
+    if (!(password && email)) {
+      return res.status(400).json('email and password is not valid');
+    }
     try {
       const user = await UserModel.create({
         email,
@@ -30,7 +33,7 @@ class Auth {
       });
       //@ts-ignore
       const { password: pw, ...other } = user['dataValues'];
-      res.status(200).json({
+      res.status(201).json({
         success: true,
         user: other,
       });
@@ -39,7 +42,7 @@ class Auth {
     }
   }
 
-  // [POST] /user/login
+  // [POST] /auth/login
   async login(req: Request, res: Response) {
     let msg = 'Something is wrong with your email or password';
     // const errors = [
@@ -59,10 +62,9 @@ class Auth {
         const passed = await bcrypt.compare(password, user.password);
         if (passed) {
           const maxAge: number = 1000 * 60 * 60 * 24 * 30;
-          const { password: pw, ...other } = user;
-
-          const acessToken = generateAccessToken(other);
-          const refreshToken = generateRefreshToken(other);
+          const { password: pw, ...others } = user;
+          const acessToken = generateAccessToken(others);
+          const refreshToken = generateRefreshToken(others);
           refreshTokens.push(refreshToken);
 
           resp.success = true;
@@ -79,7 +81,7 @@ class Auth {
       }
       res.status(200).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      return res.status(400).json(error);
     }
   }
 
@@ -90,24 +92,24 @@ class Auth {
     //@ts-ignore
     const refreshToken = res.cookie.refresh;
     refreshTokens = refreshTokens.filter((rf) => rf !== refreshToken);
-    res.cookie('jwt', '');
+    res.cookie('refresh', '');
     return res.status(200).json('Logged out successfully.');
   }
 
-  // [POST] /user/refreshtoken
+  // [POST] /auth/refreshtoken
   async refreshToken(req: Request, res: Response) {
     const refreshCookie = req.cookies.refresh;
-    if (refreshTokens.includes(refreshCookie))
+    if (!refreshTokens.includes(refreshCookie)) {
       return res.status(401).json("You're not authenticated");
+    }
     try {
       const user = jwt.verify(refreshCookie, process.env.REFRESH_TOKEN_SECRET!);
-      //check user
-      console.log(user);
-      // const accessToken = generateRefreshToken({ user });
-      // return res.status(200).json({ accessToken });
-      return res.status(200).json(user);
+      //@ts-ignore
+      const { iat, exp, ...others } = user;
+      const accessToken = generateAccessToken({ others });
+      return res.status(200).json({ accessToken });
     } catch (error) {
-      return res.status(401).json(error);
+      return res.status(400).json(error);
     }
   }
 }

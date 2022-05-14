@@ -1,20 +1,20 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../utils/connectDB';
 import Course from './course-model';
-import User from './user-model';
+import UserModel from './user-model';
 
 class CourseFavourite extends Model {
   declare course_id: number;
-  declare email: string;
+  declare user_id: string;
 }
 CourseFavourite.init(
   {
-    email: {
+    user_id: {
       primaryKey: true,
-      type: DataTypes.STRING(155),
+      type: DataTypes.INTEGER,
       references: {
-        model: User,
-        key: 'email',
+        model: UserModel,
+        key: 'id',
       },
     },
     course_id: {
