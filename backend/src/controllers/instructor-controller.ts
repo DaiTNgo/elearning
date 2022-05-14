@@ -128,6 +128,7 @@ class User {
     }
   }
 
+  //TODO:
   //[DELETE] /instructor/:topicId
   async deleteTopic(req: Request, res: Response) {
     //@ts-ignore

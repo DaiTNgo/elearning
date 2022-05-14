@@ -80,7 +80,11 @@ UserModel.beforeCreate(async (user, options) => {
   user.password = hashed;
 });
 
-UserModel.hasMany(CourseModel);
+UserModel.hasMany(CourseModel, { foreignKey: 'instructor_id' });
+CourseModel.belongsToMany(UserModel, {
+  through: 'FavouriteCourse',
+  timestamps: false,
+});
 
 // User.beforeSave(async (user, options) => {
 //   if (user.updatePassword) {

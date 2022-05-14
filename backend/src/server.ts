@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import http from 'http';
 import app from './app';
-import CourseFavouriteModel from './models/course-favourite-model';
 import CouseModel from './models/course-model';
 import TopicModel from './models/topic-model';
 import UserModel from './models/user-model';
@@ -17,5 +16,4 @@ server.listen(PORT, async () => {
   //   await UserModel.sync({ alter: true });
   //   await CouseModel.sync({ alter: true });
   //   await TopicModel.sync({ alter: true });
-  //   await CourseFavouriteModel.sync({ alter: true });
 });

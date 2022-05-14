@@ -1,8 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../utils/connectDB';
+import TopicModel from './topic-model';
 import UserModel from './user-model';
 
-class Course extends Model {
+class CourseModel extends Model {
   declare course_id: number;
   declare price: number;
   declare instructor_id: string;
@@ -11,7 +12,7 @@ class Course extends Model {
   declare image: string;
   declare type: string;
 }
-Course.init(
+CourseModel.init(
   {
     course_id: {
       primaryKey: true,
@@ -23,13 +24,6 @@ Course.init(
       defaultValue: 0,
       allowNull: false,
     },
-    // instructor_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: UserModel,
-    //     key: 'id',
-    //   },
-    // },
     description: {
       type: DataTypes.TEXT('tiny'),
       validate: {
@@ -71,4 +65,5 @@ Course.init(
     tableName: 'courses',
   }
 );
-export default Course;
+CourseModel.hasMany(TopicModel, { foreignKey: 'course_id' });
+export default CourseModel;

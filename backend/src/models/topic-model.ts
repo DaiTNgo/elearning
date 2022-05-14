@@ -1,8 +1,7 @@
 import sequelize from '../utils/connectDB';
 import { DataTypes, Model } from 'sequelize';
-import Course from './course-model';
 
-class Topic extends Model {
+class TopicModel extends Model {
   declare topic_id: number;
   declare course_id: number;
   declare order: number;
@@ -10,7 +9,7 @@ class Topic extends Model {
   declare description: string;
   declare link: string;
 }
-Topic.init(
+TopicModel.init(
   {
     topic_id: {
       primaryKey: true,
@@ -39,13 +38,6 @@ Topic.init(
         },
       },
     },
-    course_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Course,
-        key: 'course_id',
-      },
-    },
     order: {
       type: DataTypes.INTEGER.UNSIGNED,
     },
@@ -58,4 +50,4 @@ Topic.init(
   }
 );
 
-export default Topic;
+export default TopicModel;
