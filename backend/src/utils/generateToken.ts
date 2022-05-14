@@ -1,15 +1,12 @@
-import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export function generateAccessToken(payload: JwtPayload, secrete: string) {
-	return jwt.sign(payload, secrete, {
-		expiresIn: '1d',
-	});
+export function generateAccessToken(payload: JwtPayload) {
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, {
+    expiresIn: '1d',
+  });
 }
-export function generateRefreshToken(payload: JwtPayload, secrete: string) {
-	return jwt.sign(payload, secrete, {
-		expiresIn: '30d',
-	});
+export function generateRefreshToken(payload: JwtPayload) {
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET as string, {
+    expiresIn: '30d',
+  });
 }
-// export function updateRefreshToken(user, refreshToken) {
-//   user.refreshToken = refreshToken;
-// }
