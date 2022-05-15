@@ -1,8 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../utils/connectDB';
-import TopicModel from './topic-model';
-import UserModel from './user-model';
-import FavouriteCourseModel from './favourite-course-model';
+
 class CourseModel extends Model {
   declare course_id: number;
   declare price: number;
@@ -19,13 +17,9 @@ CourseModel.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
     },
-    // instructor_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: UserModel,
-    //     key: 'id',
-    //   },
-    // },
+    instructor_id: {
+      type: DataTypes.INTEGER,
+    },
     price: {
       type: DataTypes.FLOAT,
       defaultValue: 0,

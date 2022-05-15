@@ -1,9 +1,6 @@
 import sequelize from '../utils/connectDB';
 import bcrypt from 'bcrypt';
 import { DataTypes, Model } from 'sequelize';
-import CourseModel from './course-model';
-import FavouriteCourseModel from './favourite-course-model';
-import TopicModel from './topic-model';
 
 class UserModel extends Model {
   declare id: number;
@@ -50,7 +47,6 @@ UserModel.init(
     user_name: {
       type: DataTypes.STRING,
       defaultValue: '',
-      allowNull: true,
     },
     avatar: {
       type: DataTypes.STRING,
@@ -77,39 +73,17 @@ UserModel.init(
   }
 );
 
-// CourseModel.hasMany(TopicModel);
-// UserModel.hasMany(CourseModel);
-
-// CourseModel.belongsTo(UserModel);
-// UserModel.hasOne(CourseModel, { foreignKey: 'instructor_id' });
-// CourseModel.belongsToMany(UserModel, {
-// sourceKey: 'course_id',
-//   through: 'course_user',
-// });
-// UserModel.belongsToMany(CourseModel, {
-//   // sourceKey: 'email',
-//   through: FavouriteCourseModel,
-// });
-
-CourseModel.belongsToMany(UserModel, {
-  through: FavouriteCourseModel,
-  foreignKey: 'user_id',
-});
-UserModel.belongsToMany(CourseModel, {
-  foreignKey: 'course_id',
-  through: FavouriteCourseModel,
-});
-
 UserModel.beforeCreate(async (user, options) => {
   const hashed = await bcrypt.hash(user.password, 10);
   user.password = hashed;
 });
 
-// User.beforeSave(async (user, options) => {
-//   if (user.updatePassword) {
-//     const hashed = await bcrypt.hash(user.password, 10);
-//     user.password = hashed;
-//   }
-// });
+UserModel.beforeSave(async (user, options) => {
+  //@ts-ignore
+  if (user.updatePassword) {
+    const hashed = await bcrypt.hash(user.password, 10);
+    user.password = hashed;
+  }
+});
 
 export default UserModel;

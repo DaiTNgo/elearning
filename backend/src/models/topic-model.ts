@@ -1,9 +1,8 @@
 import sequelize from '../utils/connectDB';
+
 import { DataTypes, Model } from 'sequelize';
-import CourseModel from './course-model';
 
 class TopicModel extends Model {
-  declare topic_id: number;
   declare course_id: number;
   declare order: number;
   declare name: string;
@@ -15,10 +14,6 @@ TopicModel.init(
     course_id: {
       primaryKey: true,
       type: DataTypes.INTEGER,
-      references: {
-        model: CourseModel,
-        key: 'course_id',
-      },
     },
     name: {
       type: DataTypes.STRING(150),

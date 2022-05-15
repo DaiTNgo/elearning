@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../utils/connectDB';
-import UserModel from './user-model';
-import CourseModel from './course-model';
+
+
 class FavouriteCourseModel extends Model {
   declare course_id: number;
   declare user_id: number;
@@ -17,7 +17,7 @@ FavouriteCourseModel.init(
       primaryKey: true,
       unique: false,
       type: DataTypes.INTEGER,
-    }
+    },
   },
   {
     sequelize,
