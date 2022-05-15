@@ -1,6 +1,8 @@
-import sequelize from '../utils/connectDB';
 import bcrypt from 'bcrypt';
 import { DataTypes, Model } from 'sequelize';
+import sequelize from '../utils/connectDB';
+import CourseModel from './course-model';
+import FavouriteCourseModel from './favourite-course-model';
 
 class UserModel extends Model {
   declare id: number;
@@ -13,6 +15,7 @@ class UserModel extends Model {
   declare my_website: string;
   declare role: 'user' | 'admin' | 'instructor';
 }
+
 UserModel.init(
   {
     id: {
@@ -72,6 +75,20 @@ UserModel.init(
     tableName: 'users',
   }
 );
+
+CourseModel.belongsToMany(UserModel, {
+  through: FavouriteCourseModel,
+  foreignKey: 'course_id',
+});
+
+UserModel.belongsToMany(CourseModel, {
+  through: FavouriteCourseModel,
+  foreignKey: 'user_id',
+});
+
+UserModel.hasMany(CourseModel, {
+  foreignKey: 'instructor_id',
+});
 
 UserModel.beforeCreate(async (user, options) => {
   const hashed = await bcrypt.hash(user.password, 10);

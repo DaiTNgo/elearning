@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../utils/connectDB';
+import TopicModel from './topic-model';
 
 class CourseModel extends Model {
   declare course_id: number;
@@ -66,5 +67,7 @@ CourseModel.init(
     tableName: 'courses',
   }
 );
+
+CourseModel.hasMany(TopicModel, { foreignKey: 'course_id' });
 
 export default CourseModel;
