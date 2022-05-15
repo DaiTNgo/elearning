@@ -81,14 +81,24 @@ UserModel.init(
 // UserModel.hasMany(CourseModel);
 
 // CourseModel.belongsTo(UserModel);
-UserModel.hasOne(CourseModel);
+// UserModel.hasOne(CourseModel, { foreignKey: 'instructor_id' });
 // CourseModel.belongsToMany(UserModel, {
+// sourceKey: 'course_id',
+//   through: 'course_user',
+// });
+// UserModel.belongsToMany(CourseModel, {
+//   // sourceKey: 'email',
 //   through: FavouriteCourseModel,
 // });
 
-// UserModel.belongsToMany(CourseModel, {
-//   through: FavouriteCourseModel,
-// });
+CourseModel.belongsToMany(UserModel, {
+  through: FavouriteCourseModel,
+  foreignKey: 'user_id',
+});
+UserModel.belongsToMany(CourseModel, {
+  foreignKey: 'course_id',
+  through: FavouriteCourseModel,
+});
 
 UserModel.beforeCreate(async (user, options) => {
   const hashed = await bcrypt.hash(user.password, 10);

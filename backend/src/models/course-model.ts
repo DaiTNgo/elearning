@@ -19,13 +19,13 @@ CourseModel.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
     },
-    instructor_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: UserModel,
-        key: 'id',
-      },
-    },
+    // instructor_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: UserModel,
+    //     key: 'id',
+    //   },
+    // },
     price: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
