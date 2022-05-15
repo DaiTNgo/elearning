@@ -13,8 +13,7 @@ type FormType = {
 export type ResponseType = {
   success: boolean;
 };
-type ResponseTypeLogin = ResponseType & {
-  // errors: any;
+type ResponseLoginType = ResponseType & {
   message: string;
   acessToken?: string;
 };
@@ -27,29 +26,24 @@ class Auth {
       return res.status(400).json('email and password is not valid');
     }
     try {
-      const user = await UserModel.create({
+      const user: UserModel = await UserModel.create({
         email,
         password,
       });
-      //@ts-ignore
-      const { password: pw, ...other } = user['dataValues'];
+      const { password: pw, ...others } = user.toJSON();
       res.status(201).json({
         success: true,
-        user: other,
+        user: others,
       });
-    } catch (err: any) {
-      res.status(422).json(err);
+    } catch (error: any) {
+      res.status(422).json(error);
     }
   }
 
   // [POST] /auth/login
   async login(req: Request, res: Response) {
     let msg = 'Something is wrong with your email or password';
-    // const errors = [
-    //   { path: 'password', message: msg },
-    //   { path: 'email', message: msg },
-    // ];
-    const resp: ResponseTypeLogin = { success: false, message: msg };
+    const resp: ResponseLoginType = { success: false, message: msg };
     const { email, password }: FormType = req.body;
     try {
       const user = await UserModel.findOne({
@@ -62,9 +56,9 @@ class Auth {
         const passed = await bcrypt.compare(password, user.password);
         if (passed) {
           const maxAge: number = 1000 * 60 * 60 * 24 * 30;
-          const { password: pw, ...others } = user;
-          const acessToken = generateAccessToken(others);
-          const refreshToken = generateRefreshToken(others);
+          const { id, role } = user;
+          const acessToken = generateAccessToken({ id, role });
+          const refreshToken = generateRefreshToken({ id, role });
           refreshTokens.push(refreshToken);
 
           resp.success = true;
@@ -87,10 +81,7 @@ class Auth {
 
   // [POST] /user/logout
   async logout(req: Request, res: Response) {
-    //@ts-ignore
-    // const user = req.userData;
-    //@ts-ignore
-    const refreshToken = res.cookie.refresh;
+    const refreshToken = req.cookies.refresh;
     refreshTokens = refreshTokens.filter((rf) => rf !== refreshToken);
     res.cookie('refresh', '');
     return res.status(200).json('Logged out successfully.');
@@ -106,7 +97,7 @@ class Auth {
       const user = jwt.verify(refreshCookie, process.env.REFRESH_TOKEN_SECRET!);
       //@ts-ignore
       const { iat, exp, ...others } = user;
-      const accessToken = generateAccessToken({ others });
+      const accessToken = generateAccessToken(others);
       return res.status(200).json({ accessToken });
     } catch (error) {
       return res.status(400).json(error);
