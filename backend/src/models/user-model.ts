@@ -2,6 +2,8 @@ import sequelize from '../utils/connectDB';
 import bcrypt from 'bcrypt';
 import { DataTypes, Model } from 'sequelize';
 import CourseModel from './course-model';
+import FavouriteCourseModel from './favourite-course-model';
+import TopicModel from './topic-model';
 
 class UserModel extends Model {
   declare id: number;
@@ -75,15 +77,22 @@ UserModel.init(
   }
 );
 
+// CourseModel.hasMany(TopicModel);
+// UserModel.hasMany(CourseModel);
+
+// CourseModel.belongsTo(UserModel);
+UserModel.hasOne(CourseModel);
+// CourseModel.belongsToMany(UserModel, {
+//   through: FavouriteCourseModel,
+// });
+
+// UserModel.belongsToMany(CourseModel, {
+//   through: FavouriteCourseModel,
+// });
+
 UserModel.beforeCreate(async (user, options) => {
   const hashed = await bcrypt.hash(user.password, 10);
   user.password = hashed;
-});
-
-UserModel.hasMany(CourseModel, { foreignKey: 'instructor_id' });
-CourseModel.belongsToMany(UserModel, {
-  through: 'FavouriteCourse',
-  timestamps: false,
 });
 
 // User.beforeSave(async (user, options) => {
