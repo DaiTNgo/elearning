@@ -49,7 +49,7 @@ class User {
     }
   }
 
-  // [POST] /user/:courseId
+  // [POST] /user/favourite/:courseId
   async addFavouriteCourse(req: Request, res: Response) {
     //@ts-ignore
     const userId = req.userData.id;

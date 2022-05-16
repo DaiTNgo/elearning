@@ -6,20 +6,22 @@ const router = express.Router();
 router
   .route('/create-course')
   .post(checkAuth, checkInstructor, InstructorController.createCourse);
-//   .delete(checkAuth, checkInstructor, InstructorController.deleteTopic);
+
 router
-  .route('/restore/:courseId')
+  .route('/restore/course/:courseId')
   .post(checkAuth, checkInstructor, InstructorController.restoreCourse);
 
 router
-  .route('/:courseId')
+  .route('/course/:courseId')
   .patch(checkAuth, checkInstructor, InstructorController.updateCourse)
   .delete(checkAuth, checkInstructor, InstructorController.deleteCourse);
 
-// router.route('/').patch(checkAuth, UserController.updateUser);
-
-router.route('/').get((req, res) => {
-  res.json('ok');
-});
+router
+  .route('/restore/topic')
+  .post(checkAuth, checkInstructor, InstructorController.restoreTopic);
+router
+  .route('/topic')
+  .delete(checkAuth, checkInstructor, InstructorController.deleteTopic)
+  .patch(checkAuth, checkInstructor, InstructorController.updateTopic);
 
 export default router;

@@ -7,8 +7,4 @@ router.route('/update').patch(checkAuth, UserController.updateUser);
 router.route('/:courseId').post(checkAuth, UserController.addFavouriteCourse);
 router.route('/').post(checkAuth, UserController.findOneUser);
 
-router.route('/').get((req, res) => {
-  res.json('ok');
-});
-
 export default router;
