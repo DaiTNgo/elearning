@@ -77,20 +77,37 @@ UserModel.init(
   }
 );
 //n:m
-CourseModel.belongsToMany(UserModel, {
-  through: FavouriteCourseModel,
+// CourseModel.belongsToMany(UserModel, {
+//   through: FavouriteCourseModel,
+//   foreignKey: 'course_id',
+// });
+
+// UserModel.belongsToMany(CourseModel, {
+//   through: FavouriteCourseModel,
+//   foreignKey: 'user_id',
+// });
+
+UserModel.hasMany(FavouriteCourseModel, {
+  foreignKey: 'user_id',
+});
+
+CourseModel.hasMany(FavouriteCourseModel, {
   foreignKey: 'course_id',
 });
 
-UserModel.belongsToMany(CourseModel, {
-  through: FavouriteCourseModel,
+FavouriteCourseModel.belongsTo(UserModel, {
   foreignKey: 'user_id',
+});
+
+FavouriteCourseModel.belongsTo(CourseModel, {
+  foreignKey: 'course_id',
 });
 
 // 1:n
 UserModel.hasMany(CourseModel, {
   foreignKey: 'instructor_id',
 });
+
 CourseModel.belongsTo(UserModel, {
   foreignKey: 'instructor_id',
 });

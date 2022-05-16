@@ -5,6 +5,7 @@ import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';
 
 class User {
+  //TODO:
   //[POST] /instructor/create-course
   async createCourse(req: Request, res: Response) {
     //@ts-ignore
@@ -44,7 +45,7 @@ class User {
       return res.status(400).json(error);
     }
   }
-
+  //TODO:
   //[PATCH] /instructor/?course_id&&?topic_id
   async updateCourse(req: Request, res: Response) {
     const { courseName, courseType, price, description, image } = req.body;
@@ -75,7 +76,7 @@ class User {
       return res.status(401).json(error);
     }
   }
-
+  //TODO:
   //[DELETE] /instructor/:courseId
   async deleteCourse(req: Request, res: Response) {
     //@ts-ignore
@@ -103,7 +104,7 @@ class User {
       return res.status(401).json(error);
     }
   }
-
+  //TODO:
   //[POST] /instructor/restore/:courseId
   async restoreCourse(req: Request, res: Response) {
     //@ts-ignore

@@ -10,6 +10,8 @@ class CourseModel extends Model {
   declare name: string;
   declare image: string;
   declare type: string;
+  declare isTutorial: boolean;
+  declare isLivestream: boolean;
 }
 CourseModel.init(
   {
@@ -58,6 +60,14 @@ CourseModel.init(
           args: [2, 100],
         },
       },
+    },
+    isTutorial: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    isLivestream: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {

@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import http from 'http';
 import app from './app';
+import CourseModel from './models/course-model';
 
 import { connectDB } from './utils/connectDB';
 
