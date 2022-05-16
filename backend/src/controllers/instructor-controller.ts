@@ -5,7 +5,7 @@ import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';
 
 class User {
-  //[POST] /instructor/
+  //[POST] /instructor/create-course
   async createCourse(req: Request, res: Response) {
     //@ts-ignore
     const instructorId = req.userData.id;
@@ -22,7 +22,6 @@ class User {
         type: courseType,
       });
       const lengthOfTopic = topics.length;
-
       for (let i = 0; i < lengthOfTopic; i++) {
         await TopicModel.create({
           name: topics[i].name,
@@ -34,18 +33,19 @@ class User {
       }
       return res.status(201).json({ success: true });
     } catch (error) {
-      CourseModel.destroy({
-        where: {
-          course_id: course?.course_id,
-        },
-        force: true,
-      });
-      //@ts-ignore
-      return res.status(400).json(error.message);
+      if (course) {
+        CourseModel.destroy({
+          where: {
+            course_id: course.course_id,
+          },
+          force: true,
+        });
+      }
+      return res.status(400).json(error);
     }
   }
 
-  //[PATCH] /instructor/:courseId
+  //[PATCH] /instructor/?course_id&&?topic_id
   async updateCourse(req: Request, res: Response) {
     const { courseName, courseType, price, description, image } = req.body;
     const courseId = req.params.courseId;
@@ -75,6 +75,7 @@ class User {
       return res.status(401).json(error);
     }
   }
+
   //[DELETE] /instructor/:courseId
   async deleteCourse(req: Request, res: Response) {
     //@ts-ignore
@@ -193,21 +194,5 @@ class User {
     }
   }
 }
-// [
-//   {
-//     name: 'Introduce',
-//     description:
-//       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, corrupti!',
-//   },
-//   {
-//     name: 'second',
-//     description:
-//       'Eius iusto deserunt illum voluptatem corporis enim atque, aliquid possimus illo minima ex optio. Incidunt.',
-//   },
-//   {
-//     name: 'third',
-//     description:
-//       'Incidunt.oris aliquam asperiores molestiae iusto deserunt quaerat laborum fugit omnis eos nostrum? ',
-//   },
-// ];
+
 export default new User();

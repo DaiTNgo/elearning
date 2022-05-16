@@ -13,6 +13,7 @@ class UserModel extends Model {
   declare description: string;
   declare acc_twiter: string;
   declare my_website: string;
+  declare deletedAt: string;
   declare role: 'user' | 'admin' | 'instructor';
 }
 
@@ -75,7 +76,7 @@ UserModel.init(
     tableName: 'users',
   }
 );
-
+//n:m
 CourseModel.belongsToMany(UserModel, {
   through: FavouriteCourseModel,
   foreignKey: 'course_id',
@@ -86,7 +87,11 @@ UserModel.belongsToMany(CourseModel, {
   foreignKey: 'user_id',
 });
 
+// 1:n
 UserModel.hasMany(CourseModel, {
+  foreignKey: 'instructor_id',
+});
+CourseModel.belongsTo(UserModel, {
   foreignKey: 'instructor_id',
 });
 

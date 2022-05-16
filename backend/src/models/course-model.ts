@@ -30,7 +30,7 @@ CourseModel.init(
       type: DataTypes.TEXT('tiny'),
       validate: {
         len: {
-          msg: 'Course must be a description',
+          msg: 'Course must be greater than 10 characters.',
           args: [10, 1000],
         },
       },
@@ -40,7 +40,7 @@ CourseModel.init(
       type: DataTypes.STRING(150),
       validate: {
         len: {
-          msg: 'Course must be a name',
+          msg: 'Course must be greater than 10 characters.',
           args: [10, 150],
         },
       },
@@ -67,7 +67,8 @@ CourseModel.init(
     tableName: 'courses',
   }
 );
-
+//1:n
 CourseModel.hasMany(TopicModel, { foreignKey: 'course_id' });
+TopicModel.belongsTo(CourseModel, { foreignKey: 'course_id' });
 
 export default CourseModel;
