@@ -3,11 +3,13 @@ import UserModel from '../models/user-model';
 import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import FavouriteCourseModel from '../models/favourite-course-model';
+import { ResponseType } from './auth-controller';
 import { Op } from 'sequelize';
 class Course {
   //DONE: [GET] lấy tất cả khóa học của instructorid + info instructor
   //[GET] /instructor/:instructorId
   async getAllCourseInstructorId(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     const instructorId = req.params.instructorId;
     try {
       const info = await CourseModel.findAll({
@@ -18,14 +20,18 @@ class Course {
         },
         raw: true,
       });
-      return res.status(200).json(info);
+      resp.success = true;
+      resp.message = info;
+      return res.status(200).json(resp);
     } catch (error) {
-      return res.status(400).json(error);
+      resp.message = error;
+      return res.status(400).json(resp);
     }
   }
   // DONE: lấy tất cả các khóa yêu thích của user + info course + info instructor
   //[GET] /favourite
   async getAllCourseFavourite(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const userId = req.userData.id;
     try {
@@ -46,9 +52,12 @@ class Course {
         nest: true,
         raw: true,
       });
-      return res.status(200).json(course);
+      resp.success = true;
+      resp.message = course;
+      return res.status(200).json(resp);
     } catch (error) {
-      return res.status(400).json(error);
+      resp.message = error;
+      return res.status(400).json(resp);
     }
   }
 
@@ -56,6 +65,7 @@ class Course {
   //DONE: lấy khóa học tutorial hay livestream với ?istutorial or ?islivestream
   // [GET] /  || /?istutorial=1 || /?islivestream=1
   async getAllCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     const { istutorial, islivestream } = req.query;
     try {
       if (!(islivestream || istutorial)) {
@@ -71,9 +81,10 @@ class Course {
             },
           ],
         });
-        return res.status(200).json(course);
+        resp.success = true;
+        resp.message = course;
       } else {
-        const test = await CourseModel.findAll({
+        const course = await CourseModel.findAll({
           include: [
             {
               model: TopicModel,
@@ -91,15 +102,19 @@ class Course {
             ],
           },
         });
-        return res.status(200).json(test);
+        resp.success = true;
+        resp.message = course;
       }
+      return res.status(200).json(resp);
     } catch (error) {
-      return res.status(400).json(error);
+      resp.message = error;
+      return res.status(400).json(resp);
     }
   }
   //DONE: lấy thông tin 1 khóa học course_id + instructor + topics => truyền instructor_id xuống cho component lấy thông tin của instructor + khóa học
   //[GET] /:courseId
   async getOneCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     const courseId = req.params.courseId;
     try {
       const course = await CourseModel.findOne({
@@ -117,9 +132,12 @@ class Course {
           course_id: courseId,
         },
       });
-      return res.status(200).json(course);
+      resp.success = true;
+      resp.message = course;
+      return res.status(400).json(resp);
     } catch (error) {
-      return res.status(400).json(error);
+      resp.message = error;
+      return res.status(400).json(resp);
     }
   }
 }

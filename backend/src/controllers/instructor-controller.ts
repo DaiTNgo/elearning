@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import { Request, Response } from 'express';
-import { ResponseType } from './auth-controller';
+import ResponseType from './auth-controller';
 import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';

@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export function generateAccessToken(payload: JwtPayload) {
   return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, {
-    expiresIn: '1d',
+    expiresIn: '1h',
   });
 }
 export function generateRefreshToken(payload: JwtPayload) {
@@ -10,3 +10,4 @@ export function generateRefreshToken(payload: JwtPayload) {
     expiresIn: '30d',
   });
 }
+//hihih
