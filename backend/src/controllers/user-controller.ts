@@ -78,5 +78,31 @@ class User {
       res.status(400).json(resp);
     }
   }
+
+  //[PATCH] /user/update/password
+  async updatePassword(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
+    //@ts-ignore
+    const { id } = req.userData;
+    const { password } = req.body;
+    try {
+      const user = await UserModel.findByPk(id);
+      if (!user) {
+        resp.success = false;
+        resp.message = 'Something is wrong';
+        return res.status(404).json(resp);
+      }
+      user.updatePassword = true;
+      user.password = password;
+      await user.save();
+
+      resp.success = true;
+      resp.message = user;
+      res.status(201).json(resp);
+    } catch (error: any) {
+      resp.message = error;
+      res.status(403).json(resp);
+    }
+  }
 }
 export default new User();

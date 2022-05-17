@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import { Request, Response } from 'express';
-import ResponseType from './auth-controller';
+import { ResponseType } from './auth-controller';
 import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';
@@ -9,6 +9,7 @@ class Instructor {
   //DONE:
   //[POST] /instructor/create-course
   async createCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const {
@@ -43,7 +44,9 @@ class Instructor {
           course_id: course.course_id,
         });
       }
-      return res.status(201).json({ success: true });
+      resp.success = true;
+      resp.message = course;
+      return res.status(201).json(resp);
     } catch (error) {
       if (course) {
         CourseModel.destroy({
@@ -53,12 +56,14 @@ class Instructor {
           force: true,
         });
       }
-      return res.status(400).json(error);
+      resp.message = error;
+      return res.status(400).json(resp);
     }
   }
   //DONE:
   //[PATCH] /instructor/course/:courseId
   async updateCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     const {
       courseName,
       courseType,
@@ -96,16 +101,22 @@ class Instructor {
         }
       );
       if (!course[0]) {
-        return res.status(400).json('Course not found.');
+        resp.success = false;
+        resp.message = 'Course not found';
+        return res.status(404).json(resp);
       }
-      return res.status(201).json({ success: true });
+      resp.success = true;
+      resp.message = course;
+      return res.status(201).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
   //DONE:
   //[DELETE] /instructor/:courseId
   async deleteCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const courseId = req.params.courseId;
@@ -122,18 +133,22 @@ class Instructor {
           ],
         },
       });
-      console.log('>>> course :', course);
       if (!course) {
-        return res.status(400).json('Course not found.');
+        resp.message = 'Course not found';
+        resp.success = false;
+        return res.status(404).json(resp);
       }
-      return res.status(200).json({ success: true });
+      resp.success = true;
+      return res.status(204).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
   //DONE:
   //[POST] /instructor/restore/course/:courseId
   async restoreCourse(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const courseId = req.params.courseId;
@@ -150,16 +165,21 @@ class Instructor {
           ],
         },
       });
-
-      return res.status(200).json({ success: true, isCourse: course });
+      resp.success = true;
+      resp.message = {
+        isExistCourse: course,
+      };
+      return res.status(200).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
 
   //DONE:
   //[PATCH] /instructor/topic?courseId&&order
   async updateTopic(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const { order, courseId } = req.query;
@@ -182,7 +202,9 @@ class Instructor {
       });
 
       if (!passed) {
-        return res.status(401).json("You're not authorization.");
+        resp.success = false;
+        resp.message = "You're not authorization.";
+        return res.status(401).json(resp);
       }
       const topic = await TopicModel.update(
         {
@@ -204,16 +226,22 @@ class Instructor {
         }
       );
       if (!topic) {
-        return res.status(200).json('topic not found');
+        resp.success = false;
+        resp.message = 'Topic not found';
+        return res.status(404).json(resp);
       }
-      return res.status(200).json({ success: true });
+      resp.success = true;
+      resp.message = topic;
+      return res.status(200).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
   //DONE:
   //[DELETE] /instructor/topic?courseId&&order
   async deleteTopic(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const { order, courseId } = req.query;
@@ -236,7 +264,9 @@ class Instructor {
       });
 
       if (!passed) {
-        return res.status(401).json("You're not authorization.");
+        resp.success = false;
+        resp.message = "You're not authorization.";
+        return res.status(401).json(resp);
       }
       const topic = await TopicModel.destroy({
         where: {
@@ -251,16 +281,21 @@ class Instructor {
         },
       });
       if (!topic) {
-        return res.status(200).json('topic not found');
+        resp.success = false;
+        resp.message = 'Topic not found';
+        return res.status(404).json(resp);
       }
-      return res.status(200).json({ success: true });
+      resp.success = true;
+      return res.status(204).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
   //DONE:
   //[POST] /instructor/restore/topic?courseId&&order
   async restoreTopic(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const { order, courseId } = req.query;
@@ -282,7 +317,9 @@ class Instructor {
       });
 
       if (!passed) {
-        return res.status(401).json("You're not authorization.");
+        resp.success = false;
+        resp.message = "You're not authorization.";
+        return res.status(401).json(resp);
       }
 
       const isTopic = await TopicModel.restore({
@@ -297,10 +334,14 @@ class Instructor {
           ],
         },
       });
-
-      return res.status(401).json({ success: true, isTopic });
+      resp.success = true;
+      resp.message = {
+        isTopic,
+      };
+      return res.status(401).json(resp);
     } catch (error) {
-      return res.status(401).json(error);
+      resp.message = error;
+      return res.status(401).json(resp);
     }
   }
 }

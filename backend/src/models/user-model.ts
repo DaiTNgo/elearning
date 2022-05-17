@@ -15,6 +15,7 @@ class UserModel extends Model {
   declare my_website: string;
   declare deletedAt: string;
   declare role: 'user' | 'admin' | 'instructor';
+  declare updatePassword: boolean;
 }
 
 UserModel.init(
