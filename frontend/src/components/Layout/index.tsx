@@ -5,8 +5,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Header />
-      <Footer />
       {children}
+      <Footer />
     </div>
   );
 };
