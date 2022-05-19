@@ -16,18 +16,32 @@
     transition: transform 100ms linear;
     will-change: transform;
   }
+
+  &.round {
+    border-radius: 999px;
+  }
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.2);
   }
-  &.isTransition {
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.2);
 
-      .navigator-text {
-        color: white;
+  &.isTransition {
+    &.header {
+      &:hover {
+        .navigator-text {
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    &.more {
+      &:hover {
         transform: translateY(-2px);
+        :nth-child(1) {
+          transform: scale(105%);
+        }
       }
     }
   }

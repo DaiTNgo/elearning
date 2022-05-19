@@ -1,2 +1,58 @@
 .icon {
+  --width: 32px;
+
+  display: grid;
+  place-items: center;
+
+  width: var(--width);
+  height: var(--width);
+
+  transition: all 0.1s ease-in-out;
+
+  > * {
+    width: 100%;
+  }
+  &.sm {
+  }
+  &.md {
+    --width: 44px;
+  }
+  &.lg {
+    --width: 88px;
+  }
+  &.circle {
+    border-radius: 50%;
+  }
+
+  &.padding.sm > * {
+    width: 24px;
+    height: 24px;
+  }
+  &.boxShadow {
+    box-shadow: var(--primary-box-shadow);
+  }
+  &.buy > * {
+    width: 20px;
+    height: 20px;
+  }
+  &.buy {
+    background: linear-gradient(
+      200.44deg,
+      rgb(67, 22, 219) 13.57%,
+      rgb(144, 118, 231) 98.38%
+    );
+    box-shadow: 0px 0px 4px 5px #ced6ff;
+  }
+  &.hover {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  .order {
+    text-align: center;
+    line-height: 24px;
+    font-size: 2rem;
+    color: white;
+  }
 }

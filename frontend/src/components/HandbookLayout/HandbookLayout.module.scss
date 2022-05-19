@@ -1,0 +1,83 @@
+.handbook {
+  position: relative;
+  margin-top: 5rem;
+  width: 25rem;
+  height: 30rem;
+  .first-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 40px;
+    background: rgba(31, 31, 71, 0.6);
+    box-shadow: rgb(0 0 0 / 25%) 0px 40px 80px,
+      rgb(255 255 255 / 15%) 0px 0px 0px 0.5px inset;
+    backdrop-filter: blur(40px);
+    transition: all 100ms ease-in;
+    border-top-left-radius: 0px;
+  }
+
+  //DONE:
+  //   .second-bg {
+  //     position: absolute;
+  //     inset: 0;
+  //     z-index: 0;
+  //     // width: 110%;
+  //     // height: 110%;
+  //     background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
+  //     border-radius: 40px;
+  //     transform-origin: right top;
+  //     transform: rotateY(10deg) rotateZ(10deg);
+  //     transition: all 0.2s ease;
+  //   }
+  //   &:hover {
+  //     .first-bg {
+  //       transform: translateY(-2px);
+  //     }
+  //     .second-bg {
+  //       //   transform: rotate3d(1, 1, 1, 320deg);
+  //       transform: rotateY(35deg) rotateZ(10deg);
+  //     }
+  //   }
+  //DONE:
+  //   .second-bg {
+  //     position: absolute;
+  //     inset: 0;
+  //     z-index: 0;
+  //     // width: 110%;
+  //     // height: 110%;
+  //     background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
+  //     border-radius: 40px;
+  //     transform-origin: left top;
+  //     transform: rotateY(18deg) rotateZ(-10deg);
+  //     transition: all 0.2s ease;
+  //   }
+  //   &:hover {
+  //     .first-bg {
+  //       transform: translateY(-2px);
+  //     }
+  //     .second-bg {
+  //       //   transform: rotate3d(1, 1, 1, 320deg);
+  //       transform: rotateY(35deg) rotateZ(-10deg);
+  //     }
+  //   }
+
+  //DONE:
+  .second-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
+    border-radius: 40px;
+    transform-origin: left top;
+    transform: rotateY(20deg) skewY(5deg);
+    transition: all 0.2s ease;
+  }
+  &:hover {
+    .first-bg {
+      transform: translateY(-2px);
+    }
+    .second-bg {
+      transform: rotateY(30deg) skewY(10deg);
+    }
+  }
+}

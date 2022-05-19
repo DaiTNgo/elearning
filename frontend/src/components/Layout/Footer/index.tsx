@@ -44,6 +44,7 @@ const Footer = (props: {}) => {
                 pathIcon={`${pathImg}/downloads.svg`}
                 text='Downloads'
                 alt='downloads'
+                isPadding
               />
               <NavigatorButton
                 pathIcon={`${pathImg}/search.svg`}

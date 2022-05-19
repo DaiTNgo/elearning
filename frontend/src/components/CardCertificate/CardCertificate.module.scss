@@ -1,0 +1,59 @@
+.ceritfi {
+  --width-line: 60px;
+  --op-line: 0.3;
+  --height-line: 3px;
+
+  display: flex;
+  justify-content: space-between;
+
+  width: 335px;
+  height: 220px;
+  border-radius: 30px;
+  padding: 20px;
+
+  background: radial-gradient(
+    218.51% 281.09% at 100% 100%,
+    rgba(253, 63, 51, 0.6) 0%,
+    rgba(76, 0, 200, 0.6) 45.83%,
+    rgba(76, 0, 200, 0.6) 100%
+  );
+  box-shadow: rgb(39 77 153 / 20%) 0px 30px 60px,
+    rgb(255 255 255 / 30%) 0px 0px 0px 0.5px inset;
+
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+
+  .certifi-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .certifi-left-top {
+    }
+    .certifi-left-bottom {
+      .line {
+        background-color: rgba(white, var(--op-line));
+        width: var(--width-line);
+        border-radius: 999px;
+        height: var(--height-line);
+        + .line {
+          margin-top: 5px;
+        }
+      }
+      .line-1 {
+      }
+      .line-2 {
+        --width-line: 80px;
+      }
+      .line-3 {
+        --width-line: 70px;
+      }
+      .line-4 {
+        --width-line: 100px;
+        --op-line: 0.5;
+        --height-line: 5px;
+      }
+    }
+  }
+  .certifi-right {
+  }
+}

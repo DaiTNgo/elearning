@@ -28,6 +28,7 @@ const Header = (props: {}) => {
               text='Courses'
               alt='course'
               isTransition
+              header
             />
           </NavLink>
           <NavLink
@@ -41,6 +42,7 @@ const Header = (props: {}) => {
               text='Tutorials'
               alt='tutorials'
               isTransition
+              header
             />
           </NavLink>
           <NavLink
@@ -54,6 +56,7 @@ const Header = (props: {}) => {
               text='Livestreams'
               alt='livestreams'
               isTransition
+              header
             />
           </NavLink>
           <NavLink
@@ -67,6 +70,7 @@ const Header = (props: {}) => {
               text='Pricing'
               alt='pricing'
               isTransition
+              header
             />
           </NavLink>
 

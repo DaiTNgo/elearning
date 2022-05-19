@@ -1,0 +1,23 @@
+.course-icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  .course-icon__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+.course__bottom {
+  text-align: center;
+  .course__title {
+    color: white;
+    font-size: 2.4rem;
+  }
+  .course__desc {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+  }
+}
