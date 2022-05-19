@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CardCertificate from './components/CardCertificate';
+import CardCertificates from './components/CardCertificates';
 import CardCourse from './components/CardCourse';
 import CardInstructor from './components/CardInstructor';
 import CardTopic from './components/CardTopic';
@@ -35,7 +36,9 @@ function App() {
         more
         round
       />
-      <CardCertificate />
+      {/* <CardCertificate /> */}
+      {/* <CardCertificate /> */}
+      <CardCertificates />
     </Layout>
   );
 }

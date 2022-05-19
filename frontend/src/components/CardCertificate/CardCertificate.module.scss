@@ -11,18 +11,16 @@
   border-radius: 30px;
   padding: 20px;
 
-  background: radial-gradient(
-    218.51% 281.09% at 100% 100%,
-    rgba(253, 63, 51, 0.6) 0%,
-    rgba(76, 0, 200, 0.6) 45.83%,
-    rgba(76, 0, 200, 0.6) 100%
-  );
   box-shadow: rgb(39 77 153 / 20%) 0px 30px 60px,
     rgb(255 255 255 / 30%) 0px 0px 0px 0.5px inset;
-
+  backdrop-filter: blur(40px);
   cursor: pointer;
-  backdrop-filter: blur(20px);
 
+  transition: all 0.2s linear;
+
+  &:hover {
+    transform: translateY(-40px);
+  }
   .certifi-left {
     display: flex;
     flex-direction: column;
@@ -35,6 +33,7 @@
         width: var(--width-line);
         border-radius: 999px;
         height: var(--height-line);
+
         + .line {
           margin-top: 5px;
         }

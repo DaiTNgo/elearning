@@ -5,9 +5,24 @@ import Icon from '../Icon';
 import { pathImg } from '../Layout/Header';
 const cx = classNames.bind(styles);
 
-export default function CardCertificate() {
+export default function CardCertificate({
+  icon,
+  background,
+  order,
+}: {
+  icon: string;
+  background: string;
+  order: number;
+}) {
   return (
-    <div className={cx('ceritfi')}>
+    <div
+      className={cx('ceritfi', {
+        'certifi-order': order,
+      })}
+      style={{
+        background: `${background}`,
+      }}
+    >
       <div className={cx('certifi-left')}>
         <div className={cx('certifi-left-top')}>
           <p>Lorem ipsum dolor sit amet.</p>
@@ -21,7 +36,7 @@ export default function CardCertificate() {
         </div>
       </div>
       <div className={cx('certifi-right')}>
-        <Icon pathIcon={`${pathImg}/react-logo.svg`} size='md' />
+        <Icon pathIcon={`${pathImg}/${icon}.svg`} size='md' />
       </div>
     </div>
   );
