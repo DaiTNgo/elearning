@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-const cx = classNames.bind(styles);
-import { pathImg } from '../Header';
 import NavigatorButton from '../../NavigatorButton';
+import { PATH_IMG } from '../../../utils/constant';
 
+const cx = classNames.bind(styles);
 const Footer = (props: {}) => {
   return (
     <footer className={cx('footer')}>
@@ -14,50 +14,50 @@ const Footer = (props: {}) => {
           <div className={cx('footer-left__wrapper')}>
             <div className={cx('col')}>
               <NavigatorButton
-                pathIcon={`${pathImg}/home.svg`}
+                pathIcon={`${PATH_IMG}/home.svg`}
                 text='Home'
                 alt='home'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/courses.svg`}
+                pathIcon={`${PATH_IMG}/courses.svg`}
                 text='Courses'
                 alt='courses'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/tutorials.svg`}
+                pathIcon={`${PATH_IMG}/tutorials.svg`}
                 text='Tutorials'
                 alt='tutorials'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/pricing.svg`}
+                pathIcon={`${PATH_IMG}/pricing.svg`}
                 text='Pricing'
                 alt='pricing'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/calendar.svg`}
+                pathIcon={`${PATH_IMG}/calendar.svg`}
                 text='Updates'
                 alt='updates'
               />
             </div>
             <div className={cx('col')}>
               <NavigatorButton
-                pathIcon={`${pathImg}/downloads.svg`}
+                pathIcon={`${PATH_IMG}/downloads.svg`}
                 text='Downloads'
                 alt='downloads'
                 isPadding
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/search.svg`}
+                pathIcon={`${PATH_IMG}/search.svg`}
                 text='Search'
                 alt='search'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/account.svg`}
+                pathIcon={`${PATH_IMG}/account.svg`}
                 text='Account'
                 alt='account'
               />
               <NavigatorButton
-                pathIcon={`${pathImg}/gift.svg`}
+                pathIcon={`${PATH_IMG}/gift.svg`}
                 alt='gift'
                 text='Licenses'
               />

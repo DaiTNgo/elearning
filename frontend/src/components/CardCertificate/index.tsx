@@ -1,10 +1,8 @@
 import React from 'react';
-import styles from './CardCertificate.module.scss';
-import classNames from 'classnames/bind';
+import './CardCertificate.scss';
+import classNames from 'classnames';
 import Icon from '../Icon';
-import { pathImg } from '../Layout/Header';
-const cx = classNames.bind(styles);
-
+import { PATH_IMG } from '../../utils/constant';
 export default function CardCertificate({
   icon,
   background,
@@ -16,27 +14,27 @@ export default function CardCertificate({
 }) {
   return (
     <div
-      className={cx('ceritfi', {
-        'certifi-order': order,
+      className={classNames('certificate', {
+        [`certificate-${order}`]: true,
       })}
       style={{
         background: `${background}`,
       }}
     >
-      <div className={cx('certifi-left')}>
-        <div className={cx('certifi-left-top')}>
+      <div className={classNames('certificate-left')}>
+        <div className={classNames('certificate-left-top')}>
           <p>Lorem ipsum dolor sit amet.</p>
           <p>Adipisicing elit. Veniam, omnis.</p>
         </div>
-        <div className={cx('certifi-left-bottom')}>
-          <div className={cx('line-1', 'line')}></div>
-          <div className={cx('line-2', 'line')}></div>
-          <div className={cx('line-3', 'line')}></div>
-          <div className={cx('line-4', 'line')}></div>
+        <div className={classNames('certificate-left-bottom')}>
+          <div className={classNames('line-1', 'line')}></div>
+          <div className={classNames('line-2', 'line')}></div>
+          <div className={classNames('line-3', 'line')}></div>
+          <div className={classNames('line-4', 'line')}></div>
         </div>
       </div>
-      <div className={cx('certifi-right')}>
-        <Icon pathIcon={`${pathImg}/${icon}.svg`} size='md' />
+      <div className={classNames('certificate-right')}>
+        <Icon pathIcon={`${PATH_IMG}/${icon}.svg`} size='md' />
       </div>
     </div>
   );

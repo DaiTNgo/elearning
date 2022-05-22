@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
-import { pathImg } from '../Layout/Header';
 import { useState } from 'react';
 import Icon from '../Icon';
+import { PATH_IMG } from '../../utils/constant';
 const cx = classNames.bind(styles);
 
 export default function Search() {
@@ -28,12 +28,12 @@ export default function Search() {
         }}
       />
       <img
-        src={`${pathImg}/search.svg`}
+        src={`${PATH_IMG}/search.svg`}
         alt='search'
         className={cx('search')}
       />
       <img
-        src={`${pathImg}/clear.svg`}
+        src={`${PATH_IMG}/clear.svg`}
         alt='clear'
         className={cx('clear')}
         style={{

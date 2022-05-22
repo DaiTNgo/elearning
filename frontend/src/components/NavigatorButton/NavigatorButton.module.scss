@@ -1,6 +1,7 @@
 .navigator-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   padding: 1rem 2rem;
   border: 1px transparent solid;
@@ -21,7 +22,7 @@
     border-radius: 999px;
   }
 
-  &:hover {
+  &.hover:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.2);
   }

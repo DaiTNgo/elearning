@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './CardInstructor.module.scss';
 import classNames from 'classnames/bind';
 import CardLayout from '../CardLayout';
-import { pathImg } from '../Layout/Header';
 import Icon from '../Icon';
+import { PATH_IMG } from '../../utils/constant';
 const cx = classNames.bind(styles);
 
 export default function CardInstructor() {
@@ -54,7 +54,7 @@ export default function CardInstructor() {
         }}
       >
         <Icon
-          pathIcon={`${pathImg}/star.svg`}
+          pathIcon={`${PATH_IMG}/star.svg`}
           alt='type course'
           isCircle={true}
           isHover={true}
@@ -62,7 +62,7 @@ export default function CardInstructor() {
           backgroundColor='rgba(0,0,0,0.2)'
         />
         <Icon
-          pathIcon={`${pathImg}/twitter-grey.svg`}
+          pathIcon={`${PATH_IMG}/twitter-grey.svg`}
           alt='instructor'
           isCircle={true}
           isHover={true}

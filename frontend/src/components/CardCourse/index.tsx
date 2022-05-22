@@ -3,7 +3,8 @@ import styles from './CardCourse.module.scss';
 import classNames from 'classnames/bind';
 import CardLayout from '../CardLayout';
 import Icon from '../Icon';
-import { pathImg } from '../Layout/Header';
+import { PATH_IMG } from '../../utils/constant';
+
 const cx = classNames.bind(styles);
 
 export default function CardCourse() {
@@ -13,8 +14,8 @@ export default function CardCourse() {
         <div className={cx('course-icons')}>
           <div className={cx('course-icon__wrapper')}>
             <Icon
-              pathIcon={`${pathImg}/react-logo.svg`}
-              // pathIcon={`${pathImg}/${props.type}-logo.svg`}
+              pathIcon={`${PATH_IMG}/react-logo.svg`}
+              // pathIcon={`${PATH_IMG}/${props.type}-logo.svg`}
               alt='type course'
               isCircle={true}
             />
@@ -49,7 +50,7 @@ export default function CardCourse() {
           }}
         >
           <Icon
-            pathIcon={`${pathImg}/star.svg`}
+            pathIcon={`${PATH_IMG}/star.svg`}
             alt='favourite'
             isCircle={true}
             backgroundColor='rgba(0, 0, 0, 0.2)'

@@ -1,95 +1,141 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link, NavLink } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
 import NavigatorButton from '../../NavigatorButton';
+import Icon from '../../Icon';
+import { PATH_IMG } from '../../../utils/constant';
 
 const cx = classNames.bind(styles);
-export const pathImg = '/src/assets/images';
 
 const Header = (props: {}) => {
   const [isDropdown, setIsDropdown] = useState(false);
+  const [listHeader, setListHeader] = useState([
+    {
+      to: '/courses',
+      pathIcon: `${PATH_IMG}/courses.svg`,
+      text: 'Courses',
+      alt: 'course',
+      isTransition: true,
+      header: true,
+    },
+    {
+      to: '/tutorials',
+      pathIcon: `${PATH_IMG}/tutorials.svg`,
+      text: 'Tutorials',
+      alt: 'tutorials',
+      isTransition: true,
+      header: true,
+    },
+    {
+      to: '/livestreams',
+      pathIcon: `${PATH_IMG}/livestreams.svg`,
+      text: 'Livestreams',
+      alt: 'livestreams',
+      isTransition: true,
+      header: true,
+    },
+    {
+      to: '/pricing',
+      pathIcon: `${PATH_IMG}/pricing.svg`,
+      text: 'Pricing',
+      alt: 'pricing',
+      isTransition: true,
+      header: true,
+    },
+  ]);
   return (
     <header className={cx('header')}>
-      <div className={cx('wrapper')}>
+      <div className={cx('header-wrapper') + ' container'}>
         <Link to='/'>
-          <img src={`${pathImg}/logo.svg`} />
+          <img src={`${PATH_IMG}/logo.svg`} />
         </Link>
-        <div className={cx('nav')}>
-          <NavLink
-            to='/courses'
-            className={({ isActive }) =>
-              isActive ? cx('nav__link', 'active') : cx('nav__link')
-            }
-          >
+
+        <nav className={cx('nav')}>
+          {listHeader.map((item, index) => {
+            return (
+              <NavLink
+                to={item.to}
+                className={({ isActive }) =>
+                  isActive ? cx('nav__link', 'active') : cx('nav__link')
+                }
+                key={index}
+              >
+                <NavigatorButton
+                  pathIcon={item.pathIcon}
+                  text={item.text}
+                  alt={item.alt}
+                  isTransition
+                  hover
+                  header
+                  sm_2={true}
+                />
+              </NavLink>
+            );
+          })}
+
+          <button className={cx('btn', 'nav__link')}>
+            <img src={`${PATH_IMG}/more.svg`} alt='more' />
+            {/* <Dropdown isActive={isDropdown} /> */}
+          </button>
+          <button className={cx('btn', 'nav__link')}>
+            <img src={`${PATH_IMG}/search.svg`} alt='search' />
+          </button>
+          <button className={cx('btn', 'nav__link')}>
+            <img src={`${PATH_IMG}/account.svg`} alt='account' />
+          </button>
+        </nav>
+
+        <button
+          onClick={() => {
+            setIsDropdown((isDropdown) => !isDropdown);
+          }}
+          className={cx('hamburger')}
+        >
+          <Icon pathIcon={`${PATH_IMG}/hamburger-menu.svg`} isPadding />
+          <Dropdown isActive={isDropdown} place='right'>
             <NavigatorButton
-              pathIcon={`${pathImg}/courses.svg`}
+              pathIcon={`${PATH_IMG}/downloads.svg`}
+              text='Downloads'
+              alt='Downloads'
+            />
+            <NavigatorButton
+              pathIcon={`${PATH_IMG}/calendar.svg`}
+              text='Updates'
+              alt='updates'
+            />
+            <NavigatorButton
+              pathIcon={`${PATH_IMG}/setting.svg`}
+              text='Lite mode on'
+              alt='settings'
+            />
+
+            <NavigatorButton
+              pathIcon={`${PATH_IMG}/courses.svg`}
               text='Courses'
               alt='course'
-              isTransition
-              header
             />
-          </NavLink>
-          <NavLink
-            to='/tutorials'
-            className={({ isActive }) =>
-              isActive ? cx('nav__link', 'active') : cx('nav__link')
-            }
-          >
+
             <NavigatorButton
-              pathIcon={`${pathImg}/tutorials.svg`}
+              pathIcon={`${PATH_IMG}/tutorials.svg`}
               text='Tutorials'
               alt='tutorials'
-              isTransition
-              header
             />
-          </NavLink>
-          <NavLink
-            to='/livestreams'
-            className={({ isActive }) =>
-              isActive ? cx('nav__link', 'active') : cx('nav__link')
-            }
-          >
+
             <NavigatorButton
-              pathIcon={`${pathImg}/livestreams.svg`}
+              pathIcon={`${PATH_IMG}/livestreams.svg`}
               text='Livestreams'
               alt='livestreams'
-              isTransition
-              header
             />
-          </NavLink>
-          <NavLink
-            to='/pricing'
-            className={({ isActive }) =>
-              isActive ? cx('nav__link', 'active') : cx('nav__link')
-            }
-          >
+
             <NavigatorButton
-              pathIcon={`${pathImg}/pricing.svg`}
+              pathIcon={`${PATH_IMG}/pricing.svg`}
               text='Pricing'
               alt='pricing'
-              isTransition
-              header
             />
-          </NavLink>
-
-          <button
-            className={cx('btn', 'nav__link')}
-            onClick={() => {
-              setIsDropdown((isDropdown) => !isDropdown);
-            }}
-          >
-            <img src={`${pathImg}/more.svg`} alt='more' />
-            <Dropdown isActive={isDropdown} />
-          </button>
-          <button className={cx('btn', 'nav__link')}>
-            <img src={`${pathImg}/search.svg`} alt='search' />
-          </button>
-          <button className={cx('btn', 'nav__link')}>
-            <img src={`${pathImg}/account.svg`} alt='account' />
-          </button>
-        </div>
+          </Dropdown>
+        </button>
       </div>
     </header>
   );

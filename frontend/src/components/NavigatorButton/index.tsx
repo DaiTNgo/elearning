@@ -15,10 +15,18 @@ function NavigatorButton(props: any) {
         { header: props.header },
         {
           round: props.round,
+        },
+        {
+          hover: props.hover,
         }
       )}
     >
-      <Icon pathIcon={props.pathIcon} alt={props.alt} isPadding={props.isPadding}/>
+      <Icon
+        className={cx('size-icon')}
+        pathIcon={props.pathIcon}
+        alt={props.alt}
+        sm_2={props.sm_2}
+      />
       <p className={cx('navigator-text')}>{props.text}</p>
     </button>
   );

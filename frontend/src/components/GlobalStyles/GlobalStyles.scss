@@ -7,22 +7,17 @@
 }
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 body {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-family: 'Nunito', sans-serif;
   word-wrap: break-word;
   background: linear-gradient(
     rgba(31, 31, 71, 0.25) -18.72%,
     rgb(31, 31, 71) 37.6%
   );
-  min-height: 100vh;
-  //   background: linear-gradient(
-  //     rgba(31, 31, 71, 0.25) -18.72%,
-  //     rgb(31, 31, 71) 37.6%
-  //   );
-  max-width: 1234px;
-  margin: 0 auto;
   background: (rgb(31, 31, 71) 37.6%);
   color: var(--primary-color);
 }
@@ -36,4 +31,8 @@ multicol {
   display: block;
   margin-block-start: 0;
   margin-block-end: 0;
+}
+.container {
+  width: min(calc(100% - 6rem), 1174px);
+  margin-inline: auto;
 }

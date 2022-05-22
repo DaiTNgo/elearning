@@ -4,21 +4,30 @@
   left: 0;
   background-color: black;
   color: white;
-  width: 200px;
+  min-width: 250px;
   padding: 20px;
   box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
   background-color: transparent;
   backdrop-filter: blur(40px) brightness(80%) saturate(150%);
   border-radius: 20px;
-  height: 300px;
+  min-height: 300px;
   transform-origin: right top;
   transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-  //   animation: dropdown cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
   opacity: 0;
-  transform: rotate(5deg) translateY(-20px) skewY(-5deg);
+  transform: rotateZ(10deg) skewY(-10deg) translateY(-20px);
+
+  z-index: 10;
   &.isActive {
     opacity: 1;
-    transform: rotate(0) translateY(0) skewY(0deg);
+    transform: rotate(0deg) skew(0deg) translateY(0px);
+  }
+  &.left {
+    left: 0;
+    right: unset;
+  }
+  &.right {
+    right: 0;
+    left: unset;
   }
 }
 @keyframes dropdown {

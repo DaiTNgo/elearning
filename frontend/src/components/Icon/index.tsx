@@ -12,6 +12,8 @@ type IconType = {
   isBuy?: boolean;
   isBoxShadow?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  sm_2?: boolean;
 };
 export default function Icon({
   order,
@@ -24,18 +26,23 @@ export default function Icon({
   isBuy,
   isBoxShadow,
   size = 'sm',
+  sm_2,
 }: IconType) {
+  const cl = cx(
+    'icon',
+    { [size]: true },
+    { circle: isCircle },
+    { hover: isHover },
+    { padding: isPadding },
+    { buy: isBuy },
+    { boxShadow: isBoxShadow },
+    {
+      sm_2,
+    }
+  );
   return (
     <div
-      className={cx(
-        'icon',
-        { [size]: true },
-        { circle: isCircle },
-        { hover: isHover },
-        { padding: isPadding },
-        { buy: isBuy },
-        { boxShadow: isBoxShadow }
-      )}
+      className={cl}
       style={{
         backgroundColor,
       }}
