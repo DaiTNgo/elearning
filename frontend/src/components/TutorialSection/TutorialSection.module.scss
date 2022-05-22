@@ -1,0 +1,12 @@
+.tutorial-wrapper {
+  display: grid;
+  grid-template-columns: 380px auto;
+  gap: 20px;
+  align-items: center;
+}
+.handbook-wrapper {
+  margin-left: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}

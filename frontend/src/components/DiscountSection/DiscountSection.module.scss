@@ -1,0 +1,29 @@
+.discount-wrapper {
+  display: grid;
+  grid-template-columns: 380px auto;
+  gap: 2rem;
+}
+.right-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.icon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.circle {
+  display: flex;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(rgba(24, 32, 79, 0.72) 0%, rgba(24, 32, 79, 0.45) 100%)
+    repeat scroll 0% 0%;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 0.5px inset;
+}

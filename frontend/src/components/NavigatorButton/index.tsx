@@ -20,6 +20,9 @@ function NavigatorButton(props: any) {
           hover: props.hover,
         }
       )}
+      style={{
+        marginInline: props.center ? 'auto' : '',
+      }}
     >
       <Icon
         className={cx('size-icon')}

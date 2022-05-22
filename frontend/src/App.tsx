@@ -2,16 +2,23 @@ import { useState } from 'react';
 import CardCertificate from './components/CardCertificate';
 import CardCertificates from './components/CardCertificates';
 import CardCourse from './components/CardCourse';
+import CardDetail from './components/CardDetail';
 import CardInstructor from './components/CardInstructor';
+import CardSection from './components/CardSection';
+import CardSectionWrapper from './components/CardSectionWrapper';
 import CardTopic from './components/CardTopic';
+import CardWrapper from './components/CardWrapper';
+import CertificateSection from './components/CertificateSection';
 import CourseHero from './components/CourseHero';
 import DesignAndCode from './components/DesignAndCode';
+import DiscountSection from './components/DiscountSection';
 import HandbookLayout from './components/HandbookLayout';
 import HeroSection from './components/HeroSection';
 import Icon from './components/Icon';
 import Layout from './components/Layout';
 import NavigatorButton from './components/NavigatorButton';
 import Search from './components/Search';
+import TutorialSection from './components/TutorialSection';
 import { PATH_IMG } from './utils/constant';
 
 function App() {
@@ -20,7 +27,13 @@ function App() {
   return (
     <>
       <HeroSection />
-      <CourseHero />
+      {/* <CourseHero />
+      <CardSection />
+      <CardWrapper /> */}
+      <CardSectionWrapper />
+      <TutorialSection />
+      <CertificateSection />
+      <DiscountSection />
     </>
     // <Layout>
     //   <Search />

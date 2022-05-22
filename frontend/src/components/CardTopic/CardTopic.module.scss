@@ -28,7 +28,6 @@
       color: white;
       font-size: 15px;
       max-width: 160px;
-      font-weight: 600;
       line-height: 1.2;
     }
     .topic-left__timing {
@@ -39,6 +38,7 @@
     }
     .topic-left__desc {
       margin-top: 1rem;
+
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;

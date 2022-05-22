@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function CourseHero() {
   return (
-    <section className={cx('course-hero') + ' container'}>
+    <section className={cx('course-hero')}>
       <div className={cx('hero-left')}>
         <p>120 HOURS OF COURSES</p>
         <h2>Learn the best tools and platforms</h2>

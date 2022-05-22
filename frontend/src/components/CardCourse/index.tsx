@@ -31,12 +31,13 @@ export default function CardCourse() {
         <img
           src='https://images.ctfassets.net/ooa29xqb8tix/4mwdTcJXn8LfpOAtykFI1X/6af85bceea51d36dfef54c1bf586a031/UI_and_animations_in_Swiftui_800x600.png?w=400&q=50'
           //src={props.imgCourse}
+          className={cx('course-img')}
           alt='image course'
         />
       </div>
       <div className={cx('course__bottom')}>
         <h3 className={cx('course__title')}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, id?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
           {/* props.nameCourse */}
         </h3>
         <p className={cx('course__desc')}>
