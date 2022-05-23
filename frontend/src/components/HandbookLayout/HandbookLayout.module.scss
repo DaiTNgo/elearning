@@ -1,7 +1,8 @@
 .handbook {
+  --width: 25rem;
   position: relative;
   margin-top: 5rem;
-  width: 25rem;
+  width: var(--width);
   height: 30rem;
   .first-bg {
     position: relative;
@@ -13,56 +14,70 @@
     box-shadow: rgb(0 0 0 / 25%) 0px 40px 80px,
       rgb(255 255 255 / 15%) 0px 0px 0px 0.5px inset;
     backdrop-filter: blur(40px);
+    padding: 2rem;
     transition: all 100ms ease-in;
+  }
+  &.lg {
+    --width: 36rem;
+  }
+}
+.three {
+  .first-bg {
+    border-top-right-radius: 0px;
+  }
+  .second-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    // width: 110%;
+    // height: 110%;
+    background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
+    border-radius: 40px;
+    transform-origin: right top;
+    transform: rotateY(10deg) rotateZ(10deg);
+    transition: all 0.2s ease;
+  }
+  &:hover {
+    .first-bg {
+      transform: translateY(-2px);
+    }
+    .second-bg {
+      //   transform: rotate3d(1, 1, 1, 320deg);
+      transform: rotateY(35deg) rotateZ(10deg);
+    }
+  }
+}
+.two {
+  .first-bg {
     border-top-left-radius: 0px;
   }
+  .second-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    // width: 110%;
+    // height: 110%;
+    background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
+    border-radius: 40px;
+    transform-origin: left top;
+    transform: rotateY(18deg) rotateZ(-10deg);
+    transition: all 0.2s ease;
+  }
+  &:hover {
+    .first-bg {
+      transform: translateY(-2px);
+    }
+    .second-bg {
+      //   transform: rotate3d(1, 1, 1, 320deg);
+      transform: rotateY(35deg) rotateZ(-10deg);
+    }
+  }
+}
 
-  //DONE:
-  //   .second-bg {
-  //     position: absolute;
-  //     inset: 0;
-  //     z-index: 0;
-  //     // width: 110%;
-  //     // height: 110%;
-  //     background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
-  //     border-radius: 40px;
-  //     transform-origin: right top;
-  //     transform: rotateY(10deg) rotateZ(10deg);
-  //     transition: all 0.2s ease;
-  //   }
-  //   &:hover {
-  //     .first-bg {
-  //       transform: translateY(-2px);
-  //     }
-  //     .second-bg {
-  //       //   transform: rotate3d(1, 1, 1, 320deg);
-  //       transform: rotateY(35deg) rotateZ(10deg);
-  //     }
-  //   }
-  //DONE:
-  //   .second-bg {
-  //     position: absolute;
-  //     inset: 0;
-  //     z-index: 0;
-  //     // width: 110%;
-  //     // height: 110%;
-  //     background: linear-gradient(rgb(64, 141, 213) 0%, rgb(99, 11, 140) 100%);
-  //     border-radius: 40px;
-  //     transform-origin: left top;
-  //     transform: rotateY(18deg) rotateZ(-10deg);
-  //     transition: all 0.2s ease;
-  //   }
-  //   &:hover {
-  //     .first-bg {
-  //       transform: translateY(-2px);
-  //     }
-  //     .second-bg {
-  //       //   transform: rotate3d(1, 1, 1, 320deg);
-  //       transform: rotateY(35deg) rotateZ(-10deg);
-  //     }
-  //   }
-
-  //DONE:
+.one {
+  .first-bg {
+    border-bottom-left-radius: 0px;
+  }
   .second-bg {
     position: absolute;
     inset: 0;

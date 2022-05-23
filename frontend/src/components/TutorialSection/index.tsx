@@ -20,8 +20,8 @@ function TutorialSection() {
         </div>
         <div className={cx('tutorial-right')}>
           <div className={cx('handbook-wrapper')}>
-            <HandbookLayout>hello</HandbookLayout>
-            <HandbookLayout>hello</HandbookLayout>
+            <HandbookLayout one={true}>hello</HandbookLayout>
+            <HandbookLayout one={true}>hello</HandbookLayout>
           </div>
         </div>
       </div>

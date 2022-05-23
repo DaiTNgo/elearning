@@ -1,0 +1,72 @@
+.handbook-wrapper {
+  //   display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.wrapper-option {
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    user-select: none;
+    position: relative;
+    font-size: 16px;
+    width: 213px;
+    padding: 1rem;
+    background: linear-gradient(
+      rgba(24, 32, 79, 0.4) 0%,
+      rgba(24, 32, 79, 0.25) 100%
+    );
+    border-radius: 30px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 20px 40px,
+      rgb(0 0 0 / 30%) 0px 0px 0px 0.5px inset;
+    margin-inline: auto;
+    p {
+      position: relative;
+      z-index: 100;
+    }
+    p:nth-child(1) {
+      color: black;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      width: 50%;
+      height: calc(100% - 1rem);
+      background-color: #fff;
+      border-radius: 999px;
+      transition: all 0.3s linear;
+    }
+  }
+  input {
+    display: none;
+  }
+  input:checked {
+    & + label p:nth-child(2) {
+      color: black;
+    }
+    & + label p:nth-child(1) {
+      color: white;
+    }
+    & + label::after {
+      left: 100%;
+      transform: translateX(calc((-100% - 5px)));
+      transition: all 0.3s linear;
+    }
+  }
+}
+.ready-bottom {
+  margin-top: 10rem;
+  text-align: center;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+.ready-top {
+  text-align: center;
+  max-width: 48rem;
+  margin-inline: auto;
+}

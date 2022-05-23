@@ -1,0 +1,38 @@
+.trust-wrapper {
+  display: grid;
+  grid-template-columns: auto 380px;
+  gap: 4rem;
+  align-items: center;
+}
+.trust-left {
+  display: flex;
+
+  justify-content: space-between;
+  gap: 2rem;
+}
+.card {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  flex-direction: column;
+  background-color: rgba(15, 14, 71, 0.5);
+  border-radius: 2rem;
+  padding: 2rem;
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset;
+}
+.card__img {
+}
+.card__tilte {
+  margin: 0;
+  font-size: 2rem;
+}
+.card__info {
+  font-size: 1.3rem;
+  max-width: 80%;
+}
+.card__desc {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.trust-right {
+}

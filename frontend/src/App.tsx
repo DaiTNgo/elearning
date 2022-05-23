@@ -16,8 +16,13 @@ import HandbookLayout from './components/HandbookLayout';
 import HeroSection from './components/HeroSection';
 import Icon from './components/Icon';
 import Layout from './components/Layout';
+import Footer from './components/Layout/Footer';
+import MeetInstructor from './components/MeetInstructor';
 import NavigatorButton from './components/NavigatorButton';
+import Ready from './components/Ready';
 import Search from './components/Search';
+import SponsorSection from './components/SponsorSection';
+import TrustSection from './components/TrustSection';
 import TutorialSection from './components/TutorialSection';
 import { PATH_IMG } from './utils/constant';
 
@@ -34,6 +39,11 @@ function App() {
       <TutorialSection />
       <CertificateSection />
       <DiscountSection />
+      <TrustSection />
+      <SponsorSection />
+      <MeetInstructor />
+      <Ready />
+      <Footer />
     </>
     // <Layout>
     //   <Search />
