@@ -1,17 +1,8 @@
 import { useState } from 'react';
-import CardCertificate from './components/CardCertificate';
-import CardCertificates from './components/CardCertificates';
-import CardCourse from './components/CardCourse';
-import CardDetail from './components/CardDetail';
-import CardInstructor from './components/CardInstructor';
-import CardSection from './components/CardSection';
-import CardSectionWrapper from './components/CardSectionWrapper';
-import CardTopic from './components/CardTopic';
-import CardWrapper from './components/CardWrapper';
+import CardCertificate from './components/CertificateSection/CertificateCard';
+import CardCertificates from './components/CertificateSection/CertificatesWrapper';
+import CourseSection from './components/Course';
 import CertificateSection from './components/CertificateSection';
-import CourseCard from './components/CourseCard';
-import CourseHero from './components/CourseHero';
-import DesignAndCode from './components/DesignAndCode';
 import DiscountSection from './components/DiscountSection';
 import Handbook from './components/Handbook';
 import HeroSection from './components/HeroSection';
@@ -33,23 +24,32 @@ function App() {
 
   return (
     <>
-      {/* <CourseHero />
-      <CardSection />
-      <CardWrapper /> */}
-      {/* <HeroSection />
+      <HeroSection />
+      <CourseSection />
       <TutorialSection />
+      <CertificateSection />
       <DiscountSection />
       <TrustSection />
       <SponsorSection />
       <MeetInstructor />
       <Ready />
-    <Footer /> */}
+      <Footer />
+
+      {/* <CardSection /> */}
+      {/* <HeroSection /> */}
+      {/* <TutorialSection />
+      <DiscountSection />
+      <TrustSection />
+      <SponsorSection />
+      <MeetInstructor />
+      <Ready />
+      <Footer /> */}
       {/* <CardSectionWrapper />
        */}
-      <CourseCard left component={<CardCourse />} />
-      <Handbook />
+      {/* <CardWrapper /> */}
+      {/* <Handbook />
       <CertificateSection />
-      <Pricing />
+      <Pricing /> */}
     </>
     // <Layout>
     //   <Search />

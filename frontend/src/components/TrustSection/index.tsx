@@ -7,11 +7,11 @@ const cx = classNames.bind(styles);
 
 function TrustSection() {
   return (
-    <div className='container section'>
+    <div className='container'>
       <div className={cx('trust-wrapper')}>
         <div className={cx('trust-left')}>
           <div className={cx('card')}>
-            <Icon pathIcon='/src/assets/images/avatar.jpg' size='md' isCircle />
+            <Icon url='/src/assets/images/avatar.jpg' size='md' round />
             <h3 className={cx('card__tilte')}>Thomas Wang</h3>
             <p className={cx('card__info')}>
               CREATOR OF DIGITAL PRODUCTS AND EXPERIENCES
@@ -24,7 +24,7 @@ function TrustSection() {
             </p>
           </div>
           <div className={cx('card')}>
-            <Icon pathIcon='/src/assets/images/avatar.jpg' size='md' isCircle />
+            <Icon url='/src/assets/images/avatar.jpg' size='md' round />
             <h3 className={cx('card__tilte')}>Roy van Rooijen</h3>
             <p className={cx('card__info')}>CREATOR OF SKETCH RUNNER</p>
             <p className={cx('card__desc')}>

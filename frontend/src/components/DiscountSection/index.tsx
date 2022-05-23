@@ -20,25 +20,25 @@ function DiscountSection() {
             <div className={cx('circle')}>
               50% off Shape.so
               <div className={cx('icon-wrapper')}>
-                <Icon pathIcon={`${PATH_IMG}/shape-logo.svg`} size='md' />
+                <Icon url={`${PATH_IMG}/shape-logo.svg`} size='md' />
               </div>
             </div>
             <div className={cx('circle')}>
               50% off Shape.so
               <div className={cx('icon-wrapper')}>
-                <Icon pathIcon={`${PATH_IMG}/angle-logo.svg`} size='md' />
+                <Icon url={`${PATH_IMG}/angle-logo.svg`} size='md' />
               </div>
             </div>
             <div className={cx('circle')}>
               50% off Shape.so
               <div className={cx('icon-wrapper')}>
-                <Icon pathIcon={`${PATH_IMG}/sketch-logo.svg`} size='md' />
+                <Icon url={`${PATH_IMG}/sketch-logo.svg`} size='md' />
               </div>
             </div>
             <div className={cx('circle')}>
               50% off Shape.so
               <div className={cx('icon-wrapper')}>
-                <Icon pathIcon={`${PATH_IMG}/protopie-logo.svg`} size='md' />
+                <Icon url={`${PATH_IMG}/protopie-logo.svg`} size='md' />
               </div>
             </div>
           </div>

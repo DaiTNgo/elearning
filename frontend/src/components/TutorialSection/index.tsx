@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './TutorialSection.module.scss';
 import classNames from 'classnames/bind';
 import Text from '../Text';
-import HandbookLayout from '../HandbookLayout';
+import Handbook from '../Handbook';
 const cx = classNames.bind(styles);
 
 function TutorialSection() {
@@ -20,8 +20,8 @@ function TutorialSection() {
         </div>
         <div className={cx('tutorial-right')}>
           <div className={cx('handbook-wrapper')}>
-            <HandbookLayout one={true}>hello</HandbookLayout>
-            <HandbookLayout one={true}>hello</HandbookLayout>
+            <Handbook />
+            <Handbook />
           </div>
         </div>
       </div>

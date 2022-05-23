@@ -1,5 +1,5 @@
 import React from 'react';
-import CardCertificates from '../CardCertificates';
+import CardCertificates from './CertificatesWrapper';
 import Text from '../Text';
 import styles from './CertificateSection.module.scss';
 import classNames from 'classnames/bind';

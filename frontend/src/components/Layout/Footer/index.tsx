@@ -9,55 +9,64 @@ const cx = classNames.bind(styles);
 const Footer = (props: {}) => {
   return (
     <footer className={cx('footer')}>
+      {/* <img src='/src/assets/images/bg1.svg' /> */}
       <div className={cx('footer__wrapper')}>
         <div className={cx('footer__left')}>
           <div className={cx('footer-left__wrapper')}>
             <div className={cx('col')}>
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/home.svg`}
+                hover
+                url={`${PATH_IMG}/home.svg`}
                 text='Home'
                 alt='home'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/courses.svg`}
+                hover
+                url={`${PATH_IMG}/courses.svg`}
                 text='Courses'
                 alt='courses'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/tutorials.svg`}
+                hover
+                url={`${PATH_IMG}/tutorials.svg`}
                 text='Tutorials'
                 alt='tutorials'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/pricing.svg`}
+                hover
+                url={`${PATH_IMG}/pricing.svg`}
                 text='Pricing'
                 alt='pricing'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/calendar.svg`}
+                hover
+                url={`${PATH_IMG}/calendar.svg`}
                 text='Updates'
                 alt='updates'
               />
             </div>
             <div className={cx('col')}>
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/downloads.svg`}
+                hover
+                url={`${PATH_IMG}/downloads.svg`}
                 text='Downloads'
                 alt='downloads'
-                isPadding
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/search.svg`}
+                hover
+                url={`${PATH_IMG}/search.svg`}
                 text='Search'
                 alt='search'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/account.svg`}
+                hover
+                url={`${PATH_IMG}/account.svg`}
                 text='Account'
                 alt='account'
               />
               <NavigatorButton
-                pathIcon={`${PATH_IMG}/gift.svg`}
+                hover
+                url={`${PATH_IMG}/gift.svg`}
                 alt='gift'
                 text='Licenses'
               />

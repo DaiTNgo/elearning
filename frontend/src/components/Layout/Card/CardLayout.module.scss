@@ -1,0 +1,22 @@
+.card {
+  //   --width: 24.4rem;
+  position: relative;
+  //   min-width: 200px;
+  //   max-width: 400px;
+  //   width: var(--width);
+  padding: 20px;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    209.21deg,
+    rgb(62, 59, 228) 13.57%,
+    rgb(173, 0, 187) 98.38%
+  );
+  transition: all 0.2s ease-in;
+  &.hover:hover {
+    box-shadow: rgb(173 0 187 / 30%) 0px 20px 80px,
+      rgb(0 0 0 / 15%) 0px 20px 40px;
+    transform: scale(105%);
+  }
+}

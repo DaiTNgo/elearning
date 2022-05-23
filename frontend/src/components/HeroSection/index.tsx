@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './HeroSection.module.scss';
 import classNames from 'classnames/bind';
 import Header from '../Layout/Header';
-import DesignAndCode from '../DesignAndCode';
+import DesignAndCode from './DesignAndCode';
 const cx = classNames.bind(styles);
 
 function HeroSection() {

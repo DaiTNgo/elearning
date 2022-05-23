@@ -14,34 +14,34 @@ const Header = (props: {}) => {
   const [listHeader, setListHeader] = useState([
     {
       to: '/courses',
-      pathIcon: `${PATH_IMG}/courses.svg`,
+      url: `${PATH_IMG}/courses.svg`,
       text: 'Courses',
       alt: 'course',
-      isTransition: true,
+      transition: true,
       header: true,
     },
     {
       to: '/tutorials',
-      pathIcon: `${PATH_IMG}/tutorials.svg`,
+      url: `${PATH_IMG}/tutorials.svg`,
       text: 'Tutorials',
       alt: 'tutorials',
-      isTransition: true,
+      transition: true,
       header: true,
     },
     {
       to: '/livestreams',
-      pathIcon: `${PATH_IMG}/livestreams.svg`,
+      url: `${PATH_IMG}/livestreams.svg`,
       text: 'Livestreams',
       alt: 'livestreams',
-      isTransition: true,
+      transition: true,
       header: true,
     },
     {
       to: '/pricing',
-      pathIcon: `${PATH_IMG}/pricing.svg`,
+      url: `${PATH_IMG}/pricing.svg`,
       text: 'Pricing',
       alt: 'pricing',
-      isTransition: true,
+      transition: true,
       header: true,
     },
   ]);
@@ -63,10 +63,10 @@ const Header = (props: {}) => {
                 key={index}
               >
                 <NavigatorButton
-                  pathIcon={item.pathIcon}
+                  url={item.url}
                   text={item.text}
                   alt={item.alt}
-                  isTransition
+                  transition
                   hover
                   header
                   sm_2={true}
@@ -93,44 +93,44 @@ const Header = (props: {}) => {
           }}
           className={cx('hamburger')}
         >
-          <Icon pathIcon={`${PATH_IMG}/hamburger-menu.svg`} isPadding />
+          <Icon url={`${PATH_IMG}/hamburger-menu.svg`} padding />
           <Dropdown isActive={isDropdown} place='right'>
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/downloads.svg`}
+              url={`${PATH_IMG}/downloads.svg`}
               text='Downloads'
               alt='Downloads'
             />
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/calendar.svg`}
+              url={`${PATH_IMG}/calendar.svg`}
               text='Updates'
               alt='updates'
             />
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/setting.svg`}
+              url={`${PATH_IMG}/setting.svg`}
               text='Lite mode on'
               alt='settings'
             />
 
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/courses.svg`}
+              url={`${PATH_IMG}/courses.svg`}
               text='Courses'
               alt='course'
             />
 
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/tutorials.svg`}
+              url={`${PATH_IMG}/tutorials.svg`}
               text='Tutorials'
               alt='tutorials'
             />
 
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/livestreams.svg`}
+              url={`${PATH_IMG}/livestreams.svg`}
               text='Livestreams'
               alt='livestreams'
             />
 
             <NavigatorButton
-              pathIcon={`${PATH_IMG}/pricing.svg`}
+              url={`${PATH_IMG}/pricing.svg`}
               text='Pricing'
               alt='pricing'
             />

@@ -1,12 +1,25 @@
 .tutorial-wrapper {
   display: grid;
   grid-template-columns: 380px auto;
-  gap: 20px;
+  gap: 4rem;
+  justify-content: space-between;
   align-items: center;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 }
 .handbook-wrapper {
-  margin-left: 5rem;
   display: flex;
   align-items: center;
   gap: 4rem;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+.tutorial-left {
+  text-align: center;
+}
+.tutorial-right {
+  text-align: center;
 }
