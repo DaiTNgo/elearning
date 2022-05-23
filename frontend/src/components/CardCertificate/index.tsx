@@ -34,7 +34,7 @@ export default function CardCertificate({
         </div>
       </div>
       <div className={classNames('certificate-right')}>
-        <Icon pathIcon={`${PATH_IMG}/${icon}.svg`} size='md' />
+        <Icon url={`${PATH_IMG}/${icon}.svg`} size='md' />
       </div>
     </div>
   );

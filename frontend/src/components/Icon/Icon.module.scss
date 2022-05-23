@@ -20,12 +20,11 @@
   &.lg {
     --width: 88px;
   }
-  &.circle {
+  &.round {
     border-radius: 50%;
     overflow: hidden;
   }
-
-  &.padding.sm > * {
+  &.padding > * {
     width: 24px;
     height: 24px;
   }
@@ -59,5 +58,11 @@
 
   &.sm_2 {
     --width: 24px;
+  }
+  &.invert {
+    filter: invert(1);
+  }
+  &.cursor {
+    cursor: pointer;
   }
 }

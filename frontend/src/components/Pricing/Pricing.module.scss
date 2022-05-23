@@ -1,0 +1,56 @@
+.wrapper-pricing {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 4px;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+.wrapper-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  h3 {
+    font-size: 6rem;
+    line-height: 1.5;
+    margin: 0;
+    color: white;
+  }
+}
+.wrapper-feature {
+  margin-inline: auto;
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+.btn-pricing {
+  --width: 169px;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  padding: 12px 8px;
+  width: var(--width);
+  margin-inline: auto;
+
+  border-radius: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  transition: all 0.2s linear;
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+.wrapper-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

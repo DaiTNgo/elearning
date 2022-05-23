@@ -1,0 +1,124 @@
+.fan {
+  --width: 24rem;
+  --height: 28rem;
+  --padding-x: 2rem;
+  --padding-y: 2rem;
+  --brd: 6rem;
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+
+  .first-bg {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+    border-radius: var(--brd);
+    padding: var(--padding-y) var(--padding-x);
+
+    background: rgba(31, 31, 71, 0.6);
+    box-shadow: rgb(0 0 0 / 25%) 0px 40px 80px,
+      rgb(255 255 255 / 15%) 0px 0px 0px 0.5px inset;
+    backdrop-filter: blur(40px);
+
+    transition: all 100ms ease-in;
+  }
+  .second-bg {
+    position: absolute;
+    inset: 0;
+
+    border-radius: var(--brd);
+    transition: all 0.2s ease;
+  }
+  &:hover {
+    .first-bg {
+      transform: translateY(-2px);
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 100px 100px,
+        rgba(255, 255, 255, 0.15) 0px 0px 0px 0.5px inset;
+    }
+  }
+}
+
+.md {
+  --max-width: 36rem;
+  --min-width: 24rem;
+  --width: 100%;
+  --height: 42.6rem;
+  --padding-y: 5rem;
+
+  max-width: var(--max-width);
+  min-width: var(--min-width);
+
+  @media (max-width: 500px) {
+    --height: 38.6rem;
+    --padding-y: 3rem;
+  }
+}
+.lg {
+  --max-width: 38rem;
+  --min-width: 24rem;
+  --width: 100%;
+  --height: 52rem;
+  --padding-y: 5rem;
+
+  max-width: var(--max-width);
+  min-width: var(--min-width);
+
+  @media (max-width: 500px) {
+    --height: 48rem;
+    --padding-y: 3rem;
+  }
+}
+
+.one {
+  .first-bg {
+    border-top-left-radius: 0px;
+  }
+  .second-bg {
+    background: rgba(0, 0, 0, 0)
+      linear-gradient(rgb(47, 184, 255) 0%, rgb(158, 236, 217) 100%);
+
+    transform-origin: left top;
+    transform: rotateY(20deg) skewY(5deg);
+  }
+  &:hover {
+    .second-bg {
+      transform: rotateY(30deg) skewY(10deg);
+    }
+  }
+}
+
+.two {
+  .first-bg {
+    border-top-left-radius: 0px;
+  }
+  .second-bg {
+    background: rgba(0, 0, 0, 0)
+      linear-gradient(rgba(108, 207, 238, 0.5) 0%, rgba(76, 127, 228, 0.5) 100%);
+    transform-origin: left top;
+    transform: rotateY(18deg) rotateZ(-10deg);
+  }
+  &:hover {
+    .second-bg {
+      transform: rotateY(35deg) rotateZ(-10deg);
+    }
+  }
+}
+
+.three {
+  .first-bg {
+    border-top-right-radius: 0px;
+  }
+  .second-bg {
+    background: rgba(0, 0, 0, 0)
+      linear-gradient(rgb(115, 184, 249) 11.94%, rgb(203, 216, 241) 80.98%);
+    transform-origin: right top;
+    transform: rotateY(10deg) rotateZ(10deg);
+  }
+  &:hover {
+    .second-bg {
+      transform: rotateY(35deg) rotateZ(10deg);
+    }
+  }
+}

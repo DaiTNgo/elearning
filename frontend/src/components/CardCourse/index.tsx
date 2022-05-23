@@ -9,22 +9,22 @@ const cx = classNames.bind(styles);
 
 export default function CardCourse() {
   return (
-    <CardLayout isHover>
+    <CardLayout>
       <div className={cx('course__top')}>
         <div className={cx('course-icons')}>
           <div className={cx('course-icon__wrapper')}>
             <Icon
-              pathIcon={`${PATH_IMG}/react-logo.svg`}
-              // pathIcon={`${PATH_IMG}/${props.type}-logo.svg`}
+              url={`${PATH_IMG}/react-logo.svg`}
+              // url={`${PATH_IMG}/${props.type}-logo.svg`}
               alt='type course'
-              isCircle={true}
+              round
             />
             <Icon
-              pathIcon='https://images.ctfassets.net/ooa29xqb8tix/7etVU3ZHNQuHvFaiaWxxhT/a8e7e316e574ee8959b4b54bfb956072/Dara.jpg?w=200&h=200&q=50?fm=jpg&q=50'
-              //pathIcon={props.imgInstructor}
+              url='https://images.ctfassets.net/ooa29xqb8tix/7etVU3ZHNQuHvFaiaWxxhT/a8e7e316e574ee8959b4b54bfb956072/Dara.jpg?w=200&h=200&q=50?fm=jpg&q=50'
+              //url={props.imgInstructor}
               alt='instructor'
-              isCircle={true}
-              isHover={true}
+              round
+              hover
             />
           </div>
         </div>
@@ -51,12 +51,12 @@ export default function CardCourse() {
           }}
         >
           <Icon
-            pathIcon={`${PATH_IMG}/star.svg`}
+            url={`${PATH_IMG}/star.svg`}
             alt='favourite'
-            isCircle={true}
+            round={true}
             backgroundColor='rgba(0, 0, 0, 0.2)'
-            isHover={true}
-            isPadding={true}
+            hover={true}
+            padding={true}
           />
         </div>
       </div>

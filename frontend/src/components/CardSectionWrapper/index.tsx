@@ -14,13 +14,12 @@ function CardSectionWrapper() {
       <CardSection />
       <CardWrapper />
       <NavigatorButton
-        isTransition
+        transition
         more
         round
-        hover
         center
         text='Browse courses'
-        pathIcon={`${PATH_IMG}/courses.svg`}
+        url={`${PATH_IMG}/courses.svg`}
       />
     </div>
   );

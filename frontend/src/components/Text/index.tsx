@@ -13,12 +13,11 @@ function Text(props: any) {
       <p>{props.desc}</p>
       {props.icon && (
         <NavigatorButton
-          isTransition
+          transition
           more
           round
-          hover
           text={props.textIcon}
-          pathIcon={`${PATH_IMG}/${props.icon}.svg`}
+          url={`${PATH_IMG}/${props.icon}.svg`}
         />
       )}
     </div>

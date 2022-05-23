@@ -9,16 +9,18 @@ import CardSectionWrapper from './components/CardSectionWrapper';
 import CardTopic from './components/CardTopic';
 import CardWrapper from './components/CardWrapper';
 import CertificateSection from './components/CertificateSection';
+import CourseCard from './components/CourseCard';
 import CourseHero from './components/CourseHero';
 import DesignAndCode from './components/DesignAndCode';
 import DiscountSection from './components/DiscountSection';
-import HandbookLayout from './components/HandbookLayout';
+import Handbook from './components/Handbook';
 import HeroSection from './components/HeroSection';
 import Icon from './components/Icon';
 import Layout from './components/Layout';
 import Footer from './components/Layout/Footer';
 import MeetInstructor from './components/MeetInstructor';
 import NavigatorButton from './components/NavigatorButton';
+import Pricing from './components/Pricing';
 import Ready from './components/Ready';
 import Search from './components/Search';
 import SponsorSection from './components/SponsorSection';
@@ -31,19 +33,23 @@ function App() {
 
   return (
     <>
-      <HeroSection />
       {/* <CourseHero />
       <CardSection />
       <CardWrapper /> */}
-      <CardSectionWrapper />
+      {/* <HeroSection />
       <TutorialSection />
-      <CertificateSection />
       <DiscountSection />
       <TrustSection />
       <SponsorSection />
       <MeetInstructor />
       <Ready />
-      <Footer />
+    <Footer /> */}
+      {/* <CardSectionWrapper />
+       */}
+      <CourseCard left component={<CardCourse />} />
+      <Handbook />
+      <CertificateSection />
+      <Pricing />
     </>
     // <Layout>
     //   <Search />

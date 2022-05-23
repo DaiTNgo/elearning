@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  h3 {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+}
+.info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.pro {
+  padding: 2px 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
