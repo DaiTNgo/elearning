@@ -1,14 +1,13 @@
 .navigator-btn {
   display: flex;
   align-items: center;
-  //   justify-content: space-between;
-
+  width: max-content;
   padding: 1rem 2rem;
   border: 1px transparent solid;
   border-radius: 1rem;
 
-  cursor: pointer;
   background-color: transparent;
+  cursor: pointer;
   transition: all 200ms linear;
 
   .navigator-text {
@@ -48,4 +47,7 @@
       }
     }
   }
+  //   @media (max-width: 64em) {
+  //     margin-inline: auto;
+  //   }
 }

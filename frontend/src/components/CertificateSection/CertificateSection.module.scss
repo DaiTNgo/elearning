@@ -1,4 +1,36 @@
 .certificate-section__wrapper {
   display: grid;
   grid-template-columns: auto 380px;
+  gap: 1rem;
+}
+@media (max-width: 64em) {
+  .certificate-section__wrapper {
+    grid-template-columns: auto;
+    grid-template-rows: auto 28rem;
+    gap: 4rem;
+  }
+
+  .certificate-card {
+    order: 2;
+    transform: scale(0.9);
+  }
+  .certificate-text {
+    order: 1;
+    text-align: center;
+  }
+}
+@media (max-width: 50em) {
+  .certificate-card {
+    transform: scale(0.7);
+  }
+}
+@media (max-width: 37.5em) {
+  .certificate-card {
+    transform: scale(0.5);
+  }
+}
+@media (max-width: 25em) {
+  .certificate-card {
+    transform: scale(0.44) translateX(-100px);
+  }
 }

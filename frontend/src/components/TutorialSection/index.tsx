@@ -9,15 +9,13 @@ function TutorialSection() {
   return (
     <div className='container section'>
       <div className={cx('tutorial-wrapper')}>
-        <div className={cx('tutorial-left')}>
-          <Text
-            title='Tutorials to guide you beyond'
-            subTitle='Premium tutorials'
-            icon='tutorials'
-            desc='Once you’ve completed the courses, learn from our quick design and code tutorials to strengthen your knowledge'
-            textIcon='More tutorials'
-          />
-        </div>
+        <Text
+          title='Tutorials to guide you beyond'
+          subTitle='Premium tutorials'
+          icon='tutorials'
+          desc='Once you’ve completed the courses, learn from our quick design and code tutorials to strengthen your knowledge'
+          textIcon='More tutorials'
+        />
         <div className={cx('tutorial-right')}>
           <div className={cx('handbook-wrapper')}>
             <Handbook />

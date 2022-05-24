@@ -1,21 +1,27 @@
 import React from 'react';
 import CourseCard from '../CourseCard';
+import styles from './CourseWrapper.module.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
+
 function CourseWrapper() {
   return (
-    <div
-      className=''
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5,1fr)',
-        gap: '2rem',
-        padding: '2rem',
-      }}
-    >
-      <CourseCard />
-      <CourseCard />
-      <CourseCard />
-      <CourseCard />
-      <CourseCard />
+    <div className={cx('wrapper')}>
+      <div className={cx('item')}>
+        <CourseCard />
+      </div>
+      <div className={cx('item')}>
+        <CourseCard />
+      </div>
+      <div className={cx('item')}>
+        <CourseCard />
+      </div>
+      <div className={cx('item')}>
+        <CourseCard />
+      </div>
+      <div className={cx('item')}>
+        <CourseCard />
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ function NavigatorButton(props: NavigatorButtonType) {
     { hover: props.hover }
   );
   return (
-    <button
+    <div
       className={cl}
       style={{
         marginInline: props.center ? 'auto' : '',
@@ -37,7 +37,7 @@ function NavigatorButton(props: NavigatorButtonType) {
         sm_2={props.sm_2}
       />
       <p className={cx('navigator-text')}>{props.text}</p>
-    </button>
+    </div>
   );
 }
 

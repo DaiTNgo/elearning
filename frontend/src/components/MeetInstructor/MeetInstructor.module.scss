@@ -1,11 +1,15 @@
 .meet-instructor__bottom {
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 }
 .meet-instructor__top {
-  margin-top: 4rem;
   text-align: center;
-  margin-inline: auto;
+  margin: 4rem auto;
   max-width: 50rem;
 }

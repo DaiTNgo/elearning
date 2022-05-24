@@ -5,7 +5,9 @@
 }
 .right-wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  justify-items: center;
+  gap: 4rem 0;
 }
 .icon-wrapper {
   position: absolute;
@@ -13,6 +15,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .circle {
   display: flex;
   position: relative;
@@ -26,4 +29,14 @@
     linear-gradient(rgba(24, 32, 79, 0.72) 0%, rgba(24, 32, 79, 0.45) 100%)
     repeat scroll 0% 0%;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 0.5px inset;
+}
+
+@media (max-width: 64em) {
+  .discount-wrapper {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .discount-left {
+    text-align: center;
+  }
 }

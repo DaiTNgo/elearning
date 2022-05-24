@@ -12,13 +12,20 @@ function Text(props: any) {
       <h2>{props.title}</h2>
       <p>{props.desc}</p>
       {props.icon && (
-        <NavigatorButton
-          transition
-          more
-          round
-          text={props.textIcon}
-          url={`${PATH_IMG}/${props.icon}.svg`}
-        />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <NavigatorButton
+            transition
+            more
+            round
+            text={props.textIcon}
+            url={`${PATH_IMG}/${props.icon}.svg`}
+          />
+        </div>
       )}
     </div>
   );

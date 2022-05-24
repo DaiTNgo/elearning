@@ -7,10 +7,11 @@
 }
 html {
   font-size: 62.5%;
-  overflow-x: hidden;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
+  overflow-x: hidden;
   font-size: 1.5rem;
   font-family: 'Nunito', sans-serif;
   word-wrap: break-word;

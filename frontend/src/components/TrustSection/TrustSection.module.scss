@@ -5,9 +5,9 @@
   align-items: center;
 }
 .trust-left {
-  display: flex;
-
+  display: grid;
   justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   gap: 2rem;
 }
 .card {
@@ -34,5 +34,14 @@
   font-size: 1.5rem;
   line-height: 1.2;
 }
-.trust-right {
+@media (max-width: 64em) {
+  .trust-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .trust-right {
+    order: 1;
+  }
+  .trust-left {
+    order: 2;
+  }
 }
