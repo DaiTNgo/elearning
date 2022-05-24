@@ -17,63 +17,32 @@ import Search from './components/Search';
 import SponsorSection from './components/SponsorSection';
 import TrustSection from './components/TrustSection';
 import TutorialSection from './components/TutorialSection';
+import Header from './components/Layout/Header';
 import { PATH_IMG } from './utils/constant';
-
+import HeroCourse from './components/Course/HeroCourse';
+import CourseDetail from './components/Course/CourseDetail';
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <HeroSection />
-      <CourseSection />
-      <TutorialSection />
-      <CertificateSection />
-      <DiscountSection />
-      <TrustSection />
-      <SponsorSection />
-      <MeetInstructor />
-      <Ready />
-      <Footer />
-
-      {/* <CardSection /> */}
+      {/* DONE: */}
       {/* <HeroSection /> */}
-      {/* <TutorialSection />
-      <DiscountSection />
-      <TrustSection />
-      <SponsorSection />
-      <MeetInstructor />
-      <Ready />
-      <Footer /> */}
-      {/* <CardSectionWrapper />
-       */}
-      {/* <CardWrapper /> */}
-      {/* <Handbook />
-      <CertificateSection />
-      <Pricing /> */}
+      {/* <CourseSection /> */}
+      {/* <TutorialSection /> */}
+      {/* <CertificateSection /> */}
+      {/* <DiscountSection /> */}
+      {/* <TrustSection /> */}
+      {/* <SponsorSection /> */}
+      {/* <MeetInstructor /> */}
+      {/* <Ready /> */}
+      {/* <Footer /> */}
+
+      {/* TODO*/}
+      <Header />
+      <HeroCourse />
+      <CourseDetail />
     </>
-    // <Layout>
-    //   <Search />
-    //   {/* <CardCourse />
-    //   <CardInstructor /> */}
-    //   {/* <HandbookLayout>
-    //     <h1>
-    //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
-    //       provident?
-    //     </h1>
-    //   </HandbookLayout> */}
-    //   <CardTopic />
-    //   <Icon order={1} isBoxShadow isCircle isPadding size='sm' />
-    //   <NavigatorButton
-    //     text='hello'
-    //     pathIcon={`${PATH_IMG}/react-logo.svg`}
-    //     isTransition
-    //     more
-    //     round
-    //   />
-    //   {/* <CardCertificate /> */}
-    //   {/* <CardCertificate /> */}
-    //   <CardCertificates />
-    // </Layout>
   );
 }
 

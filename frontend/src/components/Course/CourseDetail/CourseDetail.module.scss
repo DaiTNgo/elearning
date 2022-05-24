@@ -1,13 +1,13 @@
-.wrapper {
+.course-wrapper {
   display: flex;
+  align-items: center;
   gap: 2rem;
-  padding: 2rem;
+  margin: 4rem 0;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     width: 5px;
   }
-}
-.item {
-  flex-shrink: 0;
-  flex-basis: calc((100% - 4 * 2rem) / 5);
+  .course-item {
+    // flex: 1;
+  }
 }

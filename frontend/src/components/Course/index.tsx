@@ -3,9 +3,8 @@ import { PATH_IMG } from '../../utils/constant';
 import CourseAndTopic from '../CourseAndTopic';
 import NavigatorButton from '../NavigatorButton';
 import CourseCard from './CourseCard';
-import CourseWrapper from './CourseWrapper';
 import HeroCourse from './HeroCourse';
-
+import CourseDetail from './CourseDetail';
 import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
@@ -14,15 +13,33 @@ function CourseSection() {
   return (
     <div className='container'>
       <HeroCourse />
-      <div className={cx('course-wrapper')}>
-        <div className={cx('course-item')}>
-          <CourseAndTopic size='xs' right component={<CourseCard />} />
+      <CourseDetail />
+      {/* <div className={cx('course-wrapper')}> */}
+      {/*   <div className={cx('course-item')}> */}
+      {/*     <CourseAndTopic size='xs' right component={<CourseCard />} /> */}
+      {/*   </div> */}
+      {/*   <div className={cx('course-item')}> */}
+      {/*     <CourseAndTopic size='xs' left component={<CourseCard />} /> */}
+      {/*   </div> */}
+      {/* </div> */}
+      <div className={cx('wrapper')}>
+        <div className={cx('item')}>
+          <CourseCard />
         </div>
-        <div className={cx('course-item')}>
-          <CourseAndTopic size='xs' left component={<CourseCard />} />
+        <div className={cx('item')}>
+          <CourseCard />
+        </div>
+        <div className={cx('item')}>
+          <CourseCard />
+        </div>
+        <div className={cx('item')}>
+          <CourseCard />
+        </div>
+        <div className={cx('item')}>
+          <CourseCard />
         </div>
       </div>
-      <CourseWrapper />
+
       <NavigatorButton
         transition
         more
