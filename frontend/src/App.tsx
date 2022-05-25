@@ -21,27 +21,53 @@ import Header from './components/Layout/Header';
 import { PATH_IMG } from './utils/constant';
 import HeroCourse from './components/Course/HeroCourse';
 import CourseDetail from './components/Course/CourseDetail';
+import CourseCard from './components/Course/CourseCard';
+import Authentication from './components/Authentication';
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
       {/* DONE: */}
-      {/* <HeroSection /> */}
-      {/* <CourseSection /> */}
-      {/* <TutorialSection /> */}
-      {/* <CertificateSection /> */}
-      {/* <DiscountSection /> */}
-      {/* <TrustSection /> */}
-      {/* <SponsorSection /> */}
-      {/* <MeetInstructor /> */}
-      {/* <Ready /> */}
-      {/* <Footer /> */}
+      <HeroSection />
+      <CourseSection />
+      <TutorialSection />
+      <CertificateSection />
+      <DiscountSection />
+      <TrustSection />
+      <SponsorSection />
+      <MeetInstructor />
+      <Ready />
+      <Footer />
 
-      {/* TODO*/}
-      <Header />
-      <HeroCourse />
-      <CourseDetail />
+      {/* TODO:*/}
+      {/* <Header />
+      <div className='container'>
+        <HeroCourse />
+        <CourseDetail />
+        <div className='course-wrapper-course-layout'>
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
+        </div>
+      </div>
+      <div className='section'>
+        <MeetInstructor />
+      </div>
+      <Footer /> */}
+
+      {/* <Authentication /> */}
     </>
   );
 }

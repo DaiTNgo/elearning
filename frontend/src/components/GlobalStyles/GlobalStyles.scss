@@ -41,3 +41,10 @@ multicol {
   margin-top: 30rem;
   margin-bottom: 30rem;
 }
+
+// temp
+.course-wrapper-course-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 2rem;
+}

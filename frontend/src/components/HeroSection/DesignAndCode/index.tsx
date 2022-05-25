@@ -6,22 +6,20 @@ const cx = classNames.bind(styles);
 
 export default function DesignAndCode() {
   const [text, setText] = useState('Swift');
-  //   useEffect(() => {
-  //     const temp = setInterval(() => {
-  //       setText((prev) => {
-  //         if (prev === 'Swift') {
-  //           console.log('>>> 1 :');
-  //           return 'React';
-  //         } else {
-  //           console.log('>>> 2 :');
-  //           return 'Swift';
-  //         }
-  //       });
-  //     }, 2000);
-  //     return () => {
-  //       clearInterval(temp);
-  //     };
-  //   }, []);
+  useEffect(() => {
+    const temp = setInterval(() => {
+      setText((prev) => {
+        if (prev === 'Swift') {
+          return 'React';
+        } else {
+          return 'Swift';
+        }
+      });
+    }, 6000);
+    return () => {
+      clearInterval(temp);
+    };
+  }, []);
 
   return (
     <section className={'container'}>

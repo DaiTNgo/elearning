@@ -14,14 +14,6 @@ function CourseSection() {
     <div className='container'>
       <HeroCourse />
       <CourseDetail />
-      {/* <div className={cx('course-wrapper')}> */}
-      {/*   <div className={cx('course-item')}> */}
-      {/*     <CourseAndTopic size='xs' right component={<CourseCard />} /> */}
-      {/*   </div> */}
-      {/*   <div className={cx('course-item')}> */}
-      {/*     <CourseAndTopic size='xs' left component={<CourseCard />} /> */}
-      {/*   </div> */}
-      {/* </div> */}
       <div className={cx('wrapper')}>
         <div className={cx('item')}>
           <CourseCard />
