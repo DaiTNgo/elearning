@@ -4,14 +4,20 @@ import UserModel from '../models/user-model';
 import { ResponseType } from './auth-controller';
 
 class User {
-  //   [PATCH] /user/update/
+  //[PATCH] /user/update/
   async updateUser(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const { id } = req.userData;
-    const { username, avatar, description, acctwiter, mywebsite } = req.body;
+    const {
+      username = '',
+      avatar = '',
+      description = '',
+      acctwiter = '',
+      mywebsite = '',
+    } = req.body;
     try {
-      const user = await UserModel.update(
+      await UserModel.update(
         {
           user_name: username,
           acc_twiter: acctwiter,
@@ -25,14 +31,23 @@ class User {
           },
         }
       );
+
       resp.success = true;
-      resp.message = user;
-      res.status(200).json(resp);
+      resp.message = {
+        id,
+        user_name: username,
+        acc_twiter: acctwiter,
+        my_website: mywebsite,
+        avatar,
+        description,
+      };
+      return res.status(200).json(resp);
     } catch (error: any) {
       resp.message = error;
       res.status(403).json(resp);
     }
   }
+  //TODO: Chua can chuc nang nay.
   //    [POST] /user/
   async findOneUser(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
@@ -78,7 +93,7 @@ class User {
       res.status(400).json(resp);
     }
   }
-
+  //TODO: check password
   //[PATCH] /user/update/password
   async updatePassword(req: Request, res: Response) {
     const resp: ResponseType = { success: false };

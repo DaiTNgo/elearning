@@ -4,6 +4,7 @@ import { ResponseType } from './auth-controller';
 import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';
+import { courseValidate } from '../utils/validations';
 
 class Instructor {
   //DONE:
@@ -12,27 +13,23 @@ class Instructor {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
-    const {
-      courseName,
-      courseType,
-      price,
-      description,
-      image,
-      isTutorial,
-      isLivestream,
-      topics,
-    } = req.body;
-    let course;
+    const { topics, course } = req.body;
+    const { error } = courseValidate(course);
+    if (error) {
+      resp.message = error.details[0].message;
+      return res.status(400).json(resp);
+    }
+    let courseTest;
     try {
-      course = await CourseModel.create({
+      courseTest = await CourseModel.create({
         instructor_id: instructorId,
-        price,
-        description,
-        name: courseName,
-        image: image,
-        type: courseType,
-        isTutorial,
-        isLivestream,
+        price: course.price,
+        description: course.description,
+        name: course.name,
+        image: course.image,
+        type: course.type,
+        isTutorial: course.isTutorial,
+        isLivestream: course.isLivestream,
       });
       const lengthOfTopic = topics.length;
       for (let i = 0; i < lengthOfTopic; i++) {
@@ -48,7 +45,7 @@ class Instructor {
       resp.message = course;
       return res.status(201).json(resp);
     } catch (error) {
-      if (course) {
+      if (courseTest) {
         CourseModel.destroy({
           where: {
             course_id: course.course_id,
