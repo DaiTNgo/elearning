@@ -177,8 +177,8 @@ class Instructor {
   }
 
   //DONE:
-  //[PATCH] /instructor/topic?courseId&&order
-  async updateTopic(req: Request, res: Response) {
+  //[POST] /instructor/topic?courseId&&order
+  async updateOrCreateTopic(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
@@ -206,7 +206,7 @@ class Instructor {
         resp.message = "You're not authorization.";
         return res.status(401).json(resp);
       }
-      const topic = await TopicModel.update(
+      const [topic] = await TopicModel.update(
         {
           name,
           description,
@@ -225,10 +225,23 @@ class Instructor {
           },
         }
       );
+      console.log(
+        'file: instructor-controller.ts >>> line 228 >>> topic',
+        topic
+      );
       if (!topic) {
-        resp.success = false;
-        resp.message = 'Topic not found';
-        return res.status(404).json(resp);
+        const topic = await TopicModel.create({
+          order: order,
+          course_id: courseId,
+          name,
+          description,
+          link,
+        });
+        if (!topic) {
+          resp.success = false;
+          resp.message = 'Something is wrong topic';
+          return res.status(404).json(resp);
+        }
       }
       resp.success = true;
       resp.message = topic;

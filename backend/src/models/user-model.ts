@@ -13,9 +13,11 @@ class UserModel extends Model {
   declare description: string;
   declare acc_twiter: string;
   declare my_website: string;
-  declare deletedAt: string;
   declare role: 'user' | 'admin' | 'instructor';
   declare updatePassword: boolean;
+  declare deletedAt: string;
+  declare updatedAt: string;
+  declare createdAt: string;
 }
 
 UserModel.init(

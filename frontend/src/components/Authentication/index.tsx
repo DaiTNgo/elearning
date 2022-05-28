@@ -7,7 +7,7 @@ import Icon from '../Icon';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
-function Authentication() {
+function Authentication({ handleLogin }: { handleLogin: () => void }) {
   return (
     <div className={cx('authen')}>
       <div className={cx('authen-left')}>
@@ -29,11 +29,16 @@ function Authentication() {
           <input name='password' placeholder='Password' />
         </div>
         <button type='button'>Sign in</button>
-
         <p>
           Don't have an account?
-          <Link to='/signup'> Sign up</Link>
+          <Link to='/signup' className={cx('signup')}>
+            {' '}
+            Sign up
+          </Link>
         </p>
+      </div>
+      <div className={cx('close')} onClick={handleLogin}>
+        <img src={`${PATH_IMG}/x.svg`} alt='close icon' />
       </div>
     </div>
   );

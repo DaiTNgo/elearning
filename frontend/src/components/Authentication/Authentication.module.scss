@@ -1,13 +1,24 @@
 .authen {
+  position: relative;
   max-width: 960px;
-  min-height: 80vh;
+  width: 100%;
+  min-height: 75vh;
   display: grid;
   grid-template-columns: 36rem auto;
-  gap: 60px;
-  padding: 2rem 8rem 2rem 2rem;
+  gap: 2rem;
+  padding: 2rem;
   background: rgba(25, 24, 63, 0.98) none repeat scroll 0% 0%;
   box-shadow: rgba(255, 255, 255, 0.3) 0px 0px 0px 0.5px inset;
   border-radius: 20px;
+  justify-items: center;
+  animation: 1s ease 0s 1 normal forwards running login;
+  z-index: 1000;
+  button {
+    cursor: pointer;
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: auto;
+  }
 }
 .authen-left {
   width: 100%;
@@ -24,7 +35,10 @@
   //   grid-template-columns: 1fr;
   flex-direction: column;
   justify-content: center;
+  justify-items: center;
   gap: 2rem;
+  max-width: 32rem;
+
   h2 {
     margin: 0;
   }
@@ -39,7 +53,7 @@
 }
 .authen-img {
   display: block;
-  width: 100%;
+  max-width: 100%;
 }
 .form {
   display: flex;
@@ -83,5 +97,40 @@
         repeat scroll 0% 0%;
       color: white;
     }
+  }
+}
+.close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  -webkit-box-pack: center;
+  place-content: center;
+  background: linear-gradient(
+    360deg,
+    rgba(99, 106, 150, 0.4) 0%,
+    rgba(182, 186, 214, 0.5) 100%
+  );
+  box-sizing: border-box;
+  box-shadow: rgb(0 0 0 / 15%) 0px 20px 40px,
+    rgb(255 255 255 / 30%) 0px 0px 0px 0.5px inset;
+  backdrop-filter: blur(40px);
+  border-radius: 30px;
+  cursor: pointer;
+}
+.signup {
+  font-weight: 700;
+  color: white !important;
+}
+@keyframes login {
+  0% {
+    transform: translateY(-100px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
   }
 }

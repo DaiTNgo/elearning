@@ -22,6 +22,6 @@ router
 router
   .route('/topic')
   .delete(checkAuth, checkInstructor, InstructorController.deleteTopic)
-  .patch(checkAuth, checkInstructor, InstructorController.updateTopic);
+  .post(checkAuth, checkInstructor, InstructorController.updateOrCreateTopic);
 
 export default router;

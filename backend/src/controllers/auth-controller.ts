@@ -68,9 +68,10 @@ class Auth {
           const refreshToken = generateRefreshToken({ id, role });
           refreshTokens.push(refreshToken);
 
+          const { deletedAt, updatedAt, createdAt, password, ...others } = user;
           resp.success = true;
           resp.acessToken = acessToken;
-          resp.message = 'Log in successfully';
+          resp.message = others;
           res.cookie('refresh', refreshToken, {
             httpOnly: true,
             secure: false,

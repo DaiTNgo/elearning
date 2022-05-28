@@ -23,13 +23,14 @@ import HeroCourse from './components/Course/HeroCourse';
 import CourseDetail from './components/Course/CourseDetail';
 import CourseCard from './components/Course/CourseCard';
 import Authentication from './components/Authentication';
+import Admin from './Page/Admin';
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
       {/* DONE: */}
-      <HeroSection />
+      {/* <HeroSection />
       <CourseSection />
       <TutorialSection />
       <CertificateSection />
@@ -38,7 +39,7 @@ function App() {
       <SponsorSection />
       <MeetInstructor />
       <Ready />
-      <Footer />
+      <Footer /> */}
 
       {/* TODO:*/}
       {/* <Header />
@@ -66,8 +67,7 @@ function App() {
         <MeetInstructor />
       </div>
       <Footer /> */}
-
-      {/* <Authentication /> */}
+      <Admin />
     </>
   );
 }
