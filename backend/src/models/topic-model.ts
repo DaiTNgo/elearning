@@ -8,6 +8,8 @@ class TopicModel extends Model {
   declare name: string;
   declare description: string;
   declare link: string;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 TopicModel.init(
   {
@@ -20,7 +22,7 @@ TopicModel.init(
       validate: {
         len: {
           msg: 'Name of Topic must been greater than 4 charaters',
-          args: [4, 100],
+          args: [4, 150],
         },
       },
       allowNull: false,
@@ -31,11 +33,6 @@ TopicModel.init(
     },
     link: {
       type: DataTypes.STRING,
-      validate: {
-        isUrl: {
-          msg: 'Link must be a url',
-        },
-      },
     },
     order: {
       primaryKey: true,
@@ -44,7 +41,6 @@ TopicModel.init(
   },
   {
     sequelize,
-    paranoid: true,
     modelName: 'Topic',
     tableName: 'topics',
   }

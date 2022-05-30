@@ -7,10 +7,13 @@ import NavigatorButton from '../../NavigatorButton';
 import Icon from '../../Icon';
 import { PATH_IMG } from '../../../utils/constant';
 import Authentication from '../../Authentication';
+import { useAppSelector } from '../../../hooks/redux';
+import { getUser } from '../../../redux/authenSlice';
 
 const cx = classNames.bind(styles);
 
 const Header = (props: {}) => {
+  const user = useAppSelector(getUser);
   const [isDropdown, setIsDropdown] = useState(false);
   const [showFormLogin, setShowFormLogin] = useState<boolean>(false);
   const [listHeader, setListHeader] = useState([
@@ -93,9 +96,23 @@ const Header = (props: {}) => {
             <button className={cx('btn', 'nav__link')}>
               <img src={`${PATH_IMG}/search.svg`} alt='search' />
             </button>
-            <button className={cx('btn', 'nav__link')} onClick={handleLogin}>
-              <img src={`${PATH_IMG}/account.svg`} alt='account' />
-            </button>
+            {user ? (
+              <button className={cx('btn', 'nav__link')}>
+                <img
+                  src={`${PATH_IMG}/avatar.jpg`}
+                  alt='account'
+                  className={cx('avatar')}
+                />
+              </button>
+            ) : (
+              <button className={cx('btn', 'nav__link')} onClick={handleLogin}>
+                <img
+                  src={`${PATH_IMG}/account.svg`}
+                  alt='account'
+                  className={cx('avatar')}
+                />
+              </button>
+            )}
           </nav>
 
           <button

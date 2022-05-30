@@ -7,7 +7,7 @@ export const loginService = async (data: {
   try {
     const response = await axiosAuth({
       method: 'post',
-      url: 'login',
+      url: '/login',
       data,
     });
     return response.data;

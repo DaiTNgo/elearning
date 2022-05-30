@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Pricing.module.scss';
 import classNames from 'classnames/bind';
-import FanLayout from '../Layout/Fan';
+import FanLayout from '../Fan';
 import Icon from '../Icon';
 import { PATH_IMG } from '../../utils/constant';
 import NavigatorButton from '../NavigatorButton';

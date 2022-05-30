@@ -3,7 +3,7 @@ import styles from './Handbook.module.scss';
 import classNames from 'classnames/bind';
 import Icon from '../Icon';
 import { PATH_IMG } from '../../utils/constant';
-import FanLayout from '../Layout/Fan';
+import FanLayout from '../Fan';
 const cx = classNames.bind(styles);
 
 function Handbook() {

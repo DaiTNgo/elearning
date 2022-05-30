@@ -10,8 +10,10 @@ class CourseModel extends Model {
   declare name: string;
   declare image: string;
   declare type: string;
-  declare isTutorial: boolean;
-  declare isLivestream: boolean;
+  declare watch: 'normal' | 'livestream' | 'tutorial';
+  declare createdAt: Date;
+  declare updatedAt: Date;
+  declare deletedAt: Date;
 }
 CourseModel.init(
   {
@@ -30,22 +32,10 @@ CourseModel.init(
     },
     description: {
       type: DataTypes.TEXT('tiny'),
-      validate: {
-        len: {
-          msg: 'Course must be greater than 10 characters.',
-          args: [10, 1000],
-        },
-      },
       allowNull: false,
     },
     name: {
       type: DataTypes.STRING(150),
-      validate: {
-        len: {
-          msg: 'Course must be greater than 10 characters.',
-          args: [10, 150],
-        },
-      },
       allowNull: false,
     },
     image: {
@@ -54,20 +44,10 @@ CourseModel.init(
     },
     type: {
       type: DataTypes.STRING(100),
-      validate: {
-        len: {
-          msg: 'Type of course must be greater than 2 characters',
-          args: [2, 100],
-        },
-      },
     },
-    isTutorial: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    isLivestream: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    watch: {
+      type: DataTypes.STRING(20),
+      defaultValue: 'normal',
     },
   },
   {

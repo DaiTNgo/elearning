@@ -17,6 +17,7 @@
 
   .nav {
     display: flex;
+    align-items: center;
     &__link {
       + .nav__link {
         margin-left: 2.6rem;
@@ -51,6 +52,11 @@
         color: white;
         transform: translateY(-2px);
       }
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
     }
   }
   .hamburger {

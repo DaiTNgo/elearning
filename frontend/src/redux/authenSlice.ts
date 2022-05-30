@@ -19,10 +19,13 @@ type InitTialStateType = {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 };
 export const login = createAsyncThunk(
-  'login',
-  async (data: { email: string; password: string }) => {
-    const response = await loginService(data);
-    return response;
+  'user/login',
+  async ({ email, password }: { email: string; password: string }) => {
+    const response = await loginService({ email, password });
+    if (response.success) return response;
+    else {
+      throw new Error(response.message);
+    }
   }
 );
 
@@ -58,7 +61,8 @@ const authenSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.accessToken = action.payload;
+        state.accessToken = action.payload.accessToken;
+        state.currentUser = action.payload.message;
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
@@ -108,6 +112,7 @@ export const PostsList = () => {
  */
 
 export const getAccessToken = (state: RootState) => state.auth.accessToken;
+export const getUser = (state: RootState) => state.auth.currentUser;
 
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 

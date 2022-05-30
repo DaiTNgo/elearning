@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import NavigatorButton from '../../NavigatorButton';
-import { PATH_IMG } from '../../../utils/constant';
+import NavigatorButton from '../../components/NavigatorButton';
+import { PATH_IMG } from '../../utils/constant';
 
 const cx = classNames.bind(styles);
 const Footer = (props: {}) => {

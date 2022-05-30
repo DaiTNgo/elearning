@@ -4,7 +4,7 @@ import { ResponseType } from './auth-controller';
 import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import UserModel from '../models/user-model';
-import { courseValidate } from '../utils/validations';
+import { courseValidate, topicValidate } from '../utils/validations';
 
 class Instructor {
   //DONE:
@@ -13,76 +13,70 @@ class Instructor {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
-    const { topics, course } = req.body;
-    const { error } = courseValidate(course);
+    const { price, description, name, image, type, watch } = req.body;
+    const { error } = courseValidate({
+      price,
+      description,
+      name,
+      image,
+      type,
+      watch,
+    });
     if (error) {
       resp.message = error.details[0].message;
-      return res.status(400).json(resp);
+      return res.status(200).json(resp);
     }
-    let courseTest;
+
     try {
-      courseTest = await CourseModel.create({
+      const courseResp = await CourseModel.create({
         instructor_id: instructorId,
-        price: course.price,
-        description: course.description,
-        name: course.name,
-        image: course.image,
-        type: course.type,
-        isTutorial: course.isTutorial,
-        isLivestream: course.isLivestream,
+        price,
+        description,
+        name,
+        image,
+        type,
+        watch,
       });
-      const lengthOfTopic = topics.length;
-      for (let i = 0; i < lengthOfTopic; i++) {
-        await TopicModel.create({
-          name: topics[i].name,
-          description: topics[i].description,
-          link: topics[i].link,
-          order: i + 1,
-          course_id: course.course_id,
-        });
-      }
+      const { createdAt, updatedAt, deletedAt, ...others } =
+        courseResp.toJSON();
       resp.success = true;
-      resp.message = course;
+      resp.message = others;
       return res.status(201).json(resp);
     } catch (error) {
-      if (courseTest) {
-        CourseModel.destroy({
-          where: {
-            course_id: course.course_id,
-          },
-          force: true,
-        });
-      }
       resp.message = error;
+      console.log('--------------------------', error);
       return res.status(400).json(resp);
     }
   }
   //DONE:
-  //[PATCH] /instructor/course/:courseId
+  //[PUT] /instructor/update-course/:courseId
   async updateCourse(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
-    const {
-      courseName,
-      courseType,
-      price,
-      description,
-      image,
-      isTutorial,
-      isLivestream,
-    } = req.body;
+    const { price, description, name, image, type, watch } = req.body;
     const courseId = req.params.courseId;
     //@ts-ignore
     const instructorId = req.userData.id;
+    const { error } = courseValidate({
+      price,
+      description,
+      name,
+      image,
+      type,
+      watch,
+    });
+    if (error) {
+      resp.message = error.details[0].message;
+      return res.status(400).json(resp);
+    }
     try {
-      const course = await CourseModel.update(
+      const [isUpdate] = await CourseModel.update(
         {
-          price: price,
-          description: description,
-          image: image,
-          name: courseName,
-          type: courseType,
-          isTutorial,
-          isLivestream,
+          price,
+          description,
+          name,
+          image,
+          type,
+          watch,
         },
         {
           where: {
@@ -97,13 +91,21 @@ class Instructor {
           },
         }
       );
-      if (!course[0]) {
+      if (!isUpdate) {
         resp.success = false;
         resp.message = 'Course not found';
         return res.status(404).json(resp);
       }
       resp.success = true;
-      resp.message = course;
+      resp.message = {
+        price,
+        description,
+        name,
+        image,
+        type,
+        watch,
+        course_id: courseId,
+      };
       return res.status(201).json(resp);
     } catch (error) {
       resp.message = error;
@@ -111,14 +113,14 @@ class Instructor {
     }
   }
   //DONE:
-  //[DELETE] /instructor/:courseId
+  //[DELETE] /instructor/delete-course/:courseId
   async deleteCourse(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const courseId = req.params.courseId;
     try {
-      const course = await CourseModel.destroy({
+      const isRemove = await CourseModel.destroy({
         where: {
           [Op.and]: [
             {
@@ -130,27 +132,26 @@ class Instructor {
           ],
         },
       });
-      if (!course) {
-        resp.message = 'Course not found';
+      if (!isRemove) {
+        resp.message = 'Course not found.';
         resp.success = false;
-        return res.status(404).json(resp);
+        return res.status(204).json(resp);
       }
-      resp.success = true;
-      return res.status(204).json(resp);
+      return res.status(204);
     } catch (error) {
       resp.message = error;
       return res.status(401).json(resp);
     }
   }
   //DONE:
-  //[POST] /instructor/restore/course/:courseId
+  //[POST] /instructor/restore-course/:courseId
   async restoreCourse(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
     const courseId = req.params.courseId;
     try {
-      const course = await CourseModel.restore({
+      await CourseModel.restore({
         where: {
           [Op.and]: [
             {
@@ -162,10 +163,10 @@ class Instructor {
           ],
         },
       });
+
       resp.success = true;
-      resp.message = {
-        isExistCourse: course,
-      };
+      resp.message = 'Course has been restored.';
+
       return res.status(200).json(resp);
     } catch (error) {
       resp.message = error;
@@ -174,13 +175,69 @@ class Instructor {
   }
 
   //DONE:
-  //[POST] /instructor/topic?courseId&&order
-  async updateOrCreateTopic(req: Request, res: Response) {
+  //[POST] /instructor/create-topic/:courseId
+  async createTopic(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
-    const { order, courseId } = req.query;
-    const { name, description, link } = req.body;
+    const { courseId } = req.params;
+    const { name, description, link, order } = req.body;
+    const { error } = topicValidate({ name, description, link, order });
+    if (error) {
+      resp.message = error.details[0].message;
+      return res.status(200).json(resp);
+    }
+    try {
+      const passed = await UserModel.findOne({
+        include: {
+          model: CourseModel,
+          where: {
+            [Op.and]: [
+              {
+                instructor_id: instructorId,
+              },
+              {
+                course_id: courseId,
+              },
+            ],
+          },
+        },
+      });
+
+      if (!passed) {
+        resp.message = "You're not authorization.";
+        return res.status(401).json(resp);
+      }
+      const topic = await TopicModel.create({
+        name,
+        description,
+        link,
+        order,
+        course_id: courseId,
+      });
+      const { createdAt, updatedAt, ...others } = topic.toJSON();
+      resp.success = true;
+      resp.message = others;
+      return res.status(200).json(resp);
+    } catch (error) {
+      resp.message = error;
+      return res.status(401).json(resp);
+    }
+  }
+
+  //DONE:
+  // [PUT] /instructor/update-topic/:courseId
+  async updateTopic(req: Request, res: Response) {
+    const resp: ResponseType = { success: false };
+    //@ts-ignore
+    const instructorId = req.userData.id;
+    const { courseId } = req.params;
+    const { name, description, link, order } = req.body;
+    const { error } = topicValidate({ name, description, link, order });
+    if (error) {
+      resp.message = error.details[0].message;
+      return res.status(200).json(resp);
+    }
     try {
       const passed = await UserModel.findOne({
         include: {
@@ -203,7 +260,7 @@ class Instructor {
         resp.message = "You're not authorization.";
         return res.status(401).json(resp);
       }
-      const [topic] = await TopicModel.update(
+      const [isUpdate] = await TopicModel.update(
         {
           name,
           description,
@@ -211,144 +268,25 @@ class Instructor {
         },
         {
           where: {
-            [Op.and]: [
-              {
-                order: order,
-              },
-              {
-                course_id: courseId,
-              },
-            ],
+            course_id: courseId,
+            order,
           },
         }
       );
-      console.log(
-        'file: instructor-controller.ts >>> line 228 >>> topic',
-        topic
-      );
-      if (!topic) {
-        const topic = await TopicModel.create({
-          order: order,
+      if (!isUpdate) {
+        resp.message = 'Topic is not found.';
+        return res.status(200).json(resp);
+      } else {
+        resp.success = true;
+        resp.message = {
+          name,
+          description,
+          link,
           course_id: courseId,
-          name,
-          description,
-          link,
-        });
-        if (!topic) {
-          resp.success = false;
-          resp.message = 'Something is wrong topic';
-          return res.status(404).json(resp);
-        }
+          order,
+        };
+        return res.status(200).json(resp);
       }
-      resp.success = true;
-      resp.message = topic;
-      return res.status(200).json(resp);
-    } catch (error) {
-      resp.message = error;
-      return res.status(401).json(resp);
-    }
-  }
-  //DONE:
-  //[DELETE] /instructor/topic?courseId&&order
-  async deleteTopic(req: Request, res: Response) {
-    const resp: ResponseType = { success: false };
-    //@ts-ignore
-    const instructorId = req.userData.id;
-    const { order, courseId } = req.query;
-
-    try {
-      const passed = await UserModel.findOne({
-        include: {
-          model: CourseModel,
-          where: {
-            [Op.and]: [
-              {
-                instructor_id: instructorId,
-              },
-              {
-                course_id: courseId,
-              },
-            ],
-          },
-        },
-      });
-
-      if (!passed) {
-        resp.success = false;
-        resp.message = "You're not authorization.";
-        return res.status(401).json(resp);
-      }
-      const topic = await TopicModel.destroy({
-        where: {
-          [Op.and]: [
-            {
-              order: order,
-            },
-            {
-              course_id: courseId,
-            },
-          ],
-        },
-      });
-      if (!topic) {
-        resp.success = false;
-        resp.message = 'Topic not found';
-        return res.status(404).json(resp);
-      }
-      resp.success = true;
-      return res.status(204).json(resp);
-    } catch (error) {
-      resp.message = error;
-      return res.status(401).json(resp);
-    }
-  }
-  //DONE:
-  //[POST] /instructor/restore/topic?courseId&&order
-  async restoreTopic(req: Request, res: Response) {
-    const resp: ResponseType = { success: false };
-    //@ts-ignore
-    const instructorId = req.userData.id;
-    const { order, courseId } = req.query;
-    try {
-      const passed = await UserModel.findOne({
-        include: {
-          model: CourseModel,
-          where: {
-            [Op.and]: [
-              {
-                instructor_id: instructorId,
-              },
-              {
-                course_id: courseId,
-              },
-            ],
-          },
-        },
-      });
-
-      if (!passed) {
-        resp.success = false;
-        resp.message = "You're not authorization.";
-        return res.status(401).json(resp);
-      }
-
-      const isTopic = await TopicModel.restore({
-        where: {
-          [Op.and]: [
-            {
-              order: order,
-            },
-            {
-              course_id: courseId,
-            },
-          ],
-        },
-      });
-      resp.success = true;
-      resp.message = {
-        isTopic,
-      };
-      return res.status(401).json(resp);
     } catch (error) {
       resp.message = error;
       return res.status(401).json(resp);

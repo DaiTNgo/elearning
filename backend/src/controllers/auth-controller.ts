@@ -15,7 +15,7 @@ type FormType = {
 export type ResponseType = {
   success: boolean;
   message?: any;
-  acessToken?: string;
+  accessToken?: string;
 };
 let refreshTokens: string[] = [];
 class Auth {
@@ -50,7 +50,7 @@ class Auth {
     const { error } = userValidate(req.body);
     if (error) {
       resp.message = error.details[0].message;
-      return res.status(400).json(resp);
+      return res.status(200).json(resp);
     }
     try {
       const user = await UserModel.findOne({
@@ -70,7 +70,7 @@ class Auth {
 
           const { deletedAt, updatedAt, createdAt, password, ...others } = user;
           resp.success = true;
-          resp.acessToken = acessToken;
+          resp.accessToken = acessToken;
           resp.message = others;
           res.cookie('refresh', refreshToken, {
             httpOnly: true,
@@ -111,7 +111,7 @@ class Auth {
       const { iat, exp, ...others } = user;
       const accessToken = generateAccessToken(others);
       resp.success = true;
-      resp.acessToken = accessToken;
+      resp.accessToken = accessToken;
       return res.status(200).json(resp);
     } catch (error) {
       resp.message = error;

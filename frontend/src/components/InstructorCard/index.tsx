@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './InstructorCard.module.scss';
 import classNames from 'classnames/bind';
-import CardLayout from '../Layout/Card';
+import CardLayout from '../CardLayout';
 import { PATH_IMG } from '../../utils/constant';
 import Icon from '../Icon';
 
