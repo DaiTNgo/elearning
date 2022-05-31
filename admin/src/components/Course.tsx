@@ -25,7 +25,7 @@ function Course(props: any) {
 	const [description, setDesc] = useState('');
 	const [image, setImage] = useState('');
 	const [watch, setWatch] = useState<string>('normal');
-
+	const TYPES = ['react', 'swift', 'figma', 'sketch', 'framer'];
 	const dispatch = useAppDispatch();
 	const course = useAppSelector(getCourse);
 	const accessToken = useAppSelector(getAccessToken);
@@ -121,9 +121,13 @@ function Course(props: any) {
 						value={type}
 						onChange={(e: SelectChangeEvent) => setType(e.target.value)}
 						name='type'>
-						<MenuItem value={'react'}>React</MenuItem>
-						<MenuItem value={'flutter'}>Flutter</MenuItem>
-						<MenuItem value={'swift'}>Swift</MenuItem>
+						{TYPES.map((type, index) => {
+							return (
+								<MenuItem key={index} value={type}>
+									{type}
+								</MenuItem>
+							);
+						})}
 					</Select>
 				</FormControl>
 

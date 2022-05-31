@@ -56,6 +56,7 @@ function DashBoard() {
 				display: 'grid',
 				gap: '2rem',
 				gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))',
+				marginBottom: 2,
 			}}>
 			{courses.length > 0 ? (
 				courses.map((course, index) => {

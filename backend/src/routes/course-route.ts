@@ -7,12 +7,14 @@ router
   .route('/favourite')
   .get(checkAuth, CourseController.getAllCourseFavourite);
 
+// router.route('/test').get(CourseController.test);
+
 router
   .route('/instructor/:instructorId')
-  .get(checkAuth, CourseController.getAllCourseInstructorId);
+  .get(CourseController.getAllCourseInstructorId);
 
-router.route('/:courseId').get(checkAuth, CourseController.getOneCourse);
+router.route('/:courseId').get(CourseController.getOneCourse);
 
-router.route('/').get(checkAuth, CourseController.getAllCourse);
+router.route('/').get(CourseController.getAllCourse);
 
 export default router;

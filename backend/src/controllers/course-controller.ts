@@ -4,6 +4,7 @@ import CourseModel from '../models/course-model';
 import TopicModel from '../models/topic-model';
 import FavouriteCourseModel from '../models/favourite-course-model';
 import { ResponseType } from './auth-controller';
+import sequelize from '../utils/connectDB';
 import { Op } from 'sequelize';
 class Course {
   //DONE: [GET] lấy tất cả khóa học của instructorid + info instructor
@@ -17,8 +18,11 @@ class Course {
           model: UserModel,
           required: true,
           where: { id: instructorId },
+          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
         },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
         raw: true,
+        nest: true,
       });
       resp.success = true;
       resp.message = info;
@@ -64,6 +68,7 @@ class Course {
   //DONE:lấy all thông tin khóa học + instructor + topic
   //DONE: lấy khóa học tutorial hay livestream với ?istutorial or ?islivestream
   // [GET] /  || /?istutorial=1 || /?islivestream=1
+  /** 
   async getAllCourse(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     const { istutorial, islivestream } = req.query;
@@ -111,6 +116,7 @@ class Course {
       return res.status(400).json(resp);
     }
   }
+  */
   //DONE: lấy thông tin 1 khóa học course_id + instructor + topics => truyền instructor_id xuống cho component lấy thông tin của instructor + khóa học
   //[GET] /:courseId
   async getOneCourse(req: Request, res: Response) {
@@ -121,19 +127,67 @@ class Course {
         include: [
           {
             model: TopicModel,
+            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
             // required: true,
           },
           {
             model: UserModel,
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'deletedAt', 'password'],
+            },
             // required: true,
           },
         ],
         where: {
           course_id: courseId,
         },
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
       });
       resp.success = true;
       resp.message = course;
+      return res.status(200).json(resp);
+    } catch (error) {
+      resp.message = error;
+      return res.status(400).json(resp);
+    }
+  }
+  //@ts-ignore
+  async getAllCourse(req, res) {
+    const resp: ResponseType = { success: false };
+    const { istutorial, islivestream } = req.query;
+
+    try {
+      if (islivestream || istutorial) {
+        const course = await CourseModel.findAll({
+          include: [
+            {
+              model: TopicModel,
+              required: true,
+            },
+            {
+              model: UserModel,
+              required: true,
+            },
+          ],
+          where: {
+            watch: islivestream ? 'livestream' : 'tutorial',
+          },
+        });
+        resp.success = true;
+        resp.message = course;
+      } else {
+        const course = await sequelize.query(`
+        SELECT courses.course_id as courseId,courses.price,courses.description,courses.name,courses.type,courses.image,courses.watch,users.id as userId,users.avatar, COUNT(courses.course_id) as count
+        FROM courses
+        INNER JOIN users
+        ON users.id = courses.instructor_id
+        INNER JOIN topics ON topics.course_id = courses.course_id
+        WHERE courses.deletedAt IS NULL AND users.deletedAt IS NULL AND watch = 'normal'
+        GROUP BY courses.course_id
+      `);
+        resp.success = true;
+        resp.message = course[0];
+      }
       return res.status(200).json(resp);
     } catch (error) {
       resp.message = error;

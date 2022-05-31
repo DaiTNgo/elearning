@@ -31,7 +31,7 @@ export const createOrUpdateCourse = createAsyncThunk(
 	}: {
 		courseId?: number;
 		info: CourseType;
-		accessToken: string;
+		accessToken?: string;
 	}) => {
 		let resp;
 		try {
