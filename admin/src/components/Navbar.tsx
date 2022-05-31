@@ -8,8 +8,12 @@ import {
 	styled,
 	Typography,
 } from '@mui/material';
+import { current } from '@reduxjs/toolkit';
+import { axiosAuth } from '../axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { getAccessToken, getUser, logout } from '../redux/authSlice';
 
 const Navigator = styled(Box)({
 	display: 'flex',
@@ -24,11 +28,17 @@ function Navbar() {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const navigate = useNavigate();
 	const open = Boolean(anchorEl);
+	const currentUser = useAppSelector(getUser);
+	const dispatch = useAppDispatch();
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
+	const accessToken = useAppSelector(getAccessToken);
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+	const handleLogout = () => {
+		dispatch(logout(accessToken));
 	};
 	return (
 		<Box
@@ -69,12 +79,14 @@ function Navbar() {
 							alignItems: 'center',
 						}}>
 						<Typography variant='h5' component={'p'} color='white'>
-							Instructor
+							{currentUser?.user_name
+								? currentUser.user_name
+								: currentUser?.email}
 						</Typography>
 						<Button id='basic-button' onClick={handleClick}>
 							<Avatar
 								alt='avatar'
-								// src={`${PATH_IMG}/avatar.jpg`}
+								src={`${currentUser && currentUser?.avatar}`}
 								sx={{ width: 56, height: 56 }}
 							/>
 						</Button>
@@ -100,10 +112,7 @@ function Navbar() {
 							Profile
 						</MenuItem>
 						<MenuItem
-							onClick={() => {
-								navigate('/logout');
-								handleClose();
-							}}
+							onClick={handleLogout}
 							sx={{
 								fontSize: 20,
 							}}>

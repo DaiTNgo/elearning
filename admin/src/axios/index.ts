@@ -13,3 +13,10 @@ export const axiosInstructor = axios.create({
 		'Content-Type': 'application/json',
 	},
 });
+
+export const axiosCourse = axios.create({
+	baseURL: `${BASE_URL}/course`,
+	headers: {
+		'Content-Type': 'application/json',
+	},
+});

@@ -5,11 +5,17 @@ import Topic from '../components/Topic';
 import Form from '../components/Form';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { getCourse, resetCourse, resetTopics } from '../redux/courseSlice';
+import {
+	editCourse,
+	editTopics,
+	getCourse,
+	resetCourse,
+	resetTopics,
+} from '../redux/courseSlice';
 import { getAccessToken } from '../redux/authSlice';
-import { TopicType } from '../types';
+import { CourseType, TopicType } from '../types';
 import { useParams } from 'react-router-dom';
-import { axiosInstructor } from '../axios';
+import { axiosCourse } from '../axios';
 function EditCourse() {
 	const dispatch = useAppDispatch();
 	const course = useAppSelector(getCourse);
@@ -19,16 +25,39 @@ function EditCourse() {
 	useEffect(() => {
 		if (courseId) {
 			(async () => {
-				const resp = await axiosInstructor({
+				const resp = await axiosCourse({
 					method: 'get',
-					url: '',
+					url: `/${courseId}`,
 					headers: {
 						authorization: `Bearer ${accessToken}`,
 					},
 				});
+				const {
+					course_id,
+					description,
+					image,
+					name,
+					price,
+					type,
+					watch,
+					Topics: topics,
+				} = resp.data.message;
+
+				dispatch(
+					editCourse({
+						course_id,
+						description,
+						image,
+						name,
+						price,
+						type,
+						watch,
+					})
+				);
+				dispatch(editTopics(topics));
 			})();
 		}
-	});
+	}, []);
 	const handleEditTopic = (info: any) => {
 		setTopic(info);
 	};

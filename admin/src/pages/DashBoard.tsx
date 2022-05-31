@@ -34,7 +34,7 @@ function DashBoard() {
 	}, []);
 	const handleDeleteCourse = async (courseId: CourseType['course_id']) => {
 		try {
-			await axiosInstructor({
+			axiosInstructor({
 				method: 'delete',
 				url: `/delete-course/${courseId}`,
 				headers: {

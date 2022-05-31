@@ -17,10 +17,10 @@ router
   .delete(checkAuth, checkInstructor, InstructorController.deleteCourse);
 // ---------------------------------------------------------------------
 router
-  .route('/create-topic/:courseId')
+  .route('/create-topic')
   .post(checkAuth, checkInstructor, InstructorController.createTopic);
 router
-  .route('/update-topic/:courseId')
+  .route('/update-topic')
   .put(checkAuth, checkInstructor, InstructorController.updateTopic);
 
 export default router;

@@ -121,11 +121,11 @@ class Course {
         include: [
           {
             model: TopicModel,
-            required: true,
+            // required: true,
           },
           {
             model: UserModel,
-            required: true,
+            // required: true,
           },
         ],
         where: {
@@ -134,7 +134,7 @@ class Course {
       });
       resp.success = true;
       resp.message = course;
-      return res.status(400).json(resp);
+      return res.status(200).json(resp);
     } catch (error) {
       resp.message = error;
       return res.status(400).json(resp);

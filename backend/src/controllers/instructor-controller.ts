@@ -175,13 +175,12 @@ class Instructor {
   }
 
   //DONE:
-  //[POST] /instructor/create-topic/:courseId
+  //[POST] /instructor/create-topic
   async createTopic(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
-    const { courseId } = req.params;
-    const { name, description, link, order } = req.body;
+    const { name, description, link, order, course_id } = req.body;
     const { error } = topicValidate({ name, description, link, order });
     if (error) {
       resp.message = error.details[0].message;
@@ -197,7 +196,7 @@ class Instructor {
                 instructor_id: instructorId,
               },
               {
-                course_id: courseId,
+                course_id,
               },
             ],
           },
@@ -213,7 +212,7 @@ class Instructor {
         description,
         link,
         order,
-        course_id: courseId,
+        course_id,
       });
       const { createdAt, updatedAt, ...others } = topic.toJSON();
       resp.success = true;
@@ -231,8 +230,7 @@ class Instructor {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const instructorId = req.userData.id;
-    const { courseId } = req.params;
-    const { name, description, link, order } = req.body;
+    const { name, description, link, order, course_id } = req.body;
     const { error } = topicValidate({ name, description, link, order });
     if (error) {
       resp.message = error.details[0].message;
@@ -248,7 +246,7 @@ class Instructor {
                 instructor_id: instructorId,
               },
               {
-                course_id: courseId,
+                course_id,
               },
             ],
           },
@@ -268,7 +266,7 @@ class Instructor {
         },
         {
           where: {
-            course_id: courseId,
+            course_id,
             order,
           },
         }
@@ -282,7 +280,7 @@ class Instructor {
           name,
           description,
           link,
-          course_id: courseId,
+          course_id,
           order,
         };
         return res.status(200).json(resp);

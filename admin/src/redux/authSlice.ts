@@ -13,7 +13,7 @@ interface CurrentUserType {
 	role: 'user' | 'admin' | 'instructor';
 }
 interface InitTialStateType {
-	accessToken: string;
+	accessToken: undefined | string;
 	currentUser: CurrentUserType | undefined;
 	error: string | undefined;
 	status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -39,23 +39,25 @@ export const login = createAsyncThunk(
 		}
 	}
 );
-// export const logout = createAsyncThunk('user/logout', async () => {
-// 	try {
-// 		const response = await axiosAuth({
-// 			method: 'post',
-// 			url: '/logout',
-// 		});
-// 		if (response.data.success) return response.data;
-// 		else {
-// 			throw new Error(response.data.message);
-// 		}
-// 	} catch (error: any) {
-// 		throw new Error(error);
-// 	}
-// });
+export const logout = createAsyncThunk(
+	'user/logout',
+	async (accessToken: InitTialStateType['accessToken']) => {
+		try {
+			await axiosAuth({
+				method: 'post',
+				url: '/logout',
+				headers: {
+					authorization: `Bearer ${accessToken}`,
+				},
+			});
+		} catch (error: any) {
+			throw new Error(error);
+		}
+	}
+);
 
 const initialState: InitTialStateType = {
-	accessToken: '',
+	accessToken: undefined,
 	currentUser: undefined,
 	status: 'idle',
 	error: '',
@@ -75,6 +77,19 @@ const authenSlice = createSlice({
 				state.currentUser = action.payload.message;
 			})
 			.addCase(login.rejected, (state, action) => {
+				state.status = 'failed';
+				state.error = action.error.message;
+			});
+		builder
+			.addCase(logout.pending, (state, action) => {
+				state.status = 'loading';
+			})
+			.addCase(logout.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+				state.accessToken = undefined;
+				state.currentUser = undefined;
+			})
+			.addCase(logout.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.error.message;
 			});
