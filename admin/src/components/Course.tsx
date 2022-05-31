@@ -61,102 +61,100 @@ function Course(props: any) {
 		setWatch(course.watch);
 	}, [course]);
 	return (
-		<Container maxWidth='lg'>
-			<Paper
-				elevation={3}
+		<Paper
+			elevation={3}
+			sx={{
+				padding: '2rem',
+				boxShadow:
+					'0px 2px 1px -1px rgb(7 171 250), 0px 1px 1px 0px rgb(16 224 237 / 98%), 0px 1px 3px 0px rgb(3 198 246)',
+			}}>
+			<Box
+				component='form'
+				noValidate
+				autoComplete='off'
 				sx={{
-					padding: '2rem',
-					boxShadow:
-						'0px 2px 1px -1px rgb(7 171 250), 0px 1px 1px 0px rgb(16 224 237 / 98%), 0px 1px 3px 0px rgb(3 198 246)',
-				}}>
-				<Box
-					component='form'
-					noValidate
-					autoComplete='off'
-					sx={{
-						display: 'grid',
-						gridTemplateColumns: 'repeat(3,1fr)',
-						gap: '2rem',
-					}}
-					onSubmit={handleCourse}>
-					<TextField
-						id='outlined-basic'
-						label='Name'
-						variant='outlined'
-						name='name'
-						value={name}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-							setName(e.target.value)
-						}
-					/>
-					<TextField
-						id='outlined-basic'
-						label='Price'
-						variant='outlined'
-						name='price'
-						value={price}
-						onChange={(e) => setPrice(e.target.value)}
-					/>
-					<TextField
-						id='outlined-basic'
-						label='Description'
-						variant='outlined'
-						name='description'
-						value={description}
-						onChange={(e) => setDesc(e.target.value)}
-					/>
-					<TextField
-						id='outlined-basic'
-						label='Link Image'
-						variant='outlined'
-						name='image'
-						value={image}
-						onChange={(e) => setImage(e.target.value)}
-					/>
-					<FormControl>
-						<InputLabel id='select-typ'>Type</InputLabel>
-						<Select
-							labelId='select-typ'
-							id='demo-simple-select'
-							label='Type'
-							value={type}
-							onChange={(e: SelectChangeEvent) => setType(e.target.value)}
-							name='type'>
-							<MenuItem value={'react'}>React</MenuItem>
-							<MenuItem value={'flutter'}>Flutter</MenuItem>
-							<MenuItem value={'swift'}>Swift</MenuItem>
-						</Select>
-					</FormControl>
+					display: 'grid',
+					gridTemplateColumns: 'repeat(3,1fr)',
+					gap: '2rem',
+				}}
+				onSubmit={handleCourse}>
+				<TextField
+					id='outlined-basic'
+					label='Name'
+					variant='outlined'
+					name='name'
+					value={name}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						setName(e.target.value)
+					}
+				/>
+				<TextField
+					id='outlined-basic'
+					label='Price'
+					variant='outlined'
+					name='price'
+					value={price}
+					onChange={(e) => setPrice(e.target.value)}
+				/>
+				<TextField
+					id='outlined-basic'
+					label='Description'
+					variant='outlined'
+					name='description'
+					value={description}
+					onChange={(e) => setDesc(e.target.value)}
+				/>
+				<TextField
+					id='outlined-basic'
+					label='Link Image'
+					variant='outlined'
+					name='image'
+					value={image}
+					onChange={(e) => setImage(e.target.value)}
+				/>
+				<FormControl>
+					<InputLabel id='select-typ'>Type</InputLabel>
+					<Select
+						labelId='select-typ'
+						id='demo-simple-select'
+						label='Type'
+						value={type}
+						onChange={(e: SelectChangeEvent) => setType(e.target.value)}
+						name='type'>
+						<MenuItem value={'react'}>React</MenuItem>
+						<MenuItem value={'flutter'}>Flutter</MenuItem>
+						<MenuItem value={'swift'}>Swift</MenuItem>
+					</Select>
+				</FormControl>
 
-					<FormControl>
-						<RadioGroup
-							defaultValue={watch}
-							name='watch'
-							value={watch}
-							onChange={(e: SelectChangeEvent) => setWatch(e.target.value)}>
-							<FormControlLabel
-								value={'normal'}
-								control={<Radio />}
-								label='Normal'
-							/>
-							<FormControlLabel
-								value={'tutorial'}
-								control={<Radio />}
-								label='Tutorial'
-							/>
-							<FormControlLabel
-								value={'livestream'}
-								control={<Radio />}
-								label='Livestream'
-							/>
-						</RadioGroup>
-					</FormControl>
-					<Button type='submit' variant='contained'>
-						Save
-					</Button>
-				</Box>
-			</Paper>
-		</Container>
+				<FormControl>
+					<RadioGroup
+						defaultValue={watch}
+						name='watch'
+						value={watch}
+						onChange={(e: SelectChangeEvent) => setWatch(e.target.value)}>
+						<FormControlLabel
+							value={'normal'}
+							control={<Radio />}
+							label='Normal'
+						/>
+						<FormControlLabel
+							value={'tutorial'}
+							control={<Radio />}
+							label='Tutorial'
+						/>
+						<FormControlLabel
+							value={'livestream'}
+							control={<Radio />}
+							label='Livestream'
+						/>
+					</RadioGroup>
+				</FormControl>
+				<Button type='submit' variant='contained'>
+					Save
+				</Button>
+			</Box>
+		</Paper>
 	);
 }
 

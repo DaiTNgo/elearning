@@ -3,31 +3,61 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { addTopic, getCourse } from '../redux/courseSlice';
+import { getAccessToken } from '../redux/authSlice';
+import {
+	createOrUpdateTopic,
+	getCourse,
+	getTopics,
+} from '../redux/courseSlice';
 import { TopicType } from '../types';
 
-function Topic({ topic, idx }: { topic: TopicType; idx: number }) {
+function Topic({ topic }: { topic?: TopicType }) {
 	const dispatch = useAppDispatch();
 	const course = useAppSelector(getCourse);
-	const [index, setIndex] = useState<number | undefined>(undefined);
+	const topics = useAppSelector(getTopics);
+	const accessToken = useAppSelector(getAccessToken);
+	const [order, setOrder] = useState<number | undefined>(undefined);
 	const [name, setName] = useState<string>('');
 	const [link, setLink] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
 	const handleTopic = () => {
-		// dispatch(addTopic({ name, link, description }));
-		if (index) {
-			// call axios update topic
+		if (order) {
+			dispatch(
+				createOrUpdateTopic({
+					info: {
+						course_id: course.course_id,
+						order,
+						name,
+						link,
+						description,
+					},
+					accessToken,
+					isUpdate: true,
+				})
+			);
 		} else {
-			// call axios create topic
+			dispatch(
+				createOrUpdateTopic({
+					info: {
+						course_id: course.course_id,
+						order: topics.length + 1,
+						name,
+						link,
+						description,
+					},
+					accessToken,
+					isUpdate: false,
+				})
+			);
 		}
 		setName('');
 		setLink('');
 		setDescription('');
-		setIndex(undefined);
+		setOrder(undefined);
 	};
 	useEffect(() => {
 		if (topic) {
-			setIndex(idx);
+			setOrder(topic.order);
 			setName(topic.name);
 			setDescription(topic.description);
 			setLink(topic.link);

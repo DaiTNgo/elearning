@@ -64,24 +64,24 @@ export const createOrUpdateCourse = createAsyncThunk(
 		}
 	}
 );
-//TODO:
+
 export const createOrUpdateTopic = createAsyncThunk(
 	'topic',
 	async ({
 		info,
-		courseId,
 		accessToken,
+		isUpdate,
 	}: {
-		courseId?: number;
-		info: CourseType;
+		isUpdate?: boolean;
+		info: TopicType;
 		accessToken: string;
 	}) => {
 		let resp;
 		try {
-			if (courseId) {
+			if (isUpdate) {
 				resp = await axiosInstructor({
 					method: 'put',
-					url: `/update-course/${courseId}`,
+					url: `/update-topic`,
 					data: info,
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
@@ -90,7 +90,7 @@ export const createOrUpdateTopic = createAsyncThunk(
 			} else {
 				resp = await axiosInstructor({
 					method: 'post',
-					url: `/create-course`,
+					url: `/create-topic`,
 					data: info,
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
@@ -112,17 +112,17 @@ const courseSlice = createSlice({
 	name: 'course',
 	initialState,
 	reducers: {
-		editCourse: (state, action) => {
-			state.course = action.payload;
-		},
-		editTopic: (state, action) => {
-			state.topics.splice(action.payload.index, 1, action.payload.topic);
-		},
 		resetCourse: (state) => {
 			state.course = initialState.course;
 		},
 		resetTopics: (state) => {
 			state.topics = initialState.topics;
+		},
+		editCourse: (state, action) => {
+			state.course = action.payload;
+		},
+		editTopics: (state, action) => {
+			state.topics = action.payload;
 		},
 	},
 	extraReducers(builder) {
@@ -139,9 +139,30 @@ const courseSlice = createSlice({
 				state.status = 'failed';
 				state.success = false;
 			});
+		builder
+			.addCase(createOrUpdateTopic.pending, (state, action) => {
+				state.status = 'loading';
+			})
+			.addCase(createOrUpdateTopic.fulfilled, (state, action) => {
+				state.status = 'succeeded';
+				state.success = true;
+				const index = state.topics.findIndex(
+					(topic) => topic.order === action.payload.message.order
+				);
+				if (index === -1) {
+					state.topics.push(action.payload.message);
+				} else {
+					state.topics.splice(index, 1, action.payload.message);
+				}
+			})
+			.addCase(createOrUpdateTopic.rejected, (state, action) => {
+				state.status = 'failed';
+				state.success = false;
+			});
 	},
 });
 export const getCourse = (state: RootState) => state.courseSlice.course;
 export const getTopics = (state: RootState) => state.courseSlice.topics;
-export const { editTopic, resetTopics, resetCourse } = courseSlice.actions;
+export const { editCourse, editTopics, resetTopics, resetCourse } =
+	courseSlice.actions;
 export default courseSlice.reducer;

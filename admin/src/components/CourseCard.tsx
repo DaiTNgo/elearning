@@ -7,32 +7,51 @@ import {
 	Button,
 	Typography,
 } from '@mui/material';
-function CourseCard() {
-	const handleEdit = () => {};
+import { CourseType } from '../types';
+function CourseCard({
+	course,
+	handleDeleteCourse,
+}: {
+	course: CourseType;
+	handleDeleteCourse: any;
+}) {
+	const handleEditCourse = (courseId: CourseType['course_id']) => {
+		console.log(courseId);
+	};
 	return (
 		<>
 			<Card sx={{ maxWidth: 345 }}>
 				<CardMedia
 					component='img'
 					height='140'
-					// image='/static/images/cards/contemplative-reptile.jpg'
-					src='https://images.unsplash.com/photo-1653760538719-4721be6ad863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
-					alt='green iguana'
+					src={`${course.image}`}
+					alt={`${course.name}`}
 				/>
 				<CardContent>
 					<Typography gutterBottom variant='h5' component='h2'>
-						Lizard
+						{course.name}
 					</Typography>
 					<Typography variant='body2' color='text.secondary' component={'p'}>
-						Lizards are a widespread group of squamate reptiles, with over 6,000
-						species, ranging across all continents except Antarctica
+						{course.description}
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Button size='small' variant='contained' color='error'>
+					<Button
+						size='small'
+						variant='contained'
+						color='error'
+						onClick={() => {
+							handleDeleteCourse(course.course_id);
+						}}>
 						Delete
 					</Button>
-					<Button size='small' variant='contained' color='success'>
+					<Button
+						size='small'
+						variant='contained'
+						color='success'
+						onClick={() => {
+							handleEditCourse(course.course_id);
+						}}>
 						Edit
 					</Button>
 				</CardActions>

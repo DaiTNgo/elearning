@@ -6,7 +6,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<Navbar />
-			<Container maxWidth={'lg'}>{children}</Container>
+			<Container maxWidth={'xl'}>{children}</Container>
 		</>
 	);
 }

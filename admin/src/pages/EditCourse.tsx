@@ -6,15 +6,29 @@ import Form from '../components/Form';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { getCourse, resetCourse, resetTopics } from '../redux/courseSlice';
+import { getAccessToken } from '../redux/authSlice';
 import { TopicType } from '../types';
-function CreateCourse() {
+import { useParams } from 'react-router-dom';
+import { axiosInstructor } from '../axios';
+function EditCourse() {
 	const dispatch = useAppDispatch();
 	const course = useAppSelector(getCourse);
 	const [topic, setTopic] = useState<TopicType | undefined>(undefined);
+	const accessToken = useAppSelector(getAccessToken);
+	const { courseId } = useParams();
 	useEffect(() => {
-		dispatch(resetCourse());
-		dispatch(resetTopics());
-	}, []);
+		if (courseId) {
+			(async () => {
+				const resp = await axiosInstructor({
+					method: 'get',
+					url: '',
+					headers: {
+						authorization: `Bearer ${accessToken}`,
+					},
+				});
+			})();
+		}
+	});
 	const handleEditTopic = (info: any) => {
 		setTopic(info);
 	};
@@ -42,4 +56,4 @@ function CreateCourse() {
 	);
 }
 
-export default CreateCourse;
+export default EditCourse;
