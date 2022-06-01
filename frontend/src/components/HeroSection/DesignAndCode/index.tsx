@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './DesignAndCode.module.scss';
 import classNames from 'classnames/bind';
 import { PATH_IMG } from '../../../utils/constant';
+import ButtonBuy from './ButtonBuy';
 const cx = classNames.bind(styles);
 
 export default function DesignAndCode() {
@@ -39,18 +40,7 @@ export default function DesignAndCode() {
               Don’t skip design. Learn design and code, by building real apps
               with React and Swift. Complete courses about the best tools.
             </p>
-            <button className={cx('btn')}>
-              <div className={cx('btn-wrapper')}>
-                <div className={cx('wrapper-img')}>
-                  <img src={`${PATH_IMG}/pricing-large.svg`} alt='' />
-                  <img src={`${PATH_IMG}/rotate.svg`} alt='' />
-                </div>
-                <div className={cx('content')}>
-                  <p className={cx('text-caption')}>UPGRADE NOW</p>
-                  <p className={cx('text-small')}>$19 per month</p>
-                </div>
-              </div>
-            </button>
+            <ButtonBuy content='UPGRADE NOW' />
             <p className={cx('design-code__purchase')}>
               Purchase includes access to 30+ courses, 240+ premium tutorials,
               120+ hours of videos, source files and certificates.

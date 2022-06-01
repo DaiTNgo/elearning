@@ -4,8 +4,8 @@ import TopicModel from './topic-model';
 
 class CourseModel extends Model {
   declare course_id: number;
-  declare price: number;
   declare instructor_id: number;
+  declare price: string;
   declare description: string;
   declare name: string;
   declare image: string;
@@ -26,8 +26,8 @@ CourseModel.init(
       type: DataTypes.INTEGER,
     },
     price: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0,
+      type: DataTypes.STRING,
+      defaultValue: '',
       allowNull: false,
     },
     description: {

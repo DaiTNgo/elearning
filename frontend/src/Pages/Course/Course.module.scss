@@ -1,0 +1,111 @@
+.wrapper-content {
+  display: grid;
+  grid-template-columns: 360px auto;
+  gap: 6rem;
+  max-width: 960px;
+  margin-inline: auto;
+}
+
+.card {
+  position: relative;
+  width: 360px;
+  height: 480px;
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(209.21deg, rgb(4, 20, 104) 13.57%, rgb(73, 18, 229) 98.38%)
+    repeat scroll center center / cover;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px,
+    rgba(255, 255, 255, 0.25) 0px 0px 0px 0.5px inset;
+  border-radius: 20px;
+  margin-top: 40px;
+  filter: hue-rotate(-10deg);
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  .circle-big {
+    position: absolute;
+    // inset: 0;
+    // width: 130%;
+    // height: 100%;
+    width: 420px;
+    height: 420px;
+    top: calc(50% - 30px);
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(
+      rgb(159, 225, 255) 0%,
+      rgba(195, 236, 255, 0.086) 50.94%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  .circle-small {
+    position: absolute;
+    width: calc(420px / 1.5);
+    height: calc(420px / 1.5);
+    top: calc(50% - 5px);
+    left: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(
+      rgb(159, 225, 255) 0%,
+      rgba(195, 236, 255, 0.086) 40%,
+      rgba(255, 255, 255, 0) 51%
+    );
+  }
+  &:hover {
+    transform: scale(1.1);
+    img {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.course-content {
+  display: grid;
+  gap: 2rem;
+  .title {
+    font-size: 6rem;
+    margin-block: 1rem;
+  }
+  .description {
+    font-size: 2rem;
+  }
+  .instructor {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+.wrapper-text {
+  max-width: 475px;
+  margin-inline: auto;
+  text-align: center;
+  margin-top: 10rem;
+  hr {
+    max-width: 30rem;
+    color: rgba(0, 0, 0, 0.2);
+  }
+  > * {
+    margin-block: 2rem;
+  }
+}
+.wrapper-topic {
+  padding: 2rem;
+  background: rgba(25, 24, 63, 0.98) none repeat scroll 0% 0%;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 0.5px inset;
+  border-radius: 2rem;
+}

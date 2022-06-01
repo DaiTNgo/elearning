@@ -26,6 +26,13 @@ export const axiosInstructor = axios.create({
   },
   withCredentials: true,
 });
+
+export const axiosCourse = axios.create({
+  baseURL: `${BASE_URL}/course`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 /**
  * const refresh = async () =>{
  * const response = await axios.post('/refresh',{

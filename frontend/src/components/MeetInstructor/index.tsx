@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './MeetInstructor.module.scss';
 import classNames from 'classnames/bind';
 import Text from '../Text';
-import CourseAndTopic from '../CourseAndTopic';
-import InstructorCard from '../InstructorCard';
+import CourseAndTopic from '../Card/CourseAndTopic';
+import Instructor from '../Card/Instructor';
 
 const cx = classNames.bind(styles);
 
@@ -18,8 +18,8 @@ function MeetInstructor() {
         />
       </div>
       <div className={cx('meet-instructor__bottom')}>
-        <CourseAndTopic size='xs' left component={<InstructorCard />} />
-        <CourseAndTopic size='xs' left component={<InstructorCard />} />
+        <CourseAndTopic size='xs' left component={<Instructor />} />
+        <CourseAndTopic size='xs' left component={<Instructor />} />
       </div>
     </div>
   );

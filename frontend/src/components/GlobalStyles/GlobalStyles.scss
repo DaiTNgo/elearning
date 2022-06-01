@@ -9,10 +9,10 @@
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  //   overflow-x: hidden;
 }
 body {
-  overflow-x: hidden;
+  //   overflow-x: hidden;
   font-size: 1.5rem;
   font-family: 'Nunito', sans-serif;
   word-wrap: break-word;
@@ -48,4 +48,45 @@ multicol {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   gap: 2rem;
+}
+// modal
+.modal {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+
+    display: grid;
+    place-items: center;
+  }
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(96, 94, 94, 0.232);
+    z-index: 1;
+  }
+  .modal-main {
+    position: relative;
+    background-color: white;
+    z-index: 2;
+    border-radius: 2rem;
+    width: 90%;
+    height: 90vh;
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    // box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.7);
+    // border-radius: 50%;
+  }
+  .modal-content {
+    width: 100%;
+    height: 100%;
+  }
 }

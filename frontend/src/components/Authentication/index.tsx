@@ -1,13 +1,11 @@
-import React, { useLayoutEffect, useState } from 'react';
-import styles from './Authentication.module.scss';
 import classNames from 'classnames/bind';
-import CardLayout from '../CardLayout';
+import React, { useLayoutEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { getUser, login } from '../../redux/authenSlice';
 import { PATH_IMG } from '../../utils/constant';
 import Icon from '../Icon';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getUser, login } from '../../redux/authenSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import styles from './Authentication.module.scss';
 const cx = classNames.bind(styles);
 
 function Authentication({ handleLogin }: { handleLogin: () => void }) {

@@ -3,12 +3,12 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import { Link, NavLink } from 'react-router-dom';
 import Dropdown from '../components/Dropdown';
-import NavigatorButton from '../../NavigatorButton';
-import Icon from '../../Icon';
-import { PATH_IMG } from '../../../utils/constant';
-import Authentication from '../../Authentication';
-import { useAppSelector } from '../../../hooks/redux';
-import { getUser } from '../../../redux/authenSlice';
+import { useAppSelector } from '../../hooks/redux';
+import { getUser } from '../../redux/authenSlice';
+import { PATH_IMG } from '../../utils/constant';
+import Authentication from '../../components/Authentication';
+import NavigatorButton from '../../components/NavigatorButton';
+import Icon from '../../components/Icon';
 
 const cx = classNames.bind(styles);
 

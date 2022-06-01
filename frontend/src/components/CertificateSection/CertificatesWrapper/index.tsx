@@ -13,7 +13,7 @@ const CardCertificates = (props: {}) => {
       />
 
       <CardCertificate
-        icon='swiftui-logo'
+        icon='swift-logo'
         order={2}
         background=' radial-gradient(100% 128.38% at 100% 100%, rgba(51, 168, 253, 0.2) 0%, rgba(76, 0, 200, 0.2) 100%)'
       />
