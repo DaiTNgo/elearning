@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CourseResponse, GetAllCourseResponse } from '../../../Types';
+import { GetAllCourseResponse } from '../../../Types';
 
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';

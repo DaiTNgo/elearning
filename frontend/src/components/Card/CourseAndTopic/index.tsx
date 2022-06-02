@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CourseResponse,
   ResponseAxiosType,

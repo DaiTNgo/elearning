@@ -1,5 +1,4 @@
-import { AxiosResponse } from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
 import CertificateSection from '../components/CertificateSection';
 import CourseSection from '../components/CourseSection';
 import DiscountSection from '../components/DiscountSection';
@@ -34,6 +33,9 @@ function Home() {
       }
     })();
   }, []);
+  if ((courses.length = 0)) {
+    return <div>Loading...</div>;
+  }
   return (
     <OnlyFooterLayout>
       <HeroSection />

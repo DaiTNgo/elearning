@@ -8,8 +8,6 @@ import styles from './Topic.module.scss';
 const cx = classNames.bind(styles);
 
 export default function Topic(props: {
-  //   title?: string;
-  //   description?: string;
   icon?: any;
   course?: CourseResponse;
   topic?: TopicResponse;

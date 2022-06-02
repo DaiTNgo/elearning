@@ -1,14 +1,13 @@
-import React from 'react';
 import styles from './MeetInstructor.module.scss';
 import classNames from 'classnames/bind';
 import Text from '../Text';
 import CourseAndTopic from '../Card/CourseAndTopic';
 import Instructor from '../Card/Instructor';
-import { CourseResponse } from '../../Pages';
+import { GetAllCourseResponse } from '../../Types';
 
 const cx = classNames.bind(styles);
 
-function MeetInstructor({ courses }: { courses: CourseResponse[] }) {
+function MeetInstructor({ courses }: { courses: GetAllCourseResponse[] }) {
   if (!courses[0]) {
     return <div>Loadding...</div>;
   }
@@ -24,16 +23,32 @@ function MeetInstructor({ courses }: { courses: CourseResponse[] }) {
       </div>
       <div className={cx('meet-instructor__bottom')}>
         <CourseAndTopic
-          instructorId={courses && courses[0].userId}
+          instructorId={courses[0].id}
           size='xs'
           left
-          component={<Instructor info={courses && courses[0]} />}
+          component={
+            <Instructor
+              info={{
+                avatar: courses[0].avatar,
+                description: courses[0].user_desc,
+                user_name: courses[0].user_name,
+              }}
+            />
+          }
         />
         <CourseAndTopic
-          instructorId={courses && courses[1].userId}
+          instructorId={courses[1].id}
           size='xs'
           left
-          component={<Instructor info={courses && courses[1]} />}
+          component={
+            <Instructor
+              info={{
+                avatar: courses[1].avatar,
+                description: courses[1].user_desc,
+                user_name: courses[1].user_name,
+              }}
+            />
+          }
         />
       </div>
     </div>

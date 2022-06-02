@@ -1,6 +1,4 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { CourseResponse, TopicResponse } from '../../../Types';
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';
@@ -29,9 +27,7 @@ function TopicWrapper({
       >
         {topics &&
           topics.length > 0 &&
-          // @ts-ignore
           topics.map((topic, index) => {
-            //@ts-ignore
             return (
               <TopicCard
                 key={index}
@@ -50,7 +46,6 @@ function TopicWrapper({
 
         {courses &&
           courses.length > 0 &&
-          // @ts-ignore
           courses.map((course) => {
             return (
               <TopicCard

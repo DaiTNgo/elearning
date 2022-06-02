@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CourseCard from '../components/Card/Course';
 import CourseDetail from '../components/CourseDetail';
 import HeroCourse from '../components/CourseSection/HeroCourse';
-import MeetInstructor from '../components/MeetInstructor';
 import Layout from '../Layout';
-import Footer from '../Layout/Footer';
 import { GetAllCourseResponse, ResponseAxiosType } from '../Types';
 import { axiosCourse } from '../utils/axios';
-
+import MeetInstructor from '../components/MeetInstructor';
 function Courses() {
   const [courses, setCourses] = useState<GetAllCourseResponse[]>([]);
   useEffect(() => {
@@ -29,19 +27,28 @@ function Courses() {
       }
     })();
   }, []);
+  if (courses.length == 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <Layout>
       <div className='container'>
         <HeroCourse />
         {courses.length > 0 && <CourseDetail courses={courses.slice(0, 2)} />}
         <div className='course-wrapper-course-layout'>
-          {courses.length > 0 &&
-            courses.map((course) => {
-              return <CourseCard course={course} key={course.course_id} />;
-            })}
+          {courses.map((course) => {
+            return <CourseCard course={course} key={course.course_id} />;
+          })}
         </div>
       </div>
-      <div className='section'>{/* <MeetInstructor /> */}</div>
+      <div className='section'>
+        <MeetInstructor
+          courses={[
+            courses[1],
+            courses.find((course) => course.id != courses[1].id)!,
+          ]}
+        />
+      </div>
     </Layout>
   );
 }

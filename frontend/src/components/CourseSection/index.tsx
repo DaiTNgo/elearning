@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { PATH_IMG } from '../../utils/constant';
 import NavigatorButton from '../NavigatorButton';
 import CourseCard from '../Card/Course';
@@ -6,11 +5,12 @@ import HeroCourse from './HeroCourse';
 import CourseDetail from '../CourseDetail';
 import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
-import { axiosCourse } from '../../utils/axios';
 import { GetAllCourseResponse } from '../../Types';
+import { useContext } from 'react';
+import { HomeContext } from '../../context/HomeContext';
 const cx = classNames.bind(styles);
-
 function CourseSection({ courses }: { courses: GetAllCourseResponse[] }) {
+  // const courses = useContext(HomeContext);
   return (
     <div className='container'>
       <HeroCourse />

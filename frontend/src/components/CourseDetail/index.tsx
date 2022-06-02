@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import CourseAndTopic from '../Card/CourseAndTopic';
 import CourseCard from '../Card/Course';
 import styles from './CourseDetail.module.scss';
