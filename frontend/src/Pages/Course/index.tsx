@@ -8,7 +8,6 @@ import CourseCard from '../Course/components/CourseCard';
 import CourseContent from './components/CourseContent';
 import TopicWrapper from '../../components/Card/TopicWrapper';
 import { axiosCourse } from '../../utils/axios';
-import { CourseResponse } from '../../components/CourseSection';
 import Footer from '../../Layout/Footer';
 import TrustSection from '../../components/TrustSection';
 import SponsorSection from '../../components/SponsorSection';
@@ -20,6 +19,7 @@ function Course() {
   const [course, setCourse] = useState({});
   const [instructor, setInstructor] = useState({});
   useEffect(() => {
+    console.log('state', state);
     (async () => {
       const resp = await axiosCourse({
         method: 'get',
@@ -133,6 +133,7 @@ function Course() {
         <TopicWrapper size='lg' topics={topics} />
       </div>
       <div className='section'></div>
+
       <TrustSection />
       <SponsorSection />
       <Footer />

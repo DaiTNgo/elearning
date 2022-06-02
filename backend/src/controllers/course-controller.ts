@@ -14,16 +14,23 @@ class Course {
     const instructorId = req.params.instructorId;
     try {
       const info = await CourseModel.findAll({
-        include: {
-          model: UserModel,
-          required: true,
-          where: { id: instructorId },
-          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
-        },
         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
         raw: true,
-        nest: true,
+        where: {
+          instructor_id: instructorId,
+        },
       });
+      //   const info = await CourseModel.findAll({
+      //     include: {
+      //       model: UserModel,
+      //       required: true,
+      //       where: { id: instructorId },
+      //       attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+      //     },
+      //     attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+      //     raw: true,
+      //     nest: true,
+      //   });
       resp.success = true;
       resp.message = info;
       return res.status(200).json(resp);
@@ -177,13 +184,27 @@ class Course {
         resp.message = course;
       } else {
         const course = await sequelize.query(`
-        SELECT courses.course_id as courseId,courses.price,courses.description,courses.name,courses.type,courses.image,courses.watch,users.id as userId,users.avatar, COUNT(courses.course_id) as count
-        FROM courses
-        INNER JOIN users
-        ON users.id = courses.instructor_id
-        INNER JOIN topics ON topics.course_id = courses.course_id
-        WHERE courses.deletedAt IS NULL AND users.deletedAt IS NULL AND watch = 'normal'
-        GROUP BY courses.course_id
+        SELECT
+    courses.course_id,
+    courses.price,
+    courses.description,
+    courses.name,
+    courses.type,
+    courses.image,
+    users.id,
+    users.user_name,
+    users.description as user_desc,
+    users.acc_twiter,
+    users.avatar,
+    COUNT(courses.course_id) AS count
+    FROM
+        courses
+    INNER JOIN users ON users.id = courses.instructor_id
+    INNER JOIN topics ON topics.course_id = courses.course_id
+    WHERE
+        courses.deletedAt IS NULL AND users.deletedAt IS NULL AND watch = 'normal'
+    GROUP BY
+        courses.course_id
       `);
         resp.success = true;
         resp.message = course[0];

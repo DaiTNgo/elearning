@@ -1,16 +1,21 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CourseResponse, GetAllCourseResponse } from '../../../Types';
+
 import { PATH_IMG } from '../../../utils/constant';
-import { CourseResponse } from '../../CourseSection';
 import Icon from '../../Icon';
 import CardLayout from '../Layout';
 import styles from './Course.module.scss';
 const cx = classNames.bind(styles);
 
-export default function CourseCard({ course }: { course: CourseResponse }) {
+export default function CourseCard({
+  course,
+}: {
+  course: GetAllCourseResponse;
+}) {
   const navigate = useNavigate();
-  const handleNavigateCourse = (course: CourseResponse) => {
+  const handleNavigateCourse = (course: GetAllCourseResponse) => {
     navigate(`/courses/${course.name.toLowerCase().replace(/\s/g, '-')}`, {
       state: course,
     });
@@ -30,17 +35,10 @@ export default function CourseCard({ course }: { course: CourseResponse }) {
               alt='type course'
               round
             />
-            <Icon
-              //   url='https://images.ctfassets.net/ooa29xqb8tix/7etVU3ZHNQuHvFaiaWxxhT/a8e7e316e574ee8959b4b54bfb956072/Dara.jpg?w=200&h=200&q=50?fm=jpg&q=50'
-              url={course.avatar}
-              alt='instructor'
-              round
-              hover
-            />
+            <Icon url={course.avatar} alt='instructor' round hover />
           </div>
         </div>
         <img
-          //   src='https://images.ctfassets.net/ooa29xqb8tix/4mwdTcJXn8LfpOAtykFI1X/6af85bceea51d36dfef54c1bf586a031/UI_and_animations_in_Swiftui_800x600.png?w=400&q=50'
           src={course.image}
           className={cx('course-img')}
           alt='image course'

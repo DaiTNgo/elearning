@@ -3,27 +3,15 @@ import CourseAndTopic from '../Card/CourseAndTopic';
 import CourseCard from '../Card/Course';
 import styles from './CourseDetail.module.scss';
 import classNames from 'classnames/bind';
-import { axiosCourse } from '../../utils/axios';
+import { GetAllCourseResponse } from '../../Types';
 const cx = classNames.bind(styles);
-//TODO:
-const CourseDetail = ({ courses }: any) => {
-  //   const [courses, setCourses] = useState([]);
-
-  //   useEffect(() => {
-  //     (async () => {
-  //       await axiosCourse({
-  //         method: 'get',
-  //         url: `/{${props.courseId}}`,
-  //       });
-  //     })();
-  //   }, []);
-
+const CourseDetail = ({ courses }: { courses: GetAllCourseResponse[] }) => {
   return (
     <div>
       <div className={cx('course-wrapper')}>
         <div className={cx('course-item')}>
           <CourseAndTopic
-            courseId={courses[0].courseId}
+            courseId={courses[0].course_id}
             size='xs'
             right
             component={<CourseCard course={courses[0]} />}
@@ -31,7 +19,7 @@ const CourseDetail = ({ courses }: any) => {
         </div>
         <div className={cx('course-item')}>
           <CourseAndTopic
-            courseId={courses[1].courseId}
+            courseId={courses[1].course_id}
             size='xs'
             left
             component={<CourseCard course={courses[1]} />}

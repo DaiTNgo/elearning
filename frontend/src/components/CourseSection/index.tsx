@@ -7,40 +7,10 @@ import CourseDetail from '../CourseDetail';
 import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
 import { axiosCourse } from '../../utils/axios';
+import { GetAllCourseResponse } from '../../Types';
 const cx = classNames.bind(styles);
-export interface CourseResponse {
-  count: number;
-  courseId: number;
-  avatar: string;
-  description: string;
-  image: string;
-  name: string;
-  price: string;
-  type: string;
-  userId: number;
-  watch: string;
-}
-function CourseSection() {
-  const [courses, setCourses] = useState<CourseResponse[]>([]);
-  useEffect(() => {
-    (async () => {
-      try {
-        const resp = await axiosCourse({
-          method: 'get',
-          url: '/',
-        });
 
-        if (resp.data.success) {
-          setCourses(resp.data.message);
-        } else {
-          throw new Error(resp.data.message);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
+function CourseSection({ courses }: { courses: GetAllCourseResponse[] }) {
   return (
     <div className='container'>
       <HeroCourse />
@@ -49,7 +19,7 @@ function CourseSection() {
         {courses.length > 0 &&
           courses.slice(0, 5).map((course) => {
             return (
-              <div className={cx('item')} key={course.courseId}>
+              <div className={cx('item')} key={course.course_id}>
                 <CourseCard course={course} />
               </div>
             );

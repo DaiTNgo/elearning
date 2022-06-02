@@ -3,6 +3,7 @@ import styles from './TrustSection.module.scss';
 import classNames from 'classnames/bind';
 import Text from '../Text';
 import Icon from '../Icon';
+import { CourseResponse } from '../../Pages';
 const cx = classNames.bind(styles);
 
 function TrustSection() {

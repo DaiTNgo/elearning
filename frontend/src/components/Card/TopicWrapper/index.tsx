@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
-import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CourseResponse, TopicResponse } from '../../../Types';
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';
 import TopicCard from '../Topic';
@@ -8,26 +10,23 @@ const cx = classNames.bind(styles);
 type TopicWrapperType = {
   size?: 'xs' | 'sm' | 'md' | 'lg';
   title?: string;
-  topics?: any;
-  courses?: any;
+  topics?: TopicResponse[];
+  courses?: CourseResponse[];
 };
 function TopicWrapper({
   size = 'xs',
-  title,
   topics,
   courses,
+  title,
 }: TopicWrapperType) {
-  const handlePlayTopic = (url: any) => {};
   return (
     <>
-      {/* <p className={cx('title')}></p> */}
       {title && <p className={cx('title')}>{title}</p>}
       <div
         className={cx('card-topic__wrapper', {
           [size]: true,
         })}
       >
-        {/* @ts-ignore */}
         {topics &&
           topics.length > 0 &&
           // @ts-ignore
@@ -45,43 +44,26 @@ function TopicWrapper({
                   />
                 }
                 topic={topic}
-                title={topic.name}
-                description={topic.description}
               />
             );
           })}
 
         {courses &&
+          courses.length > 0 &&
           // @ts-ignore
-          courses.map((course, index) => {
-            //@ts-ignore
+          courses.map((course) => {
             return (
               <TopicCard
-                key={index}
+                key={course.course_id}
                 icon={
                   course.type && (
                     <Icon url={`${PATH_IMG}/${course.type}-logo.svg`} round />
                   )
                 }
-                title={course.name}
-                description={course.description}
+                course={course}
               />
             );
           })}
-        {/* 
-
-        <TopicCard
-          icon={
-            <Icon
-              order={1}
-              round
-              padding
-              backgroundColor='rgba(255,255,255,0.5)'
-            />
-          }
-        />
-        <TopicCard icon={<Icon url={`${PATH_IMG}/react-logo.svg`} round />} />
-         */}
       </div>
     </>
   );

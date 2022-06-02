@@ -66,8 +66,9 @@ multicol {
   .modal-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(96, 94, 94, 0.232);
+    background-color: rgba(96, 94, 94, 0.7);
     z-index: 1;
+    backdrop-filter: blur(10px);
   }
   .modal-main {
     position: relative;

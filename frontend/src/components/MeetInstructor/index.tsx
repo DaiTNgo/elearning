@@ -4,10 +4,15 @@ import classNames from 'classnames/bind';
 import Text from '../Text';
 import CourseAndTopic from '../Card/CourseAndTopic';
 import Instructor from '../Card/Instructor';
+import { CourseResponse } from '../../Pages';
 
 const cx = classNames.bind(styles);
 
-function MeetInstructor() {
+function MeetInstructor({ courses }: { courses: CourseResponse[] }) {
+  if (!courses[0]) {
+    return <div>Loadding...</div>;
+  }
+
   return (
     <div className='container'>
       <div className={cx('meet-instructor__top')}>
@@ -18,8 +23,18 @@ function MeetInstructor() {
         />
       </div>
       <div className={cx('meet-instructor__bottom')}>
-        <CourseAndTopic size='xs' left component={<Instructor />} />
-        <CourseAndTopic size='xs' left component={<Instructor />} />
+        <CourseAndTopic
+          instructorId={courses && courses[0].userId}
+          size='xs'
+          left
+          component={<Instructor info={courses && courses[0]} />}
+        />
+        <CourseAndTopic
+          instructorId={courses && courses[1].userId}
+          size='xs'
+          left
+          component={<Instructor info={courses && courses[1]} />}
+        />
       </div>
     </div>
   );
