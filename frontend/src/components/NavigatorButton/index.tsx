@@ -1,6 +1,7 @@
 import styles from './NavigatorButton.module.scss';
 import classNames from 'classnames/bind';
 import Icon from '../Icon';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 type NavigatorButtonType = {
   transition?: boolean;
@@ -13,8 +14,10 @@ type NavigatorButtonType = {
   url?: string;
   alt?: string;
   text?: string;
+  path?: string;
 };
 function NavigatorButton(props: NavigatorButtonType) {
+  const navigate = useNavigate();
   const cl = cx(
     'navigator-btn',
     { transition: props.transition },
@@ -28,6 +31,9 @@ function NavigatorButton(props: NavigatorButtonType) {
       className={cl}
       style={{
         marginInline: props.center ? 'auto' : '',
+      }}
+      onClick={() => {
+        if (props.path) navigate(props.path);
       }}
     >
       <Icon

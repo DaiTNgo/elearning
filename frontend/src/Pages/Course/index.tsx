@@ -18,27 +18,55 @@ function Course() {
   const [topics, setTopics] = useState([]);
   const [course, setCourse] = useState({});
   const [instructor, setInstructor] = useState({});
+  console.log('>>> re-render : course');
   useEffect(() => {
-    console.log('state', state);
-    (async () => {
-      const resp = await axiosCourse({
+    let here = true;
+    (() => {
+      axiosCourse({
         method: 'get',
         //@ts-ignore
-        url: `${state.courseId}`,
-      });
-      const { description, image, name, type } = resp.data.message;
-      setCourse({ description, image, name, type });
-      setInstructor(resp.data.message.User);
-      setTopics(resp.data.message.Topics);
-      setContent({
-        type,
-        name,
-        description,
-        avatar: resp.data.message.User.avatar,
-        instructorName: resp.data.message.User.user_name,
+        url: `${state.course_id}`,
+      }).then((resp) => {
+        if (!here) {
+          return;
+        }
+        const { description, image, name, type } = resp.data.message;
+        setCourse({ description, image, name, type });
+        setInstructor(resp.data.message.User);
+        setTopics(resp.data.message.Topics);
+        setContent({
+          type,
+          name,
+          description,
+          avatar: resp.data.message.User.avatar,
+          instructorName: resp.data.message.User.user_name,
+        });
       });
     })();
+    return () => {
+      here = false;
+    };
   }, []);
+  //   useEffect(() => {
+  //     (async () => {
+  //       const resp = await axiosCourse({
+  //         method: 'get',
+  //         //@ts-ignore
+  //         url: `${state.course_id}`,
+  //       });
+  //       const { description, image, name, type } = resp.data.message;
+  //       setCourse({ description, image, name, type });
+  //       setInstructor(resp.data.message.User);
+  //       setTopics(resp.data.message.Topics);
+  //       setContent({
+  //         type,
+  //         name,
+  //         description,
+  //         avatar: resp.data.message.User.avatar,
+  //         instructorName: resp.data.message.User.user_name,
+  //       });
+  //     })();
+  //   }, []);
   const [content, setContent] = useState({});
 
   return (

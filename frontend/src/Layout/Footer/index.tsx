@@ -9,7 +9,6 @@ const cx = classNames.bind(styles);
 const Footer = (props: {}) => {
   return (
     <footer className={cx('footer')}>
-      {/* <img src='/src/assets/images/bg1.svg' /> */}
       <div className={cx('footer__wrapper')}>
         <div className={cx('footer__left')}>
           <div className={cx('footer-left__wrapper')}>
@@ -19,30 +18,35 @@ const Footer = (props: {}) => {
                 url={`${PATH_IMG}/home.svg`}
                 text='Home'
                 alt='home'
+                path='/'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/courses.svg`}
                 text='Courses'
                 alt='courses'
+                path='/courses'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/tutorials.svg`}
                 text='Tutorials'
                 alt='tutorials'
+                path='/tutorials'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/pricing.svg`}
                 text='Pricing'
                 alt='pricing'
+                path='/pricing'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/calendar.svg`}
                 text='Updates'
                 alt='updates'
+                path='/'
               />
             </div>
             <div className={cx('col')}>
@@ -51,24 +55,28 @@ const Footer = (props: {}) => {
                 url={`${PATH_IMG}/downloads.svg`}
                 text='Downloads'
                 alt='downloads'
+                path='/'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/search.svg`}
                 text='Search'
                 alt='search'
+                path='/'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/account.svg`}
                 text='Account'
                 alt='account'
+                path='/'
               />
               <NavigatorButton
                 hover
                 url={`${PATH_IMG}/gift.svg`}
                 alt='gift'
                 text='Licenses'
+                path='/'
               />
             </div>
           </div>

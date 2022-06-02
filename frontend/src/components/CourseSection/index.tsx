@@ -1,19 +1,17 @@
-import { PATH_IMG } from '../../utils/constant';
-import NavigatorButton from '../NavigatorButton';
-import CourseCard from '../Card/Course';
-import HeroCourse from './HeroCourse';
-import CourseDetail from '../CourseDetail';
-import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
 import { GetAllCourseResponse } from '../../Types';
-import { useContext } from 'react';
-import { HomeContext } from '../../context/HomeContext';
+import { PATH_IMG } from '../../utils/constant';
+import CourseCard from '../Card/Course';
+import CourseDetail from '../CourseDetail';
+import NavigatorButton from '../NavigatorButton';
+import styles from './Course.module.scss';
+import HeroCourse from './HeroCourse';
+
 const cx = classNames.bind(styles);
 function CourseSection({ courses }: { courses: GetAllCourseResponse[] }) {
-  // const courses = useContext(HomeContext);
   return (
     <div className='container'>
-      <HeroCourse />
+      <HeroCourse isSearch={false} />
       {courses.length > 0 && <CourseDetail courses={courses.slice(0, 2)} />}
       <div className={cx('wrapper')}>
         {courses.length > 0 &&
@@ -33,6 +31,7 @@ function CourseSection({ courses }: { courses: GetAllCourseResponse[] }) {
         center
         text='Browse courses'
         url={`${PATH_IMG}/courses.svg`}
+        path='/courses'
       />
     </div>
   );

@@ -18,6 +18,8 @@ function CreateCourse() {
 	const handleEditTopic = (info: any) => {
 		setTopic(info);
 	};
+	console.log('re-render');
+
 	return (
 		<Box
 			bgcolor={'white'}

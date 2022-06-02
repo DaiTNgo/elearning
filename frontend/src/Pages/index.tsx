@@ -8,6 +8,7 @@ import Ready from '../components/Ready';
 import SponsorSection from '../components/SponsorSection';
 import TrustSection from '../components/TrustSection';
 import TutorialSection from '../components/TutorialSection';
+import { useAppSelector } from '../hooks/redux';
 import OnlyFooterLayout from '../Layout/OnlyFooter';
 import { GetAllCourseResponse, ResponseAxiosType } from '../Types';
 import { axiosCourse } from '../utils/axios';
@@ -15,27 +16,44 @@ import { axiosCourse } from '../utils/axios';
 function Home() {
   const [courses, setCourses] = useState<GetAllCourseResponse[]>([]);
   useEffect(() => {
-    (async () => {
-      try {
-        const resp: ResponseAxiosType<GetAllCourseResponse[] & string> =
-          await axiosCourse({
-            method: 'get',
-            url: '/',
-          });
-
-        if (resp.data.success) {
-          setCourses(resp.data.message);
-        } else {
-          throw new Error(resp.data.message);
-        }
-      } catch (error) {
-        console.log('file: Home index.tsx >>> line 33 >>> error', error);
-      }
+    let here = true;
+    (() => {
+      //   try {
+      // const resp: ResponseAxiosType<GetAllCourseResponse[] & string> =
+      axiosCourse({
+        method: 'get',
+        url: '/',
+      })
+        .then((resp) => {
+          if (!here) {
+            return;
+          }
+          if (resp.data.success) {
+            setCourses(resp.data.message);
+          } else {
+            throw new Error(resp.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      //   if (!here) {
+      //     return;
+      //   }
+      // if (resp.data.success) {
+      //   setCourses(resp.data.message);
+      // } else {
+      //   throw new Error(resp.data.message);
+      // }
+      //   } catch (error) {
+      //     console.log('file: Home index.tsx >>> line 33 >>> error', error);
+      //   }
     })();
+    return () => {
+      here = false;
+    };
   }, []);
-  if ((courses.length = 0)) {
-    return <div>Loading...</div>;
-  }
+
   return (
     <OnlyFooterLayout>
       <HeroSection />

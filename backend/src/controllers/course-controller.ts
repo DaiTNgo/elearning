@@ -170,15 +170,20 @@ class Course {
             {
               model: TopicModel,
               required: true,
+              attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
             },
             {
               model: UserModel,
               required: true,
+              attributes: {
+                exclude: ['createdAt', 'updatedAt', 'deletedAt', 'password'],
+              },
             },
           ],
           where: {
             watch: islivestream ? 'livestream' : 'tutorial',
           },
+          attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
         });
         resp.success = true;
         resp.message = course;

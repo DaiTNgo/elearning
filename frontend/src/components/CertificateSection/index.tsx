@@ -19,6 +19,7 @@ function CertificateSection() {
             icon='account'
             subTitle='Create a profile'
             textIcon='Create account'
+            path='/'
           />
         </div>
       </div>

@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
+import { onChange } from '../../../redux/searchSlice';
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';
 import Search from '../../Search';
@@ -8,7 +10,8 @@ import styles from './HeroCourse.module.scss';
 
 const cx = classNames.bind(styles);
 
-function HeroCourse() {
+function HeroCourse({ isSearch }: { isSearch: boolean }) {
+  const dispatch = useAppDispatch();
   return (
     <section className={cx('course-hero')}>
       <div className={cx('hero-left')}>
@@ -21,15 +24,42 @@ function HeroCourse() {
       </div>
       <div className={cx('hero-right')}>
         <div className={cx('hero-icon')}>
-          <Icon url={`${PATH_IMG}/swift-logo.svg`} />
-          <Icon url={`${PATH_IMG}/react-logo.svg`} />
-          <Icon url={`${PATH_IMG}/figma-logo.svg`} />
-          <Icon url={`${PATH_IMG}/sketch-logo.svg`} />
-          <Icon url={`${PATH_IMG}/framer-logo.svg`} />
+          <Icon
+            url={`${PATH_IMG}/swift-logo.svg`}
+            size='md'
+            onClick={() => dispatch(onChange('swift'))}
+            hover
+          />
+          <Icon
+            url={`${PATH_IMG}/react-logo.svg`}
+            size='md'
+            onClick={() => dispatch(onChange('react'))}
+            hover
+          />
+          <Icon
+            url={`${PATH_IMG}/figma-logo.svg`}
+            size='md'
+            onClick={() => dispatch(onChange('figma'))}
+            hover
+          />
+          <Icon
+            url={`${PATH_IMG}/sketch-logo.svg`}
+            size='md'
+            onClick={() => dispatch(onChange('sketch'))}
+            hover
+          />
+          <Icon
+            url={`${PATH_IMG}/framer-logo.svg`}
+            size='md'
+            onClick={() => dispatch(onChange('framer'))}
+            hover
+          />
         </div>
-        <div className={cx('hero-search')}>
-          <Search />
-        </div>
+        {isSearch && (
+          <div className={cx('hero-search')}>
+            <Search />
+          </div>
+        )}
       </div>
     </section>
   );

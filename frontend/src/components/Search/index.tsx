@@ -4,27 +4,29 @@ import classNames from 'classnames/bind';
 import { useState } from 'react';
 import Icon from '../Icon';
 import { PATH_IMG } from '../../utils/constant';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { onChange } from '../../redux/searchSlice';
 const cx = classNames.bind(styles);
 
 export default function Search() {
   const [isDisplay, setIsDisplay] = useState(false);
-  const [search, setSearch] = useState('');
-
+  const keyword = useAppSelector((state) => state.search.keyword);
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    if (search.length > 0) {
+    if (keyword.length > 0) {
       setIsDisplay(true);
     } else {
       setIsDisplay(false);
     }
-  }, [search]);
+  }, [keyword]);
 
   return (
     <div className={cx('search-wrapper')}>
       <input
         placeholder='Search...'
-        value={search}
+        value={keyword}
         onChange={(e) => {
-          setSearch(e.target.value);
+          dispatch(onChange(e.target.value));
         }}
       />
       <img
@@ -40,7 +42,7 @@ export default function Search() {
           display: isDisplay ? 'block' : 'none',
         }}
         onClick={() => {
-          setSearch('');
+          dispatch(onChange(''));
         }}
       />
     </div>

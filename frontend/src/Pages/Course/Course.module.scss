@@ -3,12 +3,19 @@
   grid-template-columns: 360px auto;
   gap: 6rem;
   max-width: 960px;
+  width: min(100% - 6rem, 96rem);
   margin-inline: auto;
+  margin-top: 12rem;
+  @media screen and(max-width:50em) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 }
 
 .card {
   position: relative;
-  width: 360px;
+  width: 100%;
+  max-width: 36rem;
   height: 480px;
   background: rgba(0, 0, 0, 0)
     linear-gradient(209.21deg, rgb(4, 20, 104) 13.57%, rgb(73, 18, 229) 98.38%)
@@ -78,6 +85,7 @@
   gap: 2rem;
   .title {
     font-size: 6rem;
+    font-size: clamp(1.88rem, calc(1.14rem + 3.66vw), 3.75rem);
     margin-block: 1rem;
   }
   .description {

@@ -5,7 +5,14 @@ import NavigatorButton from '../NavigatorButton';
 import { PATH_IMG } from '../../utils/constant';
 const cx = classNames.bind(styles);
 
-function Text(props: any) {
+function Text(props: {
+  subTitle: string;
+  title: string;
+  desc: string;
+  icon?: any;
+  textIcon?: string;
+  path?: string;
+}) {
   return (
     <div className={cx('text')}>
       <p>{props.subTitle}</p>
@@ -24,6 +31,7 @@ function Text(props: any) {
             round
             text={props.textIcon}
             url={`${PATH_IMG}/${props.icon}.svg`}
+            path={props.path}
           />
         </div>
       )}

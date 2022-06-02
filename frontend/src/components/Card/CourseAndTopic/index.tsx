@@ -38,50 +38,95 @@ function CourseAndTopic({
   const CardTopic = (
     <TopicWrapper topics={topics} courses={courses} size={size} title={title} />
   );
+  console.log('>>> re-render : CourseAndTopic');
   useEffect(() => {
-    (async () => {
+    let here = true;
+    (() => {
       if (courseId) {
-        try {
-          const resp: ResponseAxiosType<GetCourseIdType & string> =
-            await axiosCourse({
-              method: 'get',
-              url: `/${courseId}`,
-            });
+        axiosCourse({
+          method: 'get',
+          url: `/${courseId}`,
+        }).then((resp) => {
+          if (!here) {
+            return;
+          }
           if (resp.data.success) {
             setTitle('FEATURED COURSE');
             setTopics(resp.data.message.Topics);
           } else {
             throw new Error(resp.data.message);
           }
-        } catch (error) {
-          console.log(
-            'file:CourseAndTopic index.tsx >>> line 64 >>> error',
-            error
-          );
-        }
+        });
       }
       if (instructorId) {
-        try {
-          const resp: ResponseAxiosType<CourseResponse[] & string> =
-            await axiosCourse({
-              method: 'get',
-              url: `/instructor/${instructorId}`,
-            });
+        axiosCourse({
+          method: 'get',
+          url: `/instructor/${instructorId}`,
+        }).then((resp) => {
+          if (!here) {
+            return;
+          }
           if (resp.data.success) {
-            setTitle(`${courses.length} COURSES `);
+            setTitle(`${resp.data.message.length} COURSES `);
             setCourses(resp.data.message);
           } else {
             throw new Error(resp.data.message);
           }
-        } catch (error) {
-          console.log(
-            'file:CourseAndTopic index.tsx >>> line 83 >>> error',
-            error
-          );
-        }
+        });
       }
     })();
+    return () => {
+      here = false;
+    };
   }, []);
+  //   useEffect(() => {
+  //     let here = true;
+  //     (async () => {
+  //       if (courseId) {
+  //         try {
+  //           const resp: ResponseAxiosType<GetCourseIdType & string> =
+  //             await axiosCourse({
+  //               method: 'get',
+  //               url: `/${courseId}`,
+  //             });
+  //           if (resp.data.success) {
+  //             setTitle('FEATURED COURSE');
+  //             setTopics(resp.data.message.Topics);
+  //           } else {
+  //             throw new Error(resp.data.message);
+  //           }
+  //         } catch (error) {
+  //           console.log(
+  //             'file:CourseAndTopic index.tsx >>> line 64 >>> error',
+  //             error
+  //           );
+  //         }
+  //       }
+  //       if (instructorId) {
+  //         try {
+  //           const resp: ResponseAxiosType<CourseResponse[] & string> =
+  //             await axiosCourse({
+  //               method: 'get',
+  //               url: `/instructor/${instructorId}`,
+  //             });
+  //           if (resp.data.success) {
+  //             setTitle(`${resp.data.message.length} COURSES `);
+  //             setCourses(resp.data.message);
+  //           } else {
+  //             throw new Error(resp.data.message);
+  //           }
+  //         } catch (error) {
+  //           console.log(
+  //             'file:CourseAndTopic index.tsx >>> line 83 >>> error',
+  //             error
+  //           );
+  //         }
+  //       }
+  //     })();
+  //     return () => {
+  //       here = false;
+  //     };
+  //   }, []);
 
   return (
     <>

@@ -1,0 +1,83 @@
+.tutorial {
+  display: grid;
+  grid-template-columns: 240px auto;
+  gap: 2rem;
+  margin: 10rem 0;
+  .topic-wrapper {
+    position: relative;
+    max-width: 1011px;
+    background: rgba(255, 255, 255, 0.9) none repeat scroll 0% 0%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 0.5px inset;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+    background: rgba(25, 24, 63, 0.98) none repeat scroll 0% 0%;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 0.5px inset;
+  }
+  @media screen and(max-width:37.5em) {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    justify-items: center;
+  }
+}
+.wrapper-livestream {
+  display: grid;
+  gap: 6rem;
+  width: min(100% - 6rem, 96rem);
+  margin-inline: auto;
+  margin-bottom: 10rem;
+  overflow-x: scroll;
+}
+.bg-courses,
+.bg-tutorials,
+.bg-livestreams {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 900px;
+}
+.bg-courses {
+  height: 900px;
+
+  background-image: linear-gradient(
+    rgb(0, 0, 43) 0%,
+    rgb(53, 20, 148) 80%,
+    (rgb(31, 31, 71))
+  );
+  clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    11% 88%,
+    20% 93%,
+    31% 78%,
+    42% 93%,
+    51% 81%,
+    60% 94%,
+    72% 85%,
+    82% 95%,
+    93% 77%,
+    100% 87%,
+    100% 0%
+  );
+}
+.bg-tutorials {
+  background-image: linear-gradient(
+    rgb(12, 106, 188) 29.03%,
+    rgb(47, 176, 217) 56.14%,
+    (rgb(31, 31, 71)) 90%
+  );
+}
+.bg-livestreams {
+  background: linear-gradient(
+    rgb(36, 36, 82) 0%,
+    rgb(73, 38, 173) 50%,
+    (rgb(31, 31, 71)) 90%
+  );
+}
+.course-wrapper-course-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+  gap: 4rem;
+}

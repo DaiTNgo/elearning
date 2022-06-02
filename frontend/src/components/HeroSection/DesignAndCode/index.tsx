@@ -7,6 +7,8 @@ const cx = classNames.bind(styles);
 
 export default function DesignAndCode() {
   const [text, setText] = useState('Swift');
+  console.log('>>> re-render : DesignAndCode');
+
   useEffect(() => {
     const temp = setInterval(() => {
       setText((prev) => {

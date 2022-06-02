@@ -21,34 +21,36 @@ function Topic({ topic }: { topic?: TopicType }) {
 	const [link, setLink] = useState<string>('');
 	const [description, setDescription] = useState<string>('');
 	const handleTopic = () => {
-		if (order) {
-			dispatch(
-				createOrUpdateTopic({
-					info: {
-						course_id: course.course_id,
-						order,
-						name,
-						link,
-						description,
-					},
-					accessToken,
-					isUpdate: true,
-				})
-			);
-		} else {
-			dispatch(
-				createOrUpdateTopic({
-					info: {
-						course_id: course.course_id,
-						order: topics.length + 1,
-						name,
-						link,
-						description,
-					},
-					accessToken,
-					isUpdate: false,
-				})
-			);
+		if (accessToken) {
+			if (order) {
+				dispatch(
+					createOrUpdateTopic({
+						info: {
+							course_id: course.course_id,
+							order,
+							name,
+							link,
+							description,
+						},
+						accessToken,
+						isUpdate: true,
+					})
+				);
+			} else {
+				dispatch(
+					createOrUpdateTopic({
+						info: {
+							course_id: course.course_id,
+							order: topics.length + 1,
+							name,
+							link,
+							description,
+						},
+						accessToken,
+						isUpdate: false,
+					})
+				);
+			}
 		}
 		setName('');
 		setLink('');
@@ -63,7 +65,6 @@ function Topic({ topic }: { topic?: TopicType }) {
 			setLink(topic.link);
 		}
 	}, [topic]);
-
 	return (
 		<Paper
 			elevation={3}

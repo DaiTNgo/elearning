@@ -39,6 +39,12 @@
   }
   &.md {
     --column: 3;
+    @media screen and (max-width: 64em) {
+      --column: 2;
+    }
+    @media screen and (max-width: 50em) {
+      --column: 1;
+    }
   }
   &.lg {
     --column: 4;
@@ -46,6 +52,15 @@
     mask-image: unset;
     -webkit-mask-image: unset;
     overflow-y: hidden;
+    @media screen and (max-width: 64em) {
+      --column: 3;
+    }
+    @media screen and (max-width: 50em) {
+      --column: 2;
+    }
+    @media screen and (max-width: 37.5em) {
+      --column: 1;
+    }
   }
 }
 .title {

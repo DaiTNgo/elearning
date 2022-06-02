@@ -42,6 +42,7 @@ function TrustSection() {
             desc='Many startups look for designers who code and developers who design. They use our courses to help train new hires and expand skill sets.'
             textIcon='More stories'
             icon='chat'
+            path='/'
           />
         </div>
       </div>

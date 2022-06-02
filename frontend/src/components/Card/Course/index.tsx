@@ -11,10 +11,24 @@ const cx = classNames.bind(styles);
 export default function CourseCard({
   course,
 }: {
-  course: GetAllCourseResponse;
+  course: {
+    course_id: number;
+    name: string;
+    type: string;
+    avatar: string;
+    image: string;
+    count: number;
+  };
 }) {
   const navigate = useNavigate();
-  const handleNavigateCourse = (course: GetAllCourseResponse) => {
+  const handleNavigateCourse = (course: {
+    course_id: number;
+    name: string;
+    type: string;
+    avatar: string;
+    image: string;
+    count: number;
+  }) => {
     navigate(`/courses/${course.name.toLowerCase().replace(/\s/g, '-')}`, {
       state: course,
     });

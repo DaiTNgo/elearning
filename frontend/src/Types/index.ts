@@ -42,3 +42,8 @@ export type ResponseAxiosType<T> = AxiosResponse<{
   success: boolean;
   message: T;
 }>;
+
+export type GetTutorialResponse = CourseResponse & {
+  Topics: TopicResponse[];
+  User: UserResponse;
+};

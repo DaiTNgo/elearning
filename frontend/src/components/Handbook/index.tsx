@@ -4,17 +4,15 @@ import classNames from 'classnames/bind';
 import Icon from '../Icon';
 import { PATH_IMG } from '../../utils/constant';
 import FanLayout from '../Fan';
+import { CourseResponse } from '../../Types';
 const cx = classNames.bind(styles);
 
-function Handbook() {
+function Handbook({ course }: { course: CourseResponse }) {
   return (
     <FanLayout size='sm' type='one'>
       <div className={cx('wrapper')}>
-        <h3>SwiftUI Handbook</h3>
-        <p>
-          A comprehensive series of tutorials covering Xcode, SwiftUI and all
-          the layout and development techniques
-        </p>
+        <h3>{course.name}</h3>
+        <p>{course.description}</p>
         <div className={cx('info')}>
           <Icon
             url={`${PATH_IMG}/file.svg`}
