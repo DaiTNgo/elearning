@@ -26,7 +26,7 @@ class Auth {
     const { error } = userValidate(req.body);
     if (error) {
       resp.message = error.details[0].message;
-      return res.status(400).json(resp);
+      return res.status(200).json(resp);
     }
     try {
       const user: UserModel = await UserModel.create({

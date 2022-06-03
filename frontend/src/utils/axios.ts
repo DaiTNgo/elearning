@@ -24,7 +24,7 @@ const refreshToken = async () => {
     console.log(err);
   }
 };
-const accessToken = useAppSelector((state) => state.auth.accessToken);
+// const accessToken = useAppSelector((state) => state.auth.accessToken);
 // axiosAuth.interceptors.request.use(
 //   async (config) => {
 //     let date = new Date();

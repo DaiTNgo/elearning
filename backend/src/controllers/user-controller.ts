@@ -1,21 +1,28 @@
 import { Request, Response } from 'express';
 import FavouriteCourseModel from '../models/favourite-course-model';
 import UserModel from '../models/user-model';
+import { updateUserValidate } from '../utils/validations';
 import { ResponseType } from './auth-controller';
 
 class User {
-  //[PATCH] /user/update/
+  //[PUT] /user/update/
   async updateUser(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     //@ts-ignore
     const { id } = req.userData;
-    const {
-      username = '',
-      avatar = '',
-      description = '',
-      acctwiter = '',
-      mywebsite = '',
-    } = req.body;
+    const { username, acctwiter, mywebsite, avatar, description } = req.body;
+    // console.log('---------------------------', req.body);
+    const { error } = updateUserValidate({
+      user_name: username,
+      acc_twiter: acctwiter,
+      my_website: mywebsite,
+      avatar,
+      description,
+    });
+    if (error) {
+      resp.message = error.details[0].message;
+      return res.status(200).json(resp);
+    }
     try {
       await UserModel.update(
         {

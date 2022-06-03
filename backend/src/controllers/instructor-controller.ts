@@ -66,7 +66,7 @@ class Instructor {
     });
     if (error) {
       resp.message = error.details[0].message;
-      return res.status(400).json(resp);
+      return res.status(200).json(resp);
     }
     try {
       const [isUpdate] = await CourseModel.update(

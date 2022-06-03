@@ -38,7 +38,7 @@ UserModel.init(
       },
     },
     role: {
-      type: DataTypes.STRING('20'),
+      type: DataTypes.STRING(20),
       defaultValue: 'user',
     },
     password: {

@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import CertificateSection from '../components/CertificateSection';
 import CourseSection from '../components/CourseSection';
 import DiscountSection from '../components/DiscountSection';
@@ -8,9 +8,8 @@ import Ready from '../components/Ready';
 import SponsorSection from '../components/SponsorSection';
 import TrustSection from '../components/TrustSection';
 import TutorialSection from '../components/TutorialSection';
-import { useAppSelector } from '../hooks/redux';
 import OnlyFooterLayout from '../Layout/OnlyFooter';
-import { GetAllCourseResponse, ResponseAxiosType } from '../Types';
+import { GetAllCourseResponse } from '../Types';
 import { axiosCourse } from '../utils/axios';
 
 function Home() {
