@@ -46,23 +46,23 @@ class Course {
     //@ts-ignore
     const userId = req.userData.id;
     try {
-      const course = await CourseModel.findAll({
-        include: [
-          {
-            model: FavouriteCourseModel,
-            required: true,
-            where: {
-              user_id: userId,
-            },
-          },
-          {
-            model: UserModel,
-            required: true,
-          },
-        ],
-        nest: true,
-        raw: true,
-      });
+      const course = await sequelize.query(`
+      SELECT
+    courses.image,
+    courses.type,
+    courses.name,
+    users.avatar,
+    COUNT(courses.course_id) AS count
+    FROM
+        courses
+    INNER JOIN topics ON courses.course_id = topics.course_id
+    INNER JOIN favourite_courses ON courses.course_id = favourite_courses.course_id
+    INNER JOIN users ON courses.instructor_id = users.id
+    WHERE
+        favourite_courses.user_id = 15
+    GROUP BY
+        courses.course_id
+      `);
       resp.success = true;
       resp.message = course;
       return res.status(200).json(resp);

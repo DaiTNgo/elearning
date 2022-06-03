@@ -11,5 +11,5 @@ const server = http.createServer(app);
 server.listen(PORT, async () => {
   console.log(`Listening on ${PORT}`);
   connectDB();
-  CourseModel.sync({ alter: true });
+  //   CourseModel.sync({ alter: true });
 });
