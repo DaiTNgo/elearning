@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import React from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { onChange } from '../../../redux/searchSlice';
 import { PATH_IMG } from '../../../utils/constant';

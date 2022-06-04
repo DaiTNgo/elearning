@@ -14,17 +14,28 @@ app.use(
   })
 );
 app.use(cookieParser());
-// app.use(cors());
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: true,
-    credentials: true,
-    optionsSuccessStatus: 200,
-  })
-);
 
+var whitelist = ['http://localhost:3000', 'http://localhost:3001'];
+// var whitelist = [
+//   'https://dnt-elearning.netlify.app',
+//   'https://fe-elearning.netlify.app/',
+// ];
+var corsOptions = {
+  origin: function (origin: any, callback: any) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  preflightContinue: true,
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+app.use(cors(corsOptions));
+
+// app.use(cors());
 //router
 route(app);
 

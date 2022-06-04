@@ -1,9 +1,8 @@
-import React from 'react';
+import classNames from 'classnames/bind';
+import { PATH_IMG } from '../../utils/constant';
+import Icon from '../Icon';
 import Text from '../Text';
 import styles from './DiscountSection.module.scss';
-import classNames from 'classnames/bind';
-import Icon from '../Icon';
-import { PATH_IMG } from '../../utils/constant';
 const cx = classNames.bind(styles);
 
 function DiscountSection() {

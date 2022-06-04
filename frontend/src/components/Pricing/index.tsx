@@ -1,10 +1,9 @@
-import React from 'react';
-import styles from './Pricing.module.scss';
 import classNames from 'classnames/bind';
+import React from 'react';
+import { PATH_IMG } from '../../utils/constant';
 import FanLayout from '../Fan';
 import Icon from '../Icon';
-import { PATH_IMG } from '../../utils/constant';
-import NavigatorButton from '../NavigatorButton';
+import styles from './Pricing.module.scss';
 
 const cx = classNames.bind(styles);
 

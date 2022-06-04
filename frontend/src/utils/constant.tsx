@@ -37,61 +37,47 @@ export const LIST_MENU_MOBI = [
   },
 ];
 
-const LIST_HEADER = [
+export const LIST_HEADER = [
   {
     to: '/courses',
     pathIcon: `${PATH_IMG}/courses.svg`,
     text: 'Courses',
     alt: 'course',
-    isTransition: true,
-    header: true,
   },
   {
     to: '/tutorials',
     pathIcon: `${PATH_IMG}/tutorials.svg`,
     text: 'Tutorials',
     alt: 'tutorials',
-    isTransition: true,
-    header: true,
   },
   {
     to: '/livestreams',
     pathIcon: `${PATH_IMG}/livestreams.svg`,
     text: 'Livestreams',
     alt: 'livestreams',
-    isTransition: true,
-    header: true,
   },
   {
-    to: '/',
+    to: '/pricing',
     pathIcon: `${PATH_IMG}/pricing.svg`,
     text: 'Pricing',
     alt: 'pricing',
-    isTransition: true,
-    header: true,
   },
   {
-    to: '/',
+    to: '/downloads',
     pathIcon: `${PATH_IMG}/downloads.svg`,
     text: 'downloads',
     alt: 'Downloads',
-    isTransition: true,
-    header: true,
   },
   {
-    to: '/',
+    to: '/updates',
     pathIcon: `${PATH_IMG}/calendar.svg`,
     text: 'Updates',
     alt: 'updates',
-    isTransition: true,
-    header: true,
   },
   {
-    // to: '/setting',
+    to: '/setting',
     pathIcon: `${PATH_IMG}/setting.svg`,
     text: 'Setting',
     alt: 'setting',
-    isTransition: true,
-    header: true,
   },
 ];

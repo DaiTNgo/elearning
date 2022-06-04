@@ -1,7 +1,6 @@
-import { RootState } from './index';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { axiosAuth } from '../utils/axios';
 import { loginService } from '../services/login';
+import { RootState } from './index';
 type CurrentUserType = {
   id: number;
   email: string;

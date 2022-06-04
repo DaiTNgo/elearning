@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import TopicWrapper from '../components/Card/TopicWrapper';
 import Handbook from '../components/Handbook';
 import Layout from '../Layout';
-import { GetTutorialResponse, ResponseAxiosType } from '../Types';
+import { GetTutorialResponse } from '../Types';
 import { axiosCourse } from '../utils/axios';
 import styles from './index.module.scss';
 const cx = classNames.bind(styles);
 
 function Tutorials() {
   const [courses, setCourses] = useState<GetTutorialResponse[]>([]);
-  console.log('>>> re-render : tutorials');
+
   useEffect(() => {
     let here = true;
     (() => {
@@ -36,31 +36,7 @@ function Tutorials() {
       here = false;
     };
   }, []);
-  //   useEffect(() => {
-  //     let here = true;
-  //     (async () => {
-  //       try {
-  //         const resp: ResponseAxiosType<GetTutorialResponse[] & string> =
-  //           await axiosCourse({
-  //             method: 'get',
-  //             url: '?istutorial=1',
-  //           });
-  //         if (!here) {
-  //           return;
-  //         }
-  //         if (resp.data.success) {
-  //           setCourses(resp.data.message);
-  //         } else {
-  //           throw new Error(resp.data.message);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     })();
-  //     return () => {
-  //       here = false;
-  //     };
-  //   }, []);
+
   return (
     <>
       <div className={cx('bg-tutorials')}></div>

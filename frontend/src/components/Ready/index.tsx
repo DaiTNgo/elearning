@@ -10,6 +10,7 @@ function Ready() {
     <div className='container section'>
       <div className={cx('ready-top')}>
         <Text
+          subTitle=''
           title='Ready to start?'
           desc='Get access to all our premium courses, tutorials, downloads, certificates and priority support.'
         />

@@ -1,10 +1,9 @@
-import styles from './Instructor.module.scss';
 import classNames from 'classnames/bind';
-import CardLayout from '../Layout';
+import { UserResponse } from '../../../Types';
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';
-import { useNavigate } from 'react-router-dom';
-import { UserResponse } from '../../../Types';
+import CardLayout from '../Layout';
+import styles from './Instructor.module.scss';
 
 const cx = classNames.bind(styles);
 export default function Instructor({
@@ -15,19 +14,11 @@ export default function Instructor({
     'email' | 'id' | 'my_website' | 'role' | 'acc_twiter'
   >;
 }) {
-  const navigate = useNavigate();
-  //   const handleNavigateCourse = (course: CourseResponse) => {
-  //     navigate(`/courses/${course.name.replace(/\s/g, '-')}`, { state: course });
-  //   };
   if (!info) {
     return <div>Loadding...</div>;
   }
   return (
-    <CardLayout
-      onClick={() => {
-        // handleNavigateCourse();
-      }}
-    >
+    <CardLayout>
       <div className={cx('card-wrapper')}>
         <Icon url={info.avatar} size='lg' round />
 

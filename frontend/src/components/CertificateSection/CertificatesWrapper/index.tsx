@@ -1,9 +1,8 @@
-import React from 'react';
-import './CardCertificates.scss';
 import classNames from 'classnames';
 import CardCertificate from '../CertificateCard';
+import './CardCertificates.scss';
 
-const CardCertificates = (props: {}) => {
+const CardCertificates = () => {
   return (
     <div className={classNames('certificates-wrapper')}>
       <CardCertificate

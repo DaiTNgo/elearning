@@ -1,8 +1,7 @@
-import React from 'react';
-import './CardCertificate.scss';
 import classNames from 'classnames';
-import Icon from '../../Icon';
 import { PATH_IMG } from '../../../utils/constant';
+import Icon from '../../Icon';
+import './CardCertificate.scss';
 export default function CardCertificate({
   icon,
   background,

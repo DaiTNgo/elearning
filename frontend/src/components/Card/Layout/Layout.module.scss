@@ -1,15 +1,12 @@
 .card {
-  //   --width: 24.4rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  min-width: 200px;
-  //   max-width: 400px;
-  //   width: var(--width);
   padding: 20px;
   border-radius: 20px;
   height: 100%;
   width: 100%;
+  min-width: 200px;
   background: linear-gradient(
     209.21deg,
     rgb(62, 59, 228) 13.57%,

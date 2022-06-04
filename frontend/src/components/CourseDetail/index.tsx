@@ -1,8 +1,8 @@
-import CourseAndTopic from '../Card/CourseAndTopic';
-import CourseCard from '../Card/Course';
-import styles from './CourseDetail.module.scss';
 import classNames from 'classnames/bind';
 import { GetAllCourseResponse } from '../../Types';
+import CourseCard from '../Card/Course';
+import CourseAndTopic from '../Card/CourseAndTopic';
+import styles from './CourseDetail.module.scss';
 const cx = classNames.bind(styles);
 const CourseDetail = ({ courses }: { courses: GetAllCourseResponse[] }) => {
   return (

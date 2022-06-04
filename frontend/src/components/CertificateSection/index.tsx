@@ -1,4 +1,3 @@
-import React from 'react';
 import CardCertificates from './CertificatesWrapper';
 import Text from '../Text';
 import styles from './CertificateSection.module.scss';

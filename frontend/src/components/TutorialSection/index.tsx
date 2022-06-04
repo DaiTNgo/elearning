@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styles from './TutorialSection.module.scss';
 import classNames from 'classnames/bind';
-import Text from '../Text';
-import Handbook from '../Handbook';
-import {
-  CourseResponse,
-  ResponseAxiosType,
-  TopicResponse,
-  UserResponse,
-} from '../../Types';
+import React, { useEffect, useState } from 'react';
+import { CourseResponse, TopicResponse, UserResponse } from '../../Types';
 import { axiosCourse } from '../../utils/axios';
+import Handbook from '../Handbook';
+import Text from '../Text';
+import styles from './TutorialSection.module.scss';
 const cx = classNames.bind(styles);
 type DataType = CourseResponse & {
   Topics: TopicResponse[];
@@ -17,7 +12,6 @@ type DataType = CourseResponse & {
 };
 function TutorialSection() {
   const [courses, setCourses] = useState<DataType[]>([]);
-  console.log('>>> re-render : TutorialSection');
 
   useEffect(() => {
     let here = true;
@@ -40,23 +34,7 @@ function TutorialSection() {
       here = false;
     };
   }, []);
-  //   useEffect(() => {
-  //     (async () => {
-  //       try {
-  //         const resp: ResponseAxiosType<DataType[] & string> = await axiosCourse({
-  //           method: 'get',
-  //           url: '?istutorial=1',
-  //         });
-  //         if (resp.data.success) {
-  //           setCourses(resp.data.message);
-  //         } else {
-  //           throw new Error(resp.data.message);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     })();
-  //   }, []);
+
   return (
     <div className='container section'>
       <div className={cx('tutorial-wrapper')}>

@@ -1,10 +1,9 @@
+import classNames from 'classnames/bind';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PATH_IMG } from '../../utils/constant';
 import Icon from '../Icon';
 import styles from './Modal.module.scss';
-import classNames from 'classnames/bind';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 const cx = classNames.bind(styles);
 
 function Modal({

@@ -17,8 +17,6 @@ function Home() {
   useEffect(() => {
     let here = true;
     (() => {
-      //   try {
-      // const resp: ResponseAxiosType<GetAllCourseResponse[] & string> =
       axiosCourse({
         method: 'get',
         url: '/',
@@ -36,17 +34,6 @@ function Home() {
         .catch((err) => {
           console.log(err);
         });
-      //   if (!here) {
-      //     return;
-      //   }
-      // if (resp.data.success) {
-      //   setCourses(resp.data.message);
-      // } else {
-      //   throw new Error(resp.data.message);
-      // }
-      //   } catch (error) {
-      //     console.log('file: Home index.tsx >>> line 33 >>> error', error);
-      //   }
     })();
     return () => {
       here = false;

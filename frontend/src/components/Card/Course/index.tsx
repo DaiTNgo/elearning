@@ -1,11 +1,10 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import { GetAllCourseResponse } from '../../../Types';
-
 import { PATH_IMG } from '../../../utils/constant';
 import Icon from '../../Icon';
 import CardLayout from '../Layout';
 import styles from './Course.module.scss';
+
 const cx = classNames.bind(styles);
 
 export default function CourseCard({

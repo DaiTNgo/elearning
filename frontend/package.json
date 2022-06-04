@@ -8,14 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/icons-material": "^5.8.0",
-    "@mui/material": "^5.8.1",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
-    "jwt-decode": "^3.1.2",
     "modern-normalize": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

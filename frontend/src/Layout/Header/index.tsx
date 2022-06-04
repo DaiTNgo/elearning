@@ -1,58 +1,39 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
-import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Dropdown from '../components/Dropdown';
+import Authentication from '../../components/Authentication';
+import Icon from '../../components/Icon';
+import NavigatorButton from '../../components/NavigatorButton';
 import { useAppSelector } from '../../hooks/redux';
 import { getUser } from '../../redux/authenSlice';
-import { PATH_IMG } from '../../utils/constant';
-import Authentication from '../../components/Authentication';
-import NavigatorButton from '../../components/NavigatorButton';
-import Icon from '../../components/Icon';
+import { LIST_HEADER, PATH_IMG } from '../../utils/constant';
+import Dropdown from '../components/Dropdown';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Header = (props: {}) => {
+const Header = () => {
   const user = useAppSelector(getUser);
   const [isDropdown, setIsDropdown] = useState(false);
   const [showFormLogin, setShowFormLogin] = useState<boolean>(false);
-  const [listHeader, setListHeader] = useState([
-    {
-      to: '/courses',
-      url: `${PATH_IMG}/courses.svg`,
-      text: 'Courses',
-      alt: 'course',
-      transition: true,
-      header: true,
-    },
-    {
-      to: '/tutorials',
-      url: `${PATH_IMG}/tutorials.svg`,
-      text: 'Tutorials',
-      alt: 'tutorials',
-      transition: true,
-      header: true,
-    },
-    {
-      to: '/livestreams',
-      url: `${PATH_IMG}/livestreams.svg`,
-      text: 'Livestreams',
-      alt: 'livestreams',
-      transition: true,
-      header: true,
-    },
-    {
-      to: '/pricing',
-      url: `${PATH_IMG}/pricing.svg`,
-      text: 'Pricing',
-      alt: 'pricing',
-      transition: true,
-      header: true,
-    },
-  ]);
+  const [listDropdown, setListDropdown] = useState(LIST_HEADER.slice(4));
+
   const handleLogin = () => {
     setShowFormLogin(!showFormLogin);
   };
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 768) {
+        setListDropdown(LIST_HEADER.slice(1));
+      } else if (window.innerWidth < 900) {
+        setListDropdown(LIST_HEADER.slice(2));
+      } else if (window.innerWidth < 1024) {
+        setListDropdown(LIST_HEADER.slice(3));
+      } else {
+        setListDropdown(LIST_HEADER.slice(4));
+      }
+    });
+  }, []);
   return (
     <>
       {showFormLogin && (
@@ -67,7 +48,7 @@ const Header = (props: {}) => {
           </Link>
 
           <nav className={cx('nav')}>
-            {listHeader.map((item, index) => {
+            {LIST_HEADER.slice(0, 4).map((item, index) => {
               return (
                 <NavLink
                   to={item.to}
@@ -77,7 +58,7 @@ const Header = (props: {}) => {
                   key={index}
                 >
                   <NavigatorButton
-                    url={item.url}
+                    url={item.pathIcon}
                     text={item.text}
                     alt={item.alt}
                     transition
@@ -89,9 +70,30 @@ const Header = (props: {}) => {
               );
             })}
 
-            <button className={cx('btn', 'nav__link')}>
+            <button
+              className={cx('btn', 'nav__link')}
+              onClick={() => {
+                setIsDropdown((isDropdown) => !isDropdown);
+              }}
+            >
               <img src={`${PATH_IMG}/more.svg`} alt='more' />
-              {/* <Dropdown isActive={isDropdown} /> */}
+              <Dropdown isActive={isDropdown} place='right'>
+                {listDropdown.map((item, index) => {
+                  return (
+                    <NavLink to={item.to} key={item.text}>
+                      <NavigatorButton
+                        url={item.pathIcon}
+                        text={item.text}
+                        alt={item.alt}
+                        transition
+                        hover
+                        header
+                        sm_2={true}
+                      />
+                    </NavLink>
+                  );
+                })}
+              </Dropdown>
             </button>
             <button className={cx('btn', 'nav__link')}>
               <img src={`${PATH_IMG}/search.svg`} alt='search' />
@@ -116,9 +118,9 @@ const Header = (props: {}) => {
           </nav>
 
           <button
-            onClick={() => {
-              setIsDropdown((isDropdown) => !isDropdown);
-            }}
+            // onClick={() => {
+            //   setIsDropdown((isDropdown) => !isDropdown);
+            // }}
             className={cx('hamburger')}
           >
             <Icon url={`${PATH_IMG}/hamburger-menu.svg`} padding />

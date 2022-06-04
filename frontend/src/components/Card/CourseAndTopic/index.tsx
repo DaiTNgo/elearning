@@ -1,11 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import {
-  CourseResponse,
-  ResponseAxiosType,
-  TopicResponse,
-  UserResponse,
-} from '../../../Types';
+import { CourseResponse, TopicResponse, UserResponse } from '../../../Types';
 import { axiosCourse } from '../../../utils/axios';
 import TopicWrapper from '../TopicWrapper';
 import styles from './CourseTopic.module.scss';
@@ -38,7 +33,6 @@ function CourseAndTopic({
   const CardTopic = (
     <TopicWrapper topics={topics} courses={courses} size={size} title={title} />
   );
-  console.log('>>> re-render : CourseAndTopic');
   useEffect(() => {
     let here = true;
     (() => {
@@ -79,54 +73,6 @@ function CourseAndTopic({
       here = false;
     };
   }, []);
-  //   useEffect(() => {
-  //     let here = true;
-  //     (async () => {
-  //       if (courseId) {
-  //         try {
-  //           const resp: ResponseAxiosType<GetCourseIdType & string> =
-  //             await axiosCourse({
-  //               method: 'get',
-  //               url: `/${courseId}`,
-  //             });
-  //           if (resp.data.success) {
-  //             setTitle('FEATURED COURSE');
-  //             setTopics(resp.data.message.Topics);
-  //           } else {
-  //             throw new Error(resp.data.message);
-  //           }
-  //         } catch (error) {
-  //           console.log(
-  //             'file:CourseAndTopic index.tsx >>> line 64 >>> error',
-  //             error
-  //           );
-  //         }
-  //       }
-  //       if (instructorId) {
-  //         try {
-  //           const resp: ResponseAxiosType<CourseResponse[] & string> =
-  //             await axiosCourse({
-  //               method: 'get',
-  //               url: `/instructor/${instructorId}`,
-  //             });
-  //           if (resp.data.success) {
-  //             setTitle(`${resp.data.message.length} COURSES `);
-  //             setCourses(resp.data.message);
-  //           } else {
-  //             throw new Error(resp.data.message);
-  //           }
-  //         } catch (error) {
-  //           console.log(
-  //             'file:CourseAndTopic index.tsx >>> line 83 >>> error',
-  //             error
-  //           );
-  //         }
-  //       }
-  //     })();
-  //     return () => {
-  //       here = false;
-  //     };
-  //   }, []);
 
   return (
     <>

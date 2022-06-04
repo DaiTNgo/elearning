@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import Icon from '../Icon';
-import { PATH_IMG } from '../../utils/constant';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { onChange } from '../../redux/searchSlice';
+import { PATH_IMG } from '../../utils/constant';
+import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 
 export default function Search() {

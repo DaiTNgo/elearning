@@ -53,32 +53,6 @@ function Courses() {
     }
   }, [search, courses]);
 
-  //   useEffect(() => {
-  //     let here = true;
-  //     (async () => {
-  //       try {
-  //         const resp: ResponseAxiosType<GetAllCourseResponse[] & string> =
-  //           await axiosCourse({
-  //             method: 'get',
-  //             url: '/',
-  //           });
-  //         if (!here) {
-  //           return;
-  //         }
-  //         if (resp.data.success) {
-  //           setCourses(resp.data.message);
-  //         } else {
-  //           throw new Error(resp.data.message);
-  //         }
-  //       } catch (error) {
-  //         console.log('file: Courses.tsx >>> line 28 >>> error', error);
-  //       }
-  //       return () => {
-  //         here = false;
-  //       };
-  //     })();
-  //   }, []);
-
   return (
     <>
       <div className={cx('bg-courses')}></div>

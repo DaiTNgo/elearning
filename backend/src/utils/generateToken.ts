@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export function generateAccessToken(payload: JwtPayload) {
   return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, {
-    expiresIn: '180s',
+    expiresIn: '1d',
   });
 }
 export function generateRefreshToken(payload: JwtPayload) {

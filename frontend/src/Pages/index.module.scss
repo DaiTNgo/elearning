@@ -29,6 +29,9 @@
   margin-inline: auto;
   margin-bottom: 10rem;
   overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
 }
 .bg-courses,
 .bg-tutorials,

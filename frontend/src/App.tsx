@@ -33,7 +33,7 @@ function App() {
         <Route path='/courses/:courseName' element={<Course />} />
         <Route path='/tutorials' element={<Tutorials />} />
         <Route path='/livestreams' element={<Livestreams />} />
-        <Route path='/pricing' element={<NotFound />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </>
   );

@@ -1,9 +1,8 @@
-import React from 'react';
-import styles from './TrustSection.module.scss';
 import classNames from 'classnames/bind';
-import Text from '../Text';
+import React from 'react';
 import Icon from '../Icon';
-import { CourseResponse } from '../../Pages';
+import Text from '../Text';
+import styles from './TrustSection.module.scss';
 const cx = classNames.bind(styles);
 
 function TrustSection() {
@@ -30,8 +29,6 @@ function TrustSection() {
             <p className={cx('card__info')}>CREATOR OF SKETCH RUNNER</p>
             <p className={cx('card__desc')}>
               Design+Code 1 got me fully into using Sketch and I’m amped to
-              {/* discover what’s new in this sequel. Thanks so much for creating it
-              and keep up the great work! */}
             </p>
           </div>
         </div>

@@ -1,4 +1,3 @@
-import React, { Children } from 'react';
 import styles from './Dropdown.module.scss';
 import classNames from 'classnames/bind';
 

@@ -43,8 +43,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .certificate-left-top {
-    }
     .certificate-left-bottom {
       .line {
         background-color: rgba(white, var(--op-line));
@@ -55,8 +53,6 @@
         + .line {
           margin-top: 5px;
         }
-      }
-      .line-1 {
       }
       .line-2 {
         --width-line: 80px;
@@ -70,7 +66,5 @@
         --height-line: 5px;
       }
     }
-  }
-  .certificate-right {
   }
 }
