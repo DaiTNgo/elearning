@@ -1,8 +1,9 @@
 import { RootState } from './index';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { axiosAuth, axiosUser } from '../axios';
+import { axiosAuth, axiosUser, createInterceptors } from '../axios';
+import axios from 'axios';
 
-interface CurrentUserType {
+interface ICurrentUser {
   id: number;
   email: string;
   user_name: string;
@@ -14,7 +15,7 @@ interface CurrentUserType {
 }
 interface InitTialStateType {
   accessToken: undefined | string;
-  currentUser: CurrentUserType | undefined;
+  currentUser: ICurrentUser | undefined;
   error: string | undefined;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
@@ -30,7 +31,9 @@ export const login = createAsyncThunk(
           password,
         },
       });
-      if (response.data.success) return response.data;
+
+      if (response.data.success && response.data.message.role === 'instructor')
+        return response.data;
       else {
         throw new Error(response.data.message);
       }
@@ -62,22 +65,26 @@ export const updateUser = createAsyncThunk(
     userUpdate,
   }: {
     accessToken: string;
-    userUpdate: Omit<CurrentUserType, 'id' | 'role' | 'email'>;
+    userUpdate: Omit<ICurrentUser, 'id' | 'role' | 'email'>;
   }) => {
     try {
+      const data = {
+        username: userUpdate.user_name,
+        avatar: userUpdate.avatar,
+        description: userUpdate.description,
+        acctwiter: userUpdate.acc_twiter,
+        mywebsite: userUpdate.my_website,
+      };
+      //TODO:
+      createInterceptors(accessToken, axiosUser);
+      // axios.interceptors.request.eject(myInterceptor);
       const resp = await axiosUser({
         method: 'put',
         url: '/update',
         headers: {
           authorization: `Bearer ${accessToken}`,
         },
-        data: {
-          username: userUpdate.user_name,
-          avatar: userUpdate.avatar,
-          description: userUpdate.description,
-          acctwiter: userUpdate.acc_twiter,
-          mywebsite: userUpdate.my_website,
-        },
+        data: data,
       });
       if (resp.data.success) {
         return resp.data.message;
@@ -115,14 +122,14 @@ const authenSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = 'Something is wrong!!!. Try again.';
       });
     builder
       .addCase(logout.pending, (state, action) => {
         state.status = 'loading';
       })
       .addCase(logout.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = 'idle';
         state.accessToken = undefined;
         state.currentUser = undefined;
       })

@@ -14,16 +14,16 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(cors());
-// app.use(
-//   cors({
-//     origin: '*',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     preflightContinue: true,
-//     credentials: true,
-//     optionsSuccessStatus: 200,
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: true,
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 //router
 route(app);

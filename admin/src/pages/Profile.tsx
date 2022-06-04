@@ -12,42 +12,26 @@ import {
 } from '../redux/authSlice';
 import { profileSchema } from '../utils/validations';
 import { FormInputText } from '../components/FormInput';
+import { PROFILE_TEXT_FIELDS } from '../utils/constant';
 
 const Profile = () => {
   const { handleSubmit, control, reset, watch } = useForm({
     resolver: joiResolver(profileSchema),
+    defaultValues: {
+      twitter: '',
+      website: '',
+      avatar: '',
+      description: '',
+      userName: '',
+    },
   });
   const dispatch = useAppDispatch();
   const user = useAppSelector(getUser);
   const accessToken = useAppSelector(getAccessToken);
   const status = useAppSelector((state) => state.authSlice.status);
   const error = useAppSelector((state) => state.authSlice.error);
-  const [avatar, setAvatar] = useState('');
   const [title, setTitle] = useState('');
 
-  const TextFieldArr = [
-    {
-      label: 'User Name',
-      name: 'userName',
-    },
-
-    {
-      label: 'Description',
-      name: 'description',
-    },
-    {
-      label: 'Website',
-      name: 'website',
-    },
-    {
-      label: 'Avatar',
-      name: 'avatar',
-    },
-    {
-      label: 'Twitter',
-      name: 'twitter',
-    },
-  ];
   useEffect(() => {
     if (user) {
       reset({
@@ -57,17 +41,12 @@ const Profile = () => {
         description: user.description,
         userName: user.user_name,
       });
-      setAvatar(user.avatar);
     }
   }, [user]);
 
   useLayoutEffect(() => {
     dispatch(setStatus());
   }, []);
-
-  useEffect(() => {
-    setAvatar(watch('avatar'));
-  }, [watch('avatar')]);
 
   useEffect(() => {
     {
@@ -80,6 +59,15 @@ const Profile = () => {
       status === 'idle' && setTitle('');
     }
   }, [status]);
+
+  useEffect(() => {
+    const temp = setTimeout(() => {
+      setTitle('');
+    }, 3000);
+    return () => {
+      clearTimeout(temp);
+    };
+  }, [title]);
 
   const onSubmit = (data: any) => {
     if (accessToken) {
@@ -109,7 +97,7 @@ const Profile = () => {
           flexDirection: 'column',
         }}
       >
-        {TextFieldArr.map((item, index) => {
+        {PROFILE_TEXT_FIELDS.map((item, index) => {
           return (
             <FormInputText
               key={index}
@@ -121,7 +109,7 @@ const Profile = () => {
         })}
 
         <Avatar
-          src={avatar}
+          src={watch('avatar')}
           variant='rounded'
           sx={{
             width: 100,

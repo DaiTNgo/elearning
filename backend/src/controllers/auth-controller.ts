@@ -74,8 +74,6 @@ class Auth {
           resp.message = others;
           res.cookie('refresh', refreshToken, {
             httpOnly: true,
-            secure: false,
-            // secure:true,
             expires: new Date(Date.now() + maxAge),
             sameSite: 'strict',
           });
@@ -102,6 +100,7 @@ class Auth {
   async refreshToken(req: Request, res: Response) {
     const resp: ResponseType = { success: false };
     const refreshCookie = req.cookies.refresh;
+
     if (!refreshTokens.includes(refreshCookie)) {
       return res.status(401).json("You're not authenticated");
     }

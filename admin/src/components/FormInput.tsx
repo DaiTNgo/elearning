@@ -19,6 +19,7 @@ export const FormInputText = ({
         field: { onChange, name, value, onBlur },
         fieldState: { error },
       }) => {
+        // console.log(name,value);
         return (
           <TextField
             helperText={error ? error.message : null}

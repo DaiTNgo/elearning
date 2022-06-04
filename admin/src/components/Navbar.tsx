@@ -1,15 +1,13 @@
 import {
-	Avatar,
-	Box,
-	Button,
-	Container,
-	Menu,
-	MenuItem,
-	styled,
-	Typography,
+    Avatar,
+    Box,
+    Button,
+    Container,
+    Menu,
+    MenuItem,
+    styled,
+    Typography
 } from '@mui/material';
-import { current } from '@reduxjs/toolkit';
-import { axiosAuth } from '../axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';

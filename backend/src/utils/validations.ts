@@ -23,7 +23,7 @@ export const courseValidate = (data: any) => {
   const courseSchema = Joi.object({
     type: Joi.string().required(),
     name: Joi.string().max(150).required(),
-    price: Joi.string().required(),
+    price: Joi.number().min(0).required(),
     image: Joi.string().max(255).uri().required(),
     description: Joi.string().required(),
     watch: Joi.string().required(),
