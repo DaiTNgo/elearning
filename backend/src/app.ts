@@ -16,10 +16,7 @@ app.use(
 app.use(cookieParser());
 
 var whitelist = ['http://localhost:3000', 'http://localhost:3001'];
-// var whitelist = [
-//   'https://dnt-elearning.netlify.app',
-//   'https://fe-elearning.netlify.app/',
-// ];
+
 var corsOptions = {
   origin: function (origin: any, callback: any) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -31,7 +28,7 @@ var corsOptions = {
   preflightContinue: true,
   credentials: true,
   optionsSuccessStatus: 200,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
 };
 app.use(cors(corsOptions));
 
