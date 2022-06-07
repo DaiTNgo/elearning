@@ -44,4 +44,6 @@ npm run dev
 - Website Student: http://localhost:3001.
 
 # Demo
+> [Student](https://fe-elearning.netlify.app).
+> [Admin](https://dnt-elearning.netlify.app).
 > [Video Demo](https://www.youtube.com/watch?v=1natjaL3IhY).
